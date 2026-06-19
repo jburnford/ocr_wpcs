@@ -1,0 +1,64 @@
+Bootstrap: docker
+From: vllm/vllm-openai:v0.17.1
+
+# Infinity-Parser2-Pro (35B, Qwen3.5-VL) container for Nibi H100 nodes.
+#
+# Base = the official vLLM v0.17.1 image, which already ships the exact stack
+# Infinity pins: torch 2.10.0 + CUDA 12.8 (cu128) + a matched flash-attn build
+# + vLLM 0.17.1. That avoids a multi-hour flash-attn source compile. We only
+# add the PDF toolchain and the infinity_parser2 package on top.
+#
+# Build (unprivileged user-namespace build works on Nibi — no fakeroot needed):
+#     sbatch build_container.slurm
+# Fallback if the vLLM base ever drifts from Infinity's pins: bootstrap from
+# nvidia/cuda:12.8.0-cudnn-devel-rockylinux9 and follow Infinity's pinned
+# install (torch==2.10.0+cu128, flash-attn==2.8.3, vllm==0.17.1) — see README.
+
+%environment
+    export PYTHONUNBUFFERED=1
+    export PIP_NO_CACHE_DIR=1
+    export PYTHONNOUSERSITE=1
+    # H100 only — Hopper. vLLM uses its FlashAttention-3 kernels here.
+    export TORCH_CUDA_ARCH_LIST="9.0"
+    export TZ=UTC
+
+%post
+    set -euo pipefail
+
+    # PDF rendering deps Infinity uses to rasterize input PDFs.
+    apt-get update && apt-get install -y --no-install-recommends \
+        poppler-utils ghostscript libgl1 libglib2.0-0 fonts-dejavu-core \
+        && rm -rf /var/lib/apt/lists/*
+
+    python3 -m pip install --no-cache-dir --upgrade pip
+
+    # The parser package. --no-deps first so it cannot silently downgrade the
+    # base image's torch/vllm/flash-attn; then install its pure-Python extras.
+    python3 -m pip install --no-cache-dir infinity_parser2 || \
+        python3 -m pip install --no-cache-dir --no-deps infinity_parser2
+
+    # Smoke test: confirm the pinned stack is intact and the parser imports.
+    python3 - <<'PY'
+import torch, vllm
+print("torch:", torch.__version__)
+print("vllm :", vllm.__version__)
+import infinity_parser2
+print("infinity_parser2:", getattr(infinity_parser2, "__version__", "unknown"))
+PY
+
+%runscript
+    exec parser "$@"
+
+%labels
+    Author jic823
+    Description Infinity-Parser2-Pro (35B) for Nibi H100 — vLLM 0.17.1 base
+    Variant Pro
+
+%help
+    Infinity Parser 2 (infly-ai/INF-MLLM) document parser for Nibi H100 nodes.
+    Model: infly/Infinity-Parser2-Pro (35B, Qwen3.5-VL) — pre-download separately
+    (see download_model.sh), run offline. Pro needs 2x H100 (tensor-parallel=2).
+
+    Build:   sbatch build_container.slurm
+    Run:     sbatch run_infinity.slurm
+    Manual:  apptainer exec --nv infinity_parser2.sif parser input.pdf -o out/
