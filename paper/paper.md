@@ -120,12 +120,16 @@ content type rather than as a single ranking.
 2. **Advice by document type, not a winner's podium.** We compare five tools and
    report which one to reach for on which kind of page, because no single tool
    wins everywhere.
-3. **Two new measures aimed at historians' real worries.** First, we separate the
-   harmless-looking "hallucinations" into two very different things: an old
-   spelling quietly modernised (a faithfulness problem) versus text invented
-   outright. Second, we show how to tell whether a tool failed *honestly* or
-   *dangerously* on an unreadable image — without needing a correct transcription
-   to compare against.
+3. **Two new measures aimed at historians' real worries.** First, the fluent
+   errors a careless reader glides past — what the field calls "hallucinations" —
+   are not all equally serious, so we separate them by severity. A silently
+   modernised spelling (*bloud* → *blood*) is a minor matter of faithfulness that
+   rarely changes meaning; swapping a real place-name for a different but equally
+   plausible one — a lake that never existed standing in for the real one — is a
+   major failure that can quietly corrupt the evidence. Counting the two together
+   buries the dangerous error inside a reassuring average. Second, we show how to
+   tell whether a tool failed *honestly* or *dangerously* on an unreadable image —
+   without needing a correct transcription to compare against.
 4. **Everything open, and an invitation.** The scoring code is public and anyone
    can re-run it; we ask the community to contribute more transcriptions to widen
    the benchmark, and we explain how we keep that material out of the data used to
