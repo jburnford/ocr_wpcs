@@ -84,7 +84,10 @@ drive them. Running a model like this used to mean writing Python and wrangling
 dependencies; agentic coding assistants such as Claude Code now let a historian
 set up and run these pipelines in plain language — which is how the benchmark in
 this paper was built. The capability is no longer gated behind a
-computer-science degree.
+computer-science degree. To lower the barrier further, we release the same
+Claude Code *Skill* files we used — reusable, plain-language recipes that walk an
+assistant through standing up each tool — so a historian can reproduce these
+pipelines without starting from scratch.
 
 The headline is overwhelmingly positive. For the great majority of documents and
 the great majority of scholarly uses, the residual errors are small enough to be
