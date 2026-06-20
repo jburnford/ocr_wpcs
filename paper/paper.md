@@ -28,9 +28,7 @@ that matters most for scholarship is not the one CER measures.** We show that
 modernization** of archaic spelling — a fidelity failure invisible to a reader
 but corrosive to the evidentiary chain; and (3) on *out-of-spec* inputs (a letter
 photographed atop a pile of others) the right question is not accuracy but *how
-the model fails*, which we measure without any gold standard. This document is
-itself the demonstration: each claim below can be expanded to show the actual
-transcriptions, scored against gold and colour-coded error by error. We release
+the model fails*, which we measure without any gold standard. We release
 the demonstration set and scoring harness openly, keep the core gold private to
 prevent benchmark contamination, and **invite the community to contribute gold
 transcriptions** across the many archive types still missing.
@@ -89,10 +87,6 @@ and interpretation as inseparable. The benchmark is the argument: OCR fidelity i
 an **evidentiary problem** for historians of the early-modern and colonial
 Atlantic world, where the sources are precisely the degraded, archaically-spelled,
 multi-column, hand-annotated documents that modern OCR handles least uniformly.
-Because method and evidence are inseparable, we have not written *about* a demo
-and linked it elsewhere: the demonstration is folded into this page. Wherever a
-claim rests on a transcription, an **▸ expandable panel** holds the real OCR
-output, aligned to the gold and marked error by error — open it to check us.
 
 **Contributions.** (1) A multi-axis historical OCR benchmark (1612–1921; print,
 handwriting, tables; single- and multi-column) with provenance-controlled gold.
