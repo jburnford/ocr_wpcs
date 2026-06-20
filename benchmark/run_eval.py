@@ -45,8 +45,8 @@ DATASET_TOOLS = {
     "fullpage": ["olmocr", "chandra", "gemini", "infinity"],
     "manuscripts": ["olmocr", "chandra", "gemini", "infinity"],
     "tables": ["olmocr", "chandra", "gemini", "infinity"],
-    # 100 early-modern English pages (1612-1807), PAGE-XML gold. Gemini deferred.
-    "jacob": ["olmocr", "chandra", "infinity"],
+    # 100 early-modern English pages (1612-1807), PAGE-XML gold.
+    "jacob": ["olmocr", "chandra", "gemini", "infinity"],
 }
 
 
