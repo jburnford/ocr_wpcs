@@ -110,16 +110,6 @@ because the best tool **changes with the document** and the gap between the
 leaders is often within noise. That is why the analysis below is organized by
 content type rather than as a single ranking.
 
-This paper follows the spirit of *Working Papers in Critical Search*: how we read
-a source and what we conclude from it cannot be pulled apart. Here the method
-*is* the argument. For historians of the early-modern and colonial Atlantic
-world, getting the transcription right is not a technical chore to finish before
-the real work begins — it is part of the evidence. And these are exactly the
-sources a machine finds hardest: faded and damaged pages, archaic spelling, text
-set in several columns, and notes added by hand in the margins. How well today's
-OCR copes with that material is therefore a question about the reliability of
-historical evidence, not just about software.
-
 **What this paper offers.**
 
 1. **A benchmark built from real archives.** We test the tools on documents
