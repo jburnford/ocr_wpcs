@@ -74,13 +74,38 @@ paper: machine reading of historical documents has materially changed, and
 pipelines built on legacy OCR are leaving an enormous amount of signal on the
 floor.
 
-And yet a leaderboard would mislead. The best tool **changes with the document**,
-the gap between the leaders is often within noise, and — most important for
-historians — the errors that survive in the modern tools are exactly the kind a
-casual reader will not catch: a plausible place-name that was never on the page,
-an archaic spelling silently "corrected" to its modern form. For a scholar
-building an argument on what a source *says*, a fluent wrong transcription is
-more dangerous than an obviously broken one.
+Using these tools takes more than Adobe Acrobat's one-click OCR — but far less
+than it used to. They are vision-language models, and they want a GPU. The
+encouraging news is that the bar is low and falling: most of the tools
+benchmarked here run on a good consumer gaming PC, and a research cluster buys
+*speed*, not better readings — it earns its keep when there are thousands of
+pages to process, not for a single document. The larger change is in who can
+drive them. Running a model like this used to mean writing Python and wrangling
+dependencies; agentic coding assistants such as Claude Code now let a historian
+set up and run these pipelines in plain language — which is how the benchmark in
+this paper was built. The capability is no longer gated behind a
+computer-science degree.
+
+The headline is overwhelmingly positive. For the great majority of documents and
+the great majority of scholarly uses, the residual errors are small enough to be
+insignificant: the output can be read, searched, and analyzed with confidence,
+and it is incomparably better than legacy OCR or a keyword search over a poor
+scan. The reservations are real but narrow, and they follow one rule of thumb:
+**the harder a page is for a human to read, the more likely the machine is to
+slip — and to slip fluently.** The errors that survive in the best tools are the
+kind a casual reader will not catch: a plausible place-name that was never on the
+page, an archaic spelling silently "corrected" to its modern form. So the
+guidance is light-touch rather than fearful — trust the machine on clean and
+ordinary material; keep a human in the loop on genuinely difficult sources; and,
+whatever the source, check the transcription against the page image whenever it
+turns up something interesting, surprising, or unexpected before building an
+argument on it. A fluent wrong transcription is more dangerous than an obviously
+broken one precisely because it is so easy to believe.
+
+A leaderboard would still mislead, though — not because the tools are weak, but
+because the best tool **changes with the document** and the gap between the
+leaders is often within noise. That is why the analysis below is organized by
+content type rather than as a single ranking.
 
 This paper, in the spirit of *Working Papers in Critical Search*, treats method
 and interpretation as inseparable. The benchmark is the argument: OCR fidelity is
