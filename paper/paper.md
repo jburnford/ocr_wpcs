@@ -64,10 +64,10 @@ transcriptions** across the many archive types still missing.
 
 Set a worn early-modern page — long-s, archaic orthography, foxed paper — in
 front of the OCR engine that underlies most library digitization, and you get
-this (Tesseract, 1612–1807 corpus): **22.1% character error, 44.6% word error**,
-a BLEU of 0.40. The text is unusable. Set the same page in front of a 2025
-vision-language model (Chandra 2) and you get **4.5% CER** — a four-to-fivefold
-reduction — and the "hallucination" rate falls from 7.8% to under 1%. On clean
+this (Tesseract, 1612–1807 corpus): **21.3% character error, 44.1% word error**,
+a BLEU of 0.39. The text is unusable. Set the same page in front of a 2025
+vision-language model (Chandra 2) and you get **3.0% CER** — a seven-fold
+reduction — and the "hallucination" rate falls from 7.9% to under 1%. On clean
 19th-century newspaper print the modern tools reach **0.6% CER**, within a
 rounding error of a careful human. This is the demonstration that motivates the
 paper: machine reading of historical documents has materially changed, and
@@ -274,20 +274,20 @@ block-by-block agreement.
 ### 4.2 Early-modern print: script matters more than age
 
 Hold layout roughly constant (mostly single-column) and move to 1612–1807, and
-error jumps ~8× over BLN600 for the same tools:
+error jumps ~5× over BLN600 for the same tools:
 
 | tool | n | CER | WER | BLEU | halluc | modern. | fabric. |
 |---|--:|--:|--:|--:|--:|--:|--:|
-| Gemini 3.5 Flash | 96 | **3.96%** | 5.96% | 0.920 | **0.51%** | **0.38%** | **0.13%** |
-| Chandra 2 | 100 | 4.53% | **5.89%** | 0.927 | 0.84% | 0.64% | 0.20% |
-| Chandra 2 *(no-modernize prompt)* | 100 | 4.29% | 5.66% | — | 0.72% | 0.59% | 0.13% |
-| Infinity Parser 2 | 100 | 4.79% | 6.59% | **0.928** | 1.18% | 1.00% | 0.17% |
-| olmOCR | 99 | 5.72% | 8.42% | 0.895 | 1.84% | 1.52% | 0.32% |
-| *Tesseract baseline* | 99 | 22.08% | 44.57% | 0.395 | 7.78% | 7.37% | 0.41% |
+| Gemini 3.5 Flash | 96 | **2.42%** | 4.78% | 0.929 | **0.51%** | **0.38%** | **0.13%** |
+| Chandra 2 | 100 | 3.05% | **4.74%** | **0.936** | 0.84% | 0.64% | 0.20% |
+| Chandra 2 *(no-modernize prompt)* | 100 | 2.80% | 4.50% | — | 0.72% | 0.59% | 0.13% |
+| Infinity Parser 2 | 100 | 3.02% | 5.23% | 0.928 | 1.18% | 1.01% | 0.16% |
+| olmOCR | 99 | 4.20% | 7.26% | 0.903 | 1.84% | 1.52% | 0.32% |
+| *Tesseract baseline* | 99 | 21.27% | 44.14% | 0.389 | 7.88% | 7.45% | 0.43% |
 
 Three findings. First, **archaic script and orthography, not date per se, drive
 the difficulty**: a simple-layout early-modern page is far harder than a
-simple-layout Victorian page (≈8× the CER of BLN600 for the same tools). This
+simple-layout Victorian page (≈5× the CER of BLN600 for the same tools). This
 nuances the common "layout matters more than age" claim — when layout is held
 simple, *script* reasserts itself.
 
@@ -295,7 +295,7 @@ Second, the hallucination gap between tools is almost entirely **modernization**
 olmOCR silently modernizes most, then Infinity, then Chandra (which largely
 preserves `bloud`, `armes`, `goodnesse`, `widdow`, `publick` as written). A prompt
 instructing diplomatic transcription gives Chandra a small, no-downside gain
-(CER 4.53→4.29%, modernization 0.64→0.59%) — but Chandra had little to fix. The
+(CER 3.05→2.80%, modernization 0.64→0.59%) — but Chandra had little to fix. The
 1700 "Sugar Plums" broadside (drawn from this same Jacob corpus) shows the
 behaviour in miniature, and lets you watch each tool decide whether to keep or
 "correct" the old spelling — expand it below.
@@ -305,15 +305,15 @@ behaviour in miniature, and lets you watch each tool decide whether to keep or
 Third, **the instructable general VLM, explicitly told not to modernize, is both
 the most accurate and the most faithful**: Gemini 3.5 Flash leads on CER and on
 every fidelity metric (hallucination, modernization, fabrication all lowest),
-while Chandra retains the best WER and Infinity the best BLEU — the word- and
-fluency-level leaders are genuinely close. This is the paper's central tension in
+while Chandra holds the best WER and BLEU, and Chandra and Infinity are tied at
+~3.0% CER — the word- and fluency-level leaders are genuinely close. This is the paper's central tension in
 one row: prompted fidelity beats specialized OCR on faithfulness. **But Gemini
 carries a coverage cost the others do not** (n = 96): it *refused* 3 documents
 outright (`RECITATION` — it recognizes and declines to reproduce texts in its
 training data, a quiet contamination signal) and truncated a 4th oversized
-table page (`MAX_TOKENS`). Restricting all tools to the common 94 pages both
-sides transcribed leaves the ordering unchanged (Gemini CER 4.00%, Chandra 4.48%,
-Infinity 4.76%, olmOCR 5.78%), so Gemini's lead is real and not an artifact of
+table page (`MAX_TOKENS`). Restricting all tools to the common 95 pages all
+sides transcribed confirms Gemini's lead (Gemini CER 2.45%, Chandra 2.99%,
+Infinity 3.01%, olmOCR 4.22%), so its lead is real and not an artifact of
 dropping its hardest pages — it simply does not attempt ~4% of the corpus, where
 a historian most needs a reading.
 
