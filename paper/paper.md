@@ -13,25 +13,40 @@
 
 ## Abstract
 
-Optical character recognition has quietly crossed a threshold: vision-language
-models now read historical print and even handwriting at error rates that were
-science fiction for the Tesseract-era tools most digitization pipelines still
-run. But "better on average" is the wrong frame for historians, who do not work
-on average pages. Using gold-standard transcriptions spanning **1612–1921** —
-early-modern English print, a 19th-century newspaper corpus, full multi-column
-newspaper pages, handwritten manuscripts, and statistical tables — we benchmark
-five OCR systems (Tesseract baseline, olmOCR, Chandra 2, Gemini 3.5 Flash,
-Infinity Parser 2) and find that **no single tool wins everywhere, and the error
-that matters most for scholarship is not the one CER measures.** We show that
-(1) error is driven more by *layout and script* than by *date*; (2) the standard
-"hallucination rate," on historical text, mostly measures **silent
-modernization** of archaic spelling — a fidelity failure invisible to a reader
-but corrosive to the evidentiary chain; and (3) on *out-of-spec* inputs (a letter
-photographed atop a pile of others) the right question is not accuracy but *how
-the model fails*, which we measure without any gold standard. We release
-the demonstration set and scoring harness openly, keep the core gold private to
-prevent benchmark contamination, and **invite the community to contribute gold
-transcriptions** across the many archive types still missing.
+Optical character recognition has crossed a threshold that should reshape how
+historians build and read digital archives. Vision-language models now transcribe
+degraded early-modern print, dense multi-column newspapers, and even handwriting
+at error rates approaching a careful human reader's — the very material that the
+Tesseract-era engines underlying most digitization pipelines render unusable. On
+legible early-19th-century manuscript hands, current tools read at low
+single-digit character error, near the accuracy of clean print; on 1600s English
+print, error falls from ~21% with legacy OCR to ~3%. Sources that were effectively
+closed to search, computation, and large-scale analysis are becoming legible at
+scale — a genuine opening for digital history, and an invitation to rebuild
+pipelines that are still leaving most of this signal on the floor.
+
+Realizing that potential takes more than a leaderboard. Using gold-standard
+transcriptions spanning **1612–1921** — early-modern print, a 19th-century
+newspaper corpus, full multi-column pages, handwritten manuscripts, and
+statistical tables — we benchmark five OCR systems (Tesseract baseline, olmOCR,
+Chandra 2, Gemini 3.5 Flash, Infinity Parser 2) and find that **no single tool
+wins everywhere, and the error that most threatens scholarship is not the one CER
+measures**: a fluent, plausible misreading — a place-name that was never on the
+page, an archaic spelling silently modernized — is more dangerous than an
+obviously broken one. We organize results by *content type*, split the benign
+error (spelling modernization) from the corrosive one (fabrication), and measure
+*how a model fails* on out-of-spec images with no gold standard at all — so a
+historian can choose tools, and trust their output, with evidentiary needs
+explicit.
+
+Above all, we offer this as **shared infrastructure, not a verdict**. A benchmark
+is only as good as its gold and only as broad as the community that builds it: we
+release the demonstration set and scoring harness openly, hold the core gold
+private so it cannot leak into training data and quietly destroy the test, and
+**invite historians and archives to contribute gold transcriptions** — more
+scripts and languages, more hands, more eras and document types — so this can grow
+into a living, collective map of what machines can and cannot yet read in the
+archive.
 
 > ### How to read the numbers
 >
