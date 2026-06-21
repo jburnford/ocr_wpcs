@@ -912,7 +912,73 @@ for diplomatic or philological work, <em>wrong</em> — it has edited the source
 hallucination split makes this visible; the prompt experiment suggests part of it
 is steerable. Historians should choose tools, and prompts, with their evidentiary
 needs explicit.</p>
-<h2>6. A call for community gold</h2>
+<h2>6. Speed, cost, and scale</h2>
+<p>For a single document any of these tools is fast enough, and the choice is purely
+accuracy. The calculus changes when a project scales to tens of thousands or
+millions of pages — the ambition behind most mass-digitization efforts — where
+throughput and cost, not a few points of CER, decide what is feasible at all. We
+measured both on a single H100 GPU (two runs per tool, at 50 and 100 pages; the
+numbers agree):</p>
+<table>
+<thead>
+<tr>
+<th>tool</th>
+<th style="text-align: right;">model load (one-time)</th>
+<th style="text-align: right;">inference</th>
+<th style="text-align: right;">100-page job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>olmOCR</td>
+<td style="text-align: right;">~2 min</td>
+<td style="text-align: right;"><strong>~0.7 s/page (~1.4 pages/s)</strong></td>
+<td style="text-align: right;">3.5 min</td>
+</tr>
+<tr>
+<td>Chandra 2</td>
+<td style="text-align: right;">~3 min</td>
+<td style="text-align: right;">~8 s/page (~0.13 pages/s)</td>
+<td style="text-align: right;">17 min</td>
+</tr>
+<tr>
+<td>Infinity Parser 2</td>
+<td style="text-align: right;">~17 min</td>
+<td style="text-align: right;">~7 s/page (~0.13 pages/s)</td>
+<td style="text-align: right;">27 min</td>
+</tr>
+</tbody>
+</table>
+<p>Two facts matter. <strong>olmOCR is an order of magnitude faster at inference</strong> than the
+other two — a genuine speed tier, and the reason it stays attractive despite its
+lower accuracy and flattened structure. <strong>Chandra and Infinity run at almost the
+same per-page rate</strong>; Infinity is "slower" chiefly because its 35-billion-parameter
+mixture-of-experts (§9) takes ~17 minutes to load — a fixed cost that is painful
+for a small job but amortizes to nothing across a large corpus. So at scale the
+effective ordering is <strong>olmOCR ≫ Chandra ≈ Infinity</strong>, and the real question is
+whether a corpus is large enough to absorb Infinity's load in return for its
+accuracy and structure.</p>
+<p><strong>Cost depends entirely on where the GPU comes from.</strong> For historians with an
+allocation on a campus or national research cluster — Canada's Digital Research
+Alliance, a university HPC, and their equivalents elsewhere — the marginal cost of
+running any of these open-weight tools is effectively <strong>zero</strong>: the hardware is
+already paid for, and a million pages is a budget of GPU-hours, not dollars. Cost
+becomes real only when renting cloud GPUs, where at roughly \$2–3 per H100-hour the
+rates work out to about <strong>\$0.50 per 1,000 pages (olmOCR), \$5 (Chandra), and \$7
+(Infinity)</strong> — still cheap, but no longer free, and now scaling linearly with
+throughput, which is exactly why the ~10× speed spread starts to matter. Gemini, by
+contrast, is a metered API in every case: there is no free pool of compute to fall
+back on, so its per-page price is paid on every page at scale, research allocation
+or not.</p>
+<p>This is what makes the <strong>tiered workflow</strong> more than a convenience. Given free or
+near-free open-weight compute, the rational design for a large historical corpus is
+to transcribe everything with a fast, structure-preserving open-weight tool —
+Chandra for most material, olmOCR where raw speed on simple pages wins — and to
+spend the metered frontier model only where it is decisively better <em>and</em> the pages
+are few enough to afford it, above all difficult handwriting. The economic gradient
+runs with the quality gradient only there; everywhere else the open-weight tools are
+now both cheaper and at least as good.</p>
+<h2>7. A call for community gold</h2>
 <p>The benchmark's reach is bounded by its gold. We invite contributions of gold
 transcriptions across the axes still thin or missing: non-English and non-Latin
 scripts, more handwriting and secretary hand, more eras, degraded and damaged
@@ -921,7 +987,7 @@ gold in PAGE-XML, .docx, .xlsx (tables), or plain text, with provenance metadata
 (who transcribed it, from what, how), under terms that let us score but not
 redistribute freely. A contributed gold becomes, automatically, a new expandable
 panel in a page like this one.</p>
-<h2>7. Data availability (and a note on contamination)</h2>
+<h2>8. Data availability (and a note on contamination)</h2>
 <p>Public benchmarks get scraped into training corpora, after which they no longer
 measure generalization. We therefore split release: the <strong>demonstration set</strong>
 (the documents whose transcriptions you can expand on this page) and the
@@ -931,7 +997,7 @@ with gold-text previews stripped, and the gold-free failure results — which
 contain no gold — are public in full. We propose this <em>gated-gold</em> pattern as a
 reusable data-availability model for evaluation datasets in <em>Working Papers in
 Critical Search</em>.</p>
-<h2>8. Compute and reproducibility</h2>
+<h2>9. Compute and reproducibility</h2>
 <p>All tools were run on a single H100 GPU via vLLM on a SLURM cluster (Chandra 2
 and Infinity Parser 2 detailed in the appendix Skill <code>cluster-vlm-ocr</code>); Gemini
 via API. The three open tools span an order of magnitude in size, which the
@@ -943,13 +1009,13 @@ token and still fits one GPU. The harness, metrics, per-corpus scripts, and the
 page-builder that generates this document from the result files are all in this
 repository, so the paper, the tables, and the expandable transcriptions can be
 regenerated end to end from the raw outputs.</p>
-<h2>9. Limitations</h2>
+<h2>10. Limitations</h2>
 <p>Small-N on several corpora (5–8 documents); the olmOCR prompt-sensitivity test
 remains open (its prompt is not cleanly overridable); Gemini is scored on 96/100
 early-modern pages (3 refusals + 1 truncation), though the common-subset re-score
 confirms its lead; English-dominant; gold is itself an interpretation. Each
-limitation is, in effect, the contribution call of §6.</p>
-<h2>10. Conclusion</h2>
+limitation is, in effect, the contribution call of §7.</p>
+<h2>11. Conclusion</h2>
 <p>Machine reading of historical documents has improved enough to change how we
 build digital archives — but uniformly only on the easy pages. On the hard
 pages that define real archival work, tool choice matters, the dangerous errors
