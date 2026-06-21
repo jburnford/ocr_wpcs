@@ -12,6 +12,7 @@ import re
 from rapidfuzz.distance import Levenshtein
 
 import failure_signals as _fs
+from gold_loaders import strip_boilerplate as _strip_boilerplate
 
 
 # Typographic punctuation variants are cosmetic, not OCR errors: a transcriber
@@ -157,7 +158,14 @@ def hallucination_split(reference: str, hypothesis: str,
 
 def evaluate_pair(filename: str, gold_text: str, ocr_text: str) -> dict:
     """Score one gold/OCR pair, strict + semantic. Schema matches the prior
-    project's per-file result dict so the comparison/analysis scripts apply."""
+    project's per-file result dict so the comparison/analysis scripts apply.
+
+    Digital-library boilerplate (EEBO/ProQuest/TCP footers) is stripped from
+    BOTH gold and OCR first: it is not document content, and some scans/tools
+    carry it while others drop it — neutralizing it here means a tool is neither
+    rewarded nor penalized for the choice."""
+    gold_text = _strip_boilerplate(gold_text)
+    ocr_text = _strip_boilerplate(ocr_text)
     g_strict = normalize_text(gold_text, semantic=False)
     o_strict = normalize_text(ocr_text, semantic=False)
     g_sem = normalize_text(gold_text, semantic=True)
