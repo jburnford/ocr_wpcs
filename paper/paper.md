@@ -29,15 +29,31 @@ Realizing that potential takes more than a leaderboard. Using gold-standard
 transcriptions spanning **1612–1921** — early-modern print, a 19th-century
 newspaper corpus, full multi-column pages, handwritten manuscripts, and
 statistical tables — we benchmark five OCR systems (Tesseract baseline, olmOCR,
-Chandra 2, Gemini 3.5 Flash, Infinity Parser 2) and find that **no single tool
-wins everywhere, and the error that most threatens scholarship is not the one CER
-measures**: a fluent, plausible misreading — a place-name that was never on the
-page, an archaic spelling silently modernized — is more dangerous than an
-obviously broken one. We organize results by *content type*, split the benign
-error (spelling modernization) from the corrosive one (fabrication), and measure
-*how a model fails* on out-of-spec images with no gold standard at all — so a
-historian can choose tools, and trust their output, with evidentiary needs
-explicit.
+Chandra 2, Gemini 3.5 Flash, Infinity Parser 2). Our central finding is how fast
+the **open-weight models are closing the gap**: on printed sources they are now
+**as good as or better than Gemini** — tied on clean print and clearly ahead on
+multi-column layout and tables — while Gemini still leads on *handwriting*. They
+differ in what matters to historians. **Infinity Parser 2** is the most accurate
+and, like **Chandra 2**, preserves the page structure scholars usually need —
+columns, tables, reading order; Infinity is much slower, while Chandra is nearly as
+good for most uses and fast, which makes it the practical workhorse. **olmOCR** is
+very fast but flattens that structure and collapses on complex layouts, so its speed
+pays off mainly on simple, single-column pages. Running on a self-hosted GPU at a
+fraction of per-page API cost, these tools make a **tiered** workflow natural:
+transcribe a whole corpus with a fast open-weight model — usually Chandra — and
+reserve the paid frontier model for the targeted re-reading that most rewards it,
+above all difficult handwriting, where the open tools already do the bulk well
+enough to leave only the hardest pages for Gemini. Tool choice is becoming an
+economic decision, not a quality compromise.
+
+One caveat cuts across every tool. The error that most threatens an argument is no
+longer the garbled line a reader can see but the **fluent, plausible misreading**
+they cannot — a place-name that was never on the page, an archaic spelling silently
+modernized — which character-error rates hide. We organize results by *content
+type*, separate this benign error (modernization) from the corrosive one
+(fabrication), and measure *how a model fails* on out-of-spec images with no gold
+standard at all, so historians can tell where machine reading is trustworthy and
+where it still needs a human.
 
 Above all, we offer this as **shared infrastructure, not a verdict**. A benchmark
 is only as good as its gold and only as broad as the community that builds it: we
