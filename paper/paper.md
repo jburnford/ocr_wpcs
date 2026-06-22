@@ -451,18 +451,25 @@ reward, and so does not build, the one skill early-modern print demands.
 
 ### 4.3 Multi-column pages: where olmOCR collapses
 
-Full multi-column pages defeat a single CER. The naive linear figure — scoring the
-page as one stream — ranks these tools from 14% to 56%, but it charges a tool for
-walking the columns in a different order than the gold, as if reading-order were
-misrecognition. We instead score order-invariantly: chunk-aware alignment (Appendix
-B) locates each gold passage anywhere in the output, which lets us report the
-standard retrieval triple at the character level. **Recall** is the share of the
-page's characters correctly recovered — coverage of the page *and* recognition of
-what was covered, with column order irrelevant. **Precision** is the share of the
-tool's *output* that is correct page text, so it penalizes over-reading and
-fabrication. **F1** combines them into one ranking number. We also show the two
-factors recall decomposes into — *coverage* (how much of the page was recovered at
-all) and *recovered CER* (recognition error on what was recovered):
+Multi-column newspapers are a significant challenge for OCR models, and a separate
+challenge for scoring what the models produce. Standard CER fails here because the
+content is rarely a clean left-to-right stream of columns: a model can read every
+word correctly and still thread the columns in an order the gold does not share, and
+a linear comparison counts that as error. The naive linear figure ranks these tools
+from 14% to 56%, mostly on reading order rather than recognition. The right
+long-term answer is an article-aware extraction metric, one that scores whether each
+article is recovered as a coherent unit, and we leave that to future work. For now
+we score with chunk-aware matching, which is enough for most purposes, because the
+downstream methods historians use (search, named-entity extraction, text mining)
+work on clean OCR as long as the paragraph-level chunks are clean, whatever order
+they arrive in. Chunk-aware alignment (Appendix B) locates each gold passage
+anywhere in the output and reports the standard retrieval triple at the character
+level. Recall is the share of the page's characters correctly recovered, coverage
+and recognition together, with column order irrelevant. Precision is the share of
+the tool's output that is correct page text, so it penalizes over-reading and
+fabrication. F1 combines them into one ranking number. We also report the two
+factors recall decomposes into: coverage (how much of the page was recovered at all)
+and recovered CER (recognition error on what was recovered):
 
 | tool | coverage | rec. CER | precision | recall | F1 |
 |---|--:|--:|--:|--:|--:|
