@@ -64,6 +64,15 @@ PROMPTS = {
         "[illegible]. Do not summarize. "
         "Return only JSON of the form {\"text\": \"<transcription>\"}.",
     ),
+    "hhtr": (
+        ROOT / "hhtr_pdfs",
+        "You are transcribing a handwritten early-19th-century administrative "
+        "document (Lower Canada / fur-trade-era clerical hand). Transcribe every "
+        "word verbatim in reading order. Preserve original spelling, punctuation "
+        "and capitalization. Mark unreadable words as [illegible]. Do not "
+        "modernize, correct, or summarize. "
+        "Return only JSON of the form {\"text\": \"<transcription>\"}.",
+    ),
     "jacob": (
         ROOT / "jacob_pdfs",
         "You are transcribing a page of an early-modern English printed book or "

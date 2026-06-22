@@ -113,6 +113,10 @@ def bln600_to_canonical(stem: str) -> dict:
     return _one_body(stem, "bln600", gl.load_bln600_gt(stem), "txt")
 
 
+def hhtr_to_canonical(stem: str) -> dict:
+    return _one_body(stem, "hhtr", gl.load_hhtr_gold(stem), "txt")
+
+
 def fullpage_to_canonical(stem: str) -> dict:
     return _one_body(stem, "fullpage",
                      gl.load_fullpage_review(f"{stem}_review.md"), "review-md")
@@ -160,6 +164,8 @@ def build_all(data_root: str | Path) -> dict:
                     for p in sorted(gl.JACOB_GT.glob("*.xml"))])
     _emit("bln600", [bln600_to_canonical(p.stem)
                      for p in sorted(gl.BLN600_GT.glob("*.txt"))])
+    _emit("hhtr", [hhtr_to_canonical(p.stem)
+                   for p in sorted(gl.HHTR_GOLD.glob("*.txt"))])
     from run_eval import FULLPAGE_SRC
     _emit("fullpage", [fullpage_to_canonical(p.stem)
                        for p in sorted(FULLPAGE_SRC.glob("*.pdf"))])

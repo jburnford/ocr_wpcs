@@ -16,7 +16,7 @@ BENCH = Path("/home/jic823/plato/wpcs-ocr/benchmark")
 OCR_OUT = BENCH / "ocr_output"
 INF = Path("/home/jic823/plato/wpcs-ocr/infinity_output/fullpage")
 FULLPAGE_SRC = Path("/home/jic823/plato/wpcs-ocr/fullpage_pdfs")
-TOOLS = ["olmocr", "chandra", "gemini", "infinity"]
+TOOLS = ["olmocr", "chandra", "gemini", "infinity", "glmocr"]
 
 
 def hyp_text(tool: str, stem: str, olmocr_recs: dict) -> str | None:
@@ -27,6 +27,8 @@ def hyp_text(tool: str, stem: str, olmocr_recs: dict) -> str | None:
         return gl.strip_markdown(ol.load_chandra_md(OCR_OUT / "chandra_fullpage", stem))
     if tool == "gemini":
         return gl.strip_markdown(ol.load_gemini(OCR_OUT / "gemini_fullpage", stem))
+    if tool == "glmocr":
+        return gl.strip_markdown(ol.load_gemini(OCR_OUT / "glmocr_fullpage", stem))
     if tool == "infinity":
         return gl.strip_markdown(ol.load_infinity(INF, stem))
     return None

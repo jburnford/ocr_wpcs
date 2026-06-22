@@ -40,16 +40,16 @@ FULLPAGE_SRC = Path("/home/jic823/plato/wpcs-ocr/fullpage_pdfs")
 
 # which tools to score per dataset
 DATASET_TOOLS = {
-    "bln600": ["olmocr", "chandra", "gemini", "infinity"],
+    "bln600": ["olmocr", "chandra", "gemini", "infinity", "glmocr"],
     "sask": ["olmocr", "chandra", "infinity"],
-    "fullpage": ["olmocr", "chandra", "gemini", "infinity"],
-    "manuscripts": ["olmocr", "chandra", "gemini", "infinity"],
-    "tables": ["olmocr", "chandra", "gemini", "infinity"],
+    "fullpage": ["olmocr", "chandra", "gemini", "infinity", "glmocr"],
+    "manuscripts": ["olmocr", "chandra", "gemini", "infinity", "glmocr"],
+    "tables": ["olmocr", "chandra", "gemini", "infinity", "glmocr"],
     # 100 early-modern English pages (1612-1807), PAGE-XML gold.
-    "jacob": ["olmocr", "chandra", "gemini", "infinity"],
-    # 50 handwritten historical pages (Mark Humphries' HHTR benchmark). We run
-    # olmocr/chandra/infinity; gemini is contributed by Mark.
-    "hhtr": ["olmocr", "chandra", "infinity", "gemini"],
+    "jacob": ["olmocr", "chandra", "gemini", "infinity", "glmocr"],
+    # 50 handwritten historical pages (Mark Humphries' HHTR benchmark). Gemini
+    # 3.5 Flash is run in-harness like the others (run_gemini.py hhtr).
+    "hhtr": ["olmocr", "chandra", "infinity", "gemini", "glmocr"],
 }
 
 
@@ -71,6 +71,9 @@ def _ocr_text(tool: str, dataset: str, stem: str,
         return _clean_ocr(ol.load_chandra_md(OCR_OUT / f"chandra_{dataset}", stem))
     if tool == "gemini":
         return _clean_ocr(ol.load_gemini(OCR_OUT / f"gemini_{dataset}", stem))
+    if tool == "glmocr":
+        # GLM-OCR emits the same {"text": ...} record format as Gemini.
+        return _clean_ocr(ol.load_gemini(OCR_OUT / f"glmocr_{dataset}", stem))
     if tool == "infinity":
         return _clean_ocr(ol.load_infinity(INFINITY_OUT / dataset, stem))
     return None
