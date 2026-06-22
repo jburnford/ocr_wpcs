@@ -1,7 +1,7 @@
 # Reading the Archive by Machine: an OCR Benchmark for Historians, 1612–1921
 
 *Working Papers in Critical Search — draft method note.*
-*Authors: Jim Clifford, Jacob Polay, Jessica Jack, Mark Humphries. Draft v0.2 — DO NOT CIRCULATE.*
+*Authors: Jim Clifford, Jacob Polay, Jessica Jack, Mark Humphries, Lianne C. Leddy. Draft v0.2 — DO NOT CIRCULATE.*
 
 > **Status (v0.2).** Every number below is produced by the benchmark harness in
 > this repository and is current as of the latest run; the tables and the
@@ -662,20 +662,32 @@ of running any of these open-weight tools is effectively zero. The hardware is
 already paid for, and a million pages is a budget of GPU-hours, not dollars. Cost
 becomes real only when renting cloud GPUs. At roughly \$2 to \$3 per H100-hour, the
 rates work out to about \$0.50 per thousand pages for olmOCR, \$5 for Chandra, and
-\$7 for Infinity. That is still cheap, but it is no longer free, and it now scales
-linearly with throughput, which is exactly why the tenfold speed spread starts to
-matter. Gemini, by contrast, is a metered API in every case. There is no free pool
-of compute to fall back on, so its per-page price is paid on every page at scale,
-research allocation or not.
+\$7 for Infinity. That is still cheap, but it is no longer free. Gemini, by contrast,
+is a metered API in every case: there is no free pool of compute to fall back on, so
+its per-page price is paid on every page, research allocation or not.
 
-This is what makes the tiered workflow more than a convenience. Given free or
-near-free open-weight compute, the rational design for a large historical corpus is
-to transcribe everything with a fast, structure-preserving open-weight tool,
+Raw speed at scale, though, belongs to neither option by default; it is a question of
+how widely the work fans out. The per-page rates above are measured on one H100, and
+that is the wrong unit for a large corpus, because both options parallelize, only
+along different axes. A metered API like Gemini parallelizes elastically and without
+infrastructure: a project can submit an entire collection at once and have it back
+within a day, with the provider absorbing the scheduling, the retries, and the
+hardware. A research allocation parallelizes too, but across whatever GPUs the
+scheduler grants at a given moment; on Nibi, with a large block of H100s allocated,
+we transcribed the Encyclopaedia Britannica from its 1771 first edition through 1860
+in under twenty-four hours. The frontier API trades money for elastic,
+infrastructure-free throughput. The open-weight cluster trades the work of standing
+up a job for compute that is free at the margin and bounded only by the size of the
+allocation. Neither is simply faster than the other.
+
+This is what makes the tiered workflow a matter of fit rather than ranking. With free
+or near-free open-weight compute in hand, a natural design for a large historical
+corpus is to transcribe the bulk with a fast, structure-preserving open-weight tool,
 Chandra for most material and olmOCR where raw speed on simple pages wins, and to
-spend the metered frontier model only where it is decisively better and the pages
-are few enough to afford it, above all on difficult handwriting. The economic
-gradient runs with the quality gradient only there. Everywhere else, the open-weight
-tools are now both cheaper and at least as good.
+spend the metered frontier model where it is decisively better and the pages are few
+enough to afford it, above all on difficult handwriting. The point is not that one
+class of tool has won. It is that print, structure, scale, and handwriting are
+different jobs, and the field now offers a different best tool for each.
 
 ## 7. A call for community gold
 
