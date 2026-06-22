@@ -446,42 +446,49 @@ reward, and so does not build, the one skill early-modern print demands.
 
 ### 4.3 Multi-column pages: where olmOCR collapses
 
-On full multi-column newspaper pages, linear semantic CER:
+Full multi-column pages need two numbers, not one. **Linear** semantic CER scores
+the page as a single stream, so it charges a tool for ordering the columns
+differently from the gold as if those were misread characters. **Order-invariant,
+chunk-aware** scoring (Appendix B) instead locates each gold chunk anywhere in the
+output, which separates *recognition* — within-chunk CER, did it read the words —
+from *coverage*, how much of the page it recovered at all:
 
-| tool | CER | WER | BLEU |
+| tool | linear CER | within-chunk CER | coverage |
 |---|--:|--:|--:|
-| Infinity Parser 2 | 14.45% | 16.32% | 0.815 |
-| Gemini 3.5 Flash | 21.22% | 27.85% | 0.695 |
-| Chandra 2 | 23.60% | 29.20% | 0.747 |
-| GLM-OCR | 52.34% | 74.12% | 0.464 |
-| olmOCR | 55.91% | 67.35% | 0.332 |
+| Infinity Parser 2 | 14.45% | **6.9%** | 99% |
+| Gemini 3.5 Flash | 21.22% | **15.5%** | 99% |
+| Chandra 2 | 23.60% | **12.7%** | 91% |
+| GLM-OCR | 52.34% | 13.7% | 52% |
+| olmOCR | 55.91% | 30.0% | 47% |
 
-olmOCR effectively fails the multi-column layout, and, separately, it cannot locate
-articles inside a full issue at all (0/40, against Chandra's 29/40 and Infinity's
-35/40). Worse than misreading, it fabricates. It invents plausible place-names that
-were never printed, a "Goliath" for Gotland, a "Sioux Lake" for Shoal Lake, so a
-knowledge graph built from its output would contain towns that never existed. The
-1878 *Saskatchewan Herald* front page makes this visible at a glance. Expand it to
-see olmOCR's fabrications in red against the gold, while the other three stay
-accurate.
+Read the linear column alone and Chandra, Gemini, and Infinity look mediocre, at 14
+to 24% CER. They are not. Once reading-order is set aside they read the words well —
+within-chunk CER of 6.9% (Infinity), 12.7% (Chandra), and 15.5% (Gemini) — at near
+complete coverage of the page (91 to 99%). Their apparent error is overwhelmingly
+serialization: they recover the text but walk the columns in a different order than
+the gold. Linear CER, the metric a naive pipeline would report, understates the
+three layout-aware tools by two- to three-fold.
+
+The bottom two rows are a genuinely different story, and the two columns pull them
+apart. olmOCR both loses half the page and garbles what it keeps (coverage 47%,
+within-chunk CER 30%); worse than misreading, it fabricates, inventing plausible
+place-names that were never printed — a "Goliath" for Gotland, a "Sioux Lake" for
+Shoal Lake — so a knowledge graph built from its output would hold towns that never
+existed. It also cannot locate articles inside a full issue at all (0/40, against
+Chandra's 29/40 and Infinity's 35/40). GLM-OCR fails differently: it reads what it
+captures about as well as Chandra (within-chunk CER 13.7%) but covers only ~52% of
+the page, dropping whole columns rather than misreading them. Two tools with nearly
+identical linear scores, two different failures, and only the layout-aware metric
+tells them apart. The 1878 *Saskatchewan Herald* front page makes this visible at a
+glance: expand it to see olmOCR's fabrications in red against the gold, while the
+other three stay accurate.
 
 <div class="evidence" data-key="multicolumn"></div>
 
-Much of the apparent error on full pages is reading-order, not recognition. Under
-chunk-aware, order-invariant scoring the within-chunk CER drops sharply, to 6.9%
-for Infinity and 12.7% for Chandra. The models largely read the words; they
-serialize the columns differently from the gold.
-
-GLM-OCR shows why this distinction matters. Its 52% linear CER looks like
-olmOCR-level collapse, but order-invariant scoring separates the two. Where olmOCR
-both loses half the page and garbles the rest (within-chunk CER 30%, coverage 47%
-of gold characters), GLM-OCR reads what it captures about as well as Chandra
-(within-chunk CER 13.7%) but covers only ~52% of the page: it drops whole columns
-rather than misreading them. Two tools with nearly identical linear scores, two
-different failures, and only the layout-aware metric tells them apart. The lesson
-for practitioners is twofold. On complex layouts, use a layout-aware tool or human
-review. And score with an order-invariant metric, or you will blame recognition for
-what is really a serialization or coverage choice.
+The lesson for practitioners is twofold. On complex layouts, use a layout-aware tool
+(Infinity, Chandra, or Gemini here) or human review. And score with an
+order-invariant metric, or you will blame recognition for what is really a
+serialization or coverage choice.
 
 ### 4.4 Handwriting
 
