@@ -210,9 +210,12 @@ The larger change is in who can drive them. Running a model like this used to me
 writing Python and wrangling dependencies. Agentic coding assistants such as Claude
 Code now let a historian set up and run these pipelines in plain language, which is
 how the benchmark in this paper was built. The capability is no longer gated behind
-a computer-science degree. To lower the barrier further, we release the same Claude
-Code <em>Skill</em> files we used: reusable, plain-language recipes that walk an assistant
-through standing up each tool, so that a historian can reproduce these pipelines
+a computer-science degree. To lower the barrier further, we release the Claude
+Code <em>Skill</em> we used for the two layout-aware open-weight tools, <code>cluster-vlm-ocr</code>
+(Appendix A): a reusable, plain-language recipe that walks an assistant through
+standing up Chandra 2 and Infinity Parser 2 on an HPC cluster. The remaining
+pipelines ship as scripts in the repository: SLURM jobs for olmOCR, a vLLM client
+for GLM-OCR, and an API client for Gemini, so a historian can reproduce any of them
 without starting from scratch.</p>
 <p>The headline is overwhelmingly positive. For the great majority of documents, and
 the great majority of scholarly uses, the residual errors are small enough to be
