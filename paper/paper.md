@@ -328,10 +328,15 @@ direction rather than a result.
   two, because they have opposite implications for scholarship.
 - **Chunk-aware, order-invariant scoring (for multi-column pages).** On a
   four-column page, linear CER punishes *reading-order* differences as if they
-  were recognition errors. We segment the gold into chunks, align each to its
-  best-matching span anywhere in the OCR, and score recognition *within* recovered
-  chunks separately from coverage. This separates "can it read the words" from
-  "can it serialize the layout." (Full algorithm: `benchmark/CHUNK_EVAL_METHOD.md`.)
+  were recognition errors. We segment the gold into chunks and align each to its
+  best-matching span anywhere in the OCR, then report character-level **precision,
+  recall, and F1**: recall is the share of gold characters correctly recovered
+  (coverage of the page and recognition of what was covered, order-invariant),
+  precision is the share of the tool's output that is correct page text (so it
+  penalizes over-reading and fabrication), and F1 ranks the tools in one number. We
+  also report recall's two factors — coverage and within-recovered CER. This
+  separates "can it read the words" from "can it serialize the layout." (Full
+  algorithm: `benchmark/CHUNK_EVAL_METHOD.md`.)
 - **Located/aligned scoring** for corpora where the gold covers only part of the
   source (articles inside an issue; manuscript segments): the gold is located in
   the OCR before scoring, so a tool is not penalized for correctly transcribing
@@ -446,49 +451,54 @@ reward, and so does not build, the one skill early-modern print demands.
 
 ### 4.3 Multi-column pages: where olmOCR collapses
 
-Full multi-column pages need two numbers, not one. **Linear** semantic CER scores
-the page as a single stream, so it charges a tool for ordering the columns
-differently from the gold as if those were misread characters. **Order-invariant,
-chunk-aware** scoring (Appendix B) instead locates each gold chunk anywhere in the
-output, which separates *recognition* — within-chunk CER, did it read the words —
-from *coverage*, how much of the page it recovered at all:
+Full multi-column pages defeat a single CER. The naive linear figure — scoring the
+page as one stream — ranks these tools from 14% to 56%, but it charges a tool for
+walking the columns in a different order than the gold, as if reading-order were
+misrecognition. We instead score order-invariantly: chunk-aware alignment (Appendix
+B) locates each gold passage anywhere in the output, which lets us report the
+standard retrieval triple at the character level. **Recall** is the share of the
+page's characters correctly recovered — coverage of the page *and* recognition of
+what was covered, with column order irrelevant. **Precision** is the share of the
+tool's *output* that is correct page text, so it penalizes over-reading and
+fabrication. **F1** combines them into one ranking number. We also show the two
+factors recall decomposes into — *coverage* (how much of the page was recovered at
+all) and *recovered CER* (recognition error on what was recovered):
 
-| tool | linear CER | within-chunk CER | coverage |
-|---|--:|--:|--:|
-| Infinity Parser 2 | 14.45% | **6.9%** | 99% |
-| Gemini 3.5 Flash | 21.22% | **15.5%** | 99% |
-| Chandra 2 | 23.60% | **12.7%** | 91% |
-| GLM-OCR | 52.34% | 13.7% | 52% |
-| olmOCR | 55.91% | 30.0% | 47% |
+| tool | coverage | rec. CER | precision | recall | F1 |
+|---|--:|--:|--:|--:|--:|
+| Infinity Parser 2 | 99% | 6.9% | 88 | 92 | **90.2** |
+| Chandra 2 | 91% | 12.7% | 87 | 80 | **83.2** |
+| Gemini 3.5 Flash | 99% | 15.5% | 80 | 84 | **82.0** |
+| GLM-OCR | 52% | 13.7% | 44 | 45 | **44.7** |
+| olmOCR | 47% | 30.0% | 52 | 33 | **40.4** |
 
-Read the linear column alone and Chandra, Gemini, and Infinity look mediocre, at 14
-to 24% CER. They are not. Once reading-order is set aside they read the words well —
-within-chunk CER of 6.9% (Infinity), 12.7% (Chandra), and 15.5% (Gemini) — at near
-complete coverage of the page (91 to 99%). Their apparent error is overwhelmingly
-serialization: they recover the text but walk the columns in a different order than
-the gold. Linear CER, the metric a naive pipeline would report, understates the
-three layout-aware tools by two- to three-fold.
-
-The bottom two rows are a genuinely different story, and the two columns pull them
-apart. olmOCR both loses half the page and garbles what it keeps (coverage 47%,
-within-chunk CER 30%); worse than misreading, it fabricates, inventing plausible
-place-names that were never printed — a "Goliath" for Gotland, a "Sioux Lake" for
-Shoal Lake — so a knowledge graph built from its output would hold towns that never
-existed. It also cannot locate articles inside a full issue at all (0/40, against
-Chandra's 29/40 and Infinity's 35/40). GLM-OCR fails differently: it reads what it
-captures about as well as Chandra (within-chunk CER 13.7%) but covers only ~52% of
-the page, dropping whole columns rather than misreading them. Two tools with nearly
-identical linear scores, two different failures, and only the layout-aware metric
-tells them apart. The 1878 *Saskatchewan Herald* front page makes this visible at a
-glance: expand it to see olmOCR's fabrications in red against the gold, while the
-other three stay accurate.
+Three findings. First, the layout-aware tools read the page well, and the naive
+linear CER badly understated them: Infinity, Chandra, and Gemini recover 80 to 92%
+of the page (recall) at 91 to 99% coverage, their apparent linear error being
+mostly serialization. Second, precision separates the top of the table where
+coverage cannot. Gemini has the highest coverage (99%) but the lowest precision of
+the three (80 vs 87–88), because it over-reads — emits text not on the page — so
+Chandra, with eight points less coverage but cleaner output, edges it on F1 (83.2 vs
+82.0). Infinity leads on both axes. The practical reading is that Infinity is the
+multi-column tool, with Chandra and Gemini close and trading coverage against
+over-reading. Third, GLM-OCR and olmOCR collapse, and F1 puts them far below
+(44.7 and 40.4) — but for different reasons the decomposition exposes. olmOCR both
+loses half the page (coverage 47%) and garbles what it keeps (recovered CER 30%);
+worse, it fabricates, inventing place-names that were never printed — a "Goliath"
+for Gotland, a "Sioux Lake" for Shoal Lake — so a knowledge graph built from its
+output would hold towns that never existed, and it cannot locate articles inside a
+full issue at all (0/40, against Chandra's 29/40 and Infinity's 35/40). GLM-OCR also
+covers only ~52% of the page, but reads what it captures about as well as Chandra
+(recovered CER 13.7%): it drops whole columns rather than misreading them. The 1878
+*Saskatchewan Herald* front page makes this visible at a glance: expand it to see
+olmOCR's fabrications in red against the gold, while the other three stay accurate.
 
 <div class="evidence" data-key="multicolumn"></div>
 
 The lesson for practitioners is twofold. On complex layouts, use a layout-aware tool
-(Infinity, Chandra, or Gemini here) or human review. And score with an
-order-invariant metric, or you will blame recognition for what is really a
-serialization or coverage choice.
+(Infinity, Chandra, or Gemini here) or human review. And rank with an order-invariant
+F1, not linear CER, or you will both misrank the tools and blame recognition for what
+is really a reading-order or coverage choice.
 
 ### 4.4 Handwriting
 

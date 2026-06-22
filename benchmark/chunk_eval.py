@@ -181,5 +181,22 @@ def score_chunks(gold_chunks: list[str], hyp: str) -> dict:
         # how much tool text was never claimed by any gold chunk (ads/extra/noise)
         "extra_ratio": round(max(0, hyp_sem_chars - matched_hyp_chars) /
                              hyp_sem_chars, 4) if hyp_sem_chars else 0.0,
+        # character-level precision/recall/F1 on the order-invariant alignment.
+        # M = correct gold chars recovered = located gold chars minus edits within
+        # them. recall = M / all gold chars (coverage AND recognition, order-free);
+        # precision = M / all chars the tool emitted (penalizes dropped-then-padded
+        # output, over-reading, and fabrication). F1 ranks tools in one number.
+        **_prf(max(0, located_chars - tot_edits), total_gold_sem, hyp_sem_chars),
         "per_chunk": per,
     }
+
+
+def _prf(correct: int, gold_total: int, hyp_total: int) -> dict:
+    """Character-level precision/recall/F1 from correct-char count, gold size, and
+    emitted size. Returns rounded {precision, recall, f1}."""
+    recall = correct / gold_total if gold_total else 0.0
+    precision = correct / hyp_total if hyp_total else 0.0
+    f1 = (2 * precision * recall / (precision + recall)
+          if precision + recall else 0.0)
+    return {"precision": round(precision, 4), "recall": round(recall, 4),
+            "f1": round(f1, 4)}

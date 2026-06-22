@@ -6,6 +6,9 @@
       "coverage_chunks": 0.547,
       "coverage_chars": 0.448,
       "within_cer": 0.2619,
+      "precision": 0.5272,
+      "recall": 0.3307,
+      "f1": 0.4064,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -95,6 +98,9 @@
       "coverage_chunks": 0.8462,
       "coverage_chars": 0.911,
       "within_cer": 0.0952,
+      "precision": 0.9013,
+      "recall": 0.8242,
+      "f1": 0.861,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -184,6 +190,9 @@
       "coverage_chunks": 0.9145,
       "coverage_chars": 0.9931,
       "within_cer": 0.152,
+      "precision": 0.8029,
+      "recall": 0.8422,
+      "f1": 0.8221,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -273,6 +282,9 @@
       "coverage_chunks": 0.8974,
       "coverage_chars": 0.9925,
       "within_cer": 0.0403,
+      "precision": 0.9065,
+      "recall": 0.9525,
+      "f1": 0.9289,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -362,6 +374,9 @@
       "coverage_chunks": 0.5726,
       "coverage_chars": 0.4984,
       "within_cer": 0.0785,
+      "precision": 0.4532,
+      "recall": 0.4593,
+      "f1": 0.4562,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -453,6 +468,9 @@
       "coverage_chunks": 0.5195,
       "coverage_chars": 0.47,
       "within_cer": 0.3005,
+      "precision": 0.5244,
+      "recall": 0.3288,
+      "f1": 0.4042,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -542,6 +560,9 @@
       "coverage_chunks": 0.8831,
       "coverage_chars": 0.9121,
       "within_cer": 0.1272,
+      "precision": 0.8708,
+      "recall": 0.7961,
+      "f1": 0.8318,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -631,6 +652,9 @@
       "coverage_chunks": 0.974,
       "coverage_chars": 0.9931,
       "within_cer": 0.1546,
+      "precision": 0.8007,
+      "recall": 0.8396,
+      "f1": 0.8197,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -720,6 +744,9 @@
       "coverage_chunks": 0.961,
       "coverage_chars": 0.9936,
       "within_cer": 0.0688,
+      "precision": 0.8809,
+      "recall": 0.9252,
+      "f1": 0.9025,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -809,6 +836,9 @@
       "coverage_chunks": 0.5714,
       "coverage_chars": 0.5216,
       "within_cer": 0.1369,
+      "precision": 0.4444,
+      "recall": 0.4502,
+      "f1": 0.4473,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",

@@ -41,8 +41,8 @@ def main() -> int:
     for level in ("paragraph", "article"):
         # corpus accumulators per tool
         agg = {t: {"chunks": 0, "recovered": 0, "ce": 0, "cd": 0, "we": 0, "wd": 0,
-                   "loc_chars": 0, "tot_chars": 0, "extra_num": 0, "extra_den": 0,
-                   "per_file": []} for t in TOOLS}
+                   "loc_chars": 0, "tot_chars": 0, "hyp_chars": 0,
+                   "extra_num": 0, "extra_den": 0, "per_file": []} for t in TOOLS}
         for stem in stems:
             gold_chunks, _ads = segment_gold(f"{stem}_review.md", level)
             gsem = [len(__import__("ocr_metrics").normalize_text(c, semantic=True))
@@ -54,6 +54,8 @@ def main() -> int:
                 r = score_chunks(gold_chunks, h)
                 a = agg[t]
                 a["chunks"] += r["chunks"]; a["recovered"] += r["recovered"]
+                a["hyp_chars"] += len(__import__("ocr_metrics").normalize_text(
+                    h, semantic=True))
                 # recompute corpus sums from per_chunk for char-weighting
                 for pc in r["per_chunk"]:
                     a["tot_chars"] += pc["gold_chars"]
@@ -68,11 +70,22 @@ def main() -> int:
         # finalize
         for t in TOOLS:
             a = agg[t]
+            correct = max(0.0, a["loc_chars"] - a["ce"])   # correct gold chars recovered
+            recall = correct / a["tot_chars"] if a["tot_chars"] else 0.0
+            precision = correct / a["hyp_chars"] if a["hyp_chars"] else 0.0
+            f1 = (2 * precision * recall / (precision + recall)
+                  if precision + recall else 0.0)
             out[level][t] = {
                 "chunks": a["chunks"], "recovered": a["recovered"],
                 "coverage_chunks": round(a["recovered"] / a["chunks"], 4) if a["chunks"] else 0.0,
                 "coverage_chars": round(a["loc_chars"] / a["tot_chars"], 4) if a["tot_chars"] else 0.0,
                 "within_cer": round(a["ce"] / a["cd"], 4) if a["cd"] else 0.0,
+                # char-level precision/recall/F1 on the order-invariant alignment:
+                # recall = correct gold chars / all gold chars (coverage + recognition);
+                # precision = correct gold chars / all emitted chars (penalizes
+                # over-reading + fabrication); F1 = harmonic mean (single ranking number).
+                "precision": round(precision, 4), "recall": round(recall, 4),
+                "f1": round(f1, 4),
                 "per_file": a["per_file"],
             }
     (BENCH / "results" / "fullpage_chunk_eval.json").write_text(
@@ -80,11 +93,11 @@ def main() -> int:
 
     for level in ("paragraph", "article"):
         print(f"\n=== {level.upper()}-level (order-invariant) ===")
-        print(f"{'tool':9} {'cov(chunks)':>12} {'cov(chars)':>11} {'within-CER':>11}")
+        print(f"{'tool':9} {'cov(chars)':>11} {'recCER':>8} {'prec':>7} {'recall':>7} {'F1':>7}")
         for t in TOOLS:
             d = out[level][t]
-            print(f"{t:9} {d['coverage_chunks']*100:11.1f}% {d['coverage_chars']*100:10.1f}% "
-                  f"{d['within_cer']*100:10.2f}%")
+            print(f"{t:9} {d['coverage_chars']*100:10.1f}% {d['within_cer']*100:7.1f}% "
+                  f"{d['precision']*100:6.1f}% {d['recall']*100:6.1f}% {d['f1']*100:6.1f}%")
     return 0
 
 
