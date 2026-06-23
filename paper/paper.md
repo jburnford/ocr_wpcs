@@ -139,9 +139,8 @@ error, a BLEU of 0.39. The text is unusable. Set the same page in front of a 202
 vision-language model (Chandra 2) and you get 2.6% character error, an eight-fold
 reduction, with the "hallucination" rate falling from 7.8% to under 1%. On clean
 nineteenth-century newspaper print the modern tools reach 0.6% character error,
-within a rounding error of a careful human. This is the demonstration that
-motivates the paper. Machine reading of historical documents has materially changed,
-and the opportunity is a collaborative one. We can now work together to redo the OCR
+within a rounding error of a careful human. Machine reading of historical documents
+has materially changed, and the opportunity is a collaborative one. We can now work together to redo the OCR
 behind our digital archives, and to transcribe handwritten sources at scale for the
 first time. That work would markedly improve search across these collections and
 open them, at last, to the text-mining methods that legacy OCR has kept out of
@@ -165,14 +164,17 @@ pipelines ship as scripts in the repository: SLURM jobs for olmOCR, a vLLM clien
 for GLM-OCR, and an API client for Gemini, so a historian can reproduce any of them
 without starting from scratch.
 
-The headline is overwhelmingly positive. For the great majority of documents, and
-the great majority of scholarly uses, the residual errors are small enough to be
-insignificant. The output can be read, searched, and analyzed with confidence, and
-it is incomparably better than a keyword search over a legacy-OCR'd scan. The
-reservations are real but narrow, and they come in two parts. The first is where the
-machine struggles: the harder a page is for a human to read, the more likely it is to
-slip, so difficulty, rather than date or genre as such, is the best predictor of
-error. The second is how it fails when it does. The errors that survive in the best
+For the great majority of documents, and the great majority of scholarly uses, the
+residual errors are now small enough to be insignificant. The output can be read,
+searched, and analyzed with confidence. Where
+legacy OCR was often too broken even to search reliably by keyword, these
+transcriptions are clean enough to support text mining. The reservations are real but
+narrow, and they come in two parts. The first is where the machine
+struggles. These models are trained mostly on modern data, so earlier and less
+familiar material is harder for them, and the early-modern Jacob corpus, with its
+long-s and archaic spelling, is the lowest-scoring print we test. Even there the
+tools still read it remarkably well, at a few percent character error (§4.2). The
+second is how it fails when it does. The errors that survive in the best
 tools are not the garbled lines a reader can see, but fluent, plausible misreadings a
 reader will not catch, such as a place-name that was never on the page, or an archaic
 spelling silently "corrected" to its modern form. The guidance that follows
@@ -183,7 +185,7 @@ turns up something interesting, surprising, or unexpected before building an
 argument on it. A fluent wrong transcription is more dangerous than an obviously
 broken one, precisely because it is so easy to believe.
 
-We are not starting from scratch. Good OCR leaderboards already exist, among them
+Good OCR leaderboards already exist, among them
 [olmOCR-Bench](https://github.com/allenai/olmocr/tree/main/olmocr/bench) and
 [OmniDocBench](https://github.com/opendatalab/OmniDocBench), and they are a sensible
 starting point even for historical work. They score modern tools on reading order,
@@ -214,8 +216,8 @@ print, yet among the weakest on early-modern type, handwriting, and full pages
 be different things, which is much of the reason a benchmark like this one is
 needed.
 
-Saturation is one limit. The documents are another, and the catch there is in the
-word *excerpts*. BLN600 is cropped article
+Saturation is one limit on these benchmarks; the documents are another, and the
+catch there is in the word *excerpts*. BLN600 is cropped article
 snippets, and so, in the main, are the documents these benchmarks reward. Historians rarely start from a clean crop. They start from
 a full uncropped page, with its four columns, masthead, and embedded table, or from
 early-modern print, a handwritten letter, or a photograph of one document lying on
