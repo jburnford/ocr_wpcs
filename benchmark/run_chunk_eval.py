@@ -36,7 +36,10 @@ def hyp_text(tool: str, stem: str, olmocr_recs: dict) -> str | None:
 
 def main() -> int:
     stems = sorted(p.stem for p in FULLPAGE_SRC.glob("*.pdf"))
-    olm = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_fullpage")
+    # Prefer the newer olmOCR-2 run, matching run_eval.py, so the multi-column
+    # score uses the same release as every other corpus.
+    _o2 = OCR_OUT / "olmocr2_fullpage"
+    olm = ol.load_olmocr_jsonl(_o2 if _o2.is_dir() else OCR_OUT / "olmocr_fullpage")
     out: dict = {"paragraph": {}, "article": {}}
     for level in ("paragraph", "article"):
         # corpus accumulators per tool

@@ -155,7 +155,7 @@ def manuscript_card(stem: str, gold_docx: str, title: str, why: str,
     gold = "\n".join(segments)
     gem_full = gl.strip_brackets(gl.strip_eol_hyphens(gl.strip_markdown(
         ol.load_gemini(OCR_OUT / "gemini_manuscripts", stem) or "")))
-    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_manuscripts")
+    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr2_manuscripts")
     olm_full = gl.strip_brackets(gl.strip_eol_hyphens(gl.strip_markdown(
         ol.olmocr_full_text(recs.get(f"{stem}.pdf")) if recs.get(f"{stem}.pdf") else "")))
 
@@ -176,7 +176,7 @@ def fullpage_card(stem: str, title: str, why: str) -> str:
     gold = gl.load_fullpage_review(f"{stem}_review.md")
     gem = ol.load_gemini(OCR_OUT / "gemini_fullpage", stem) or ""
     chan = ol.load_chandra_md(OCR_OUT / "chandra_fullpage", stem) or ""
-    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_fullpage")
+    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr2_fullpage")
     olm = ol.olmocr_full_text(recs.get(f"{stem}.pdf")) if recs.get(f"{stem}.pdf") else ""
     img = IMG / f"{stem}.jpg"
     rasterize(ROOT / "fullpage_pdfs" / f"{stem}.pdf", img)

@@ -2,13 +2,13 @@
   "paragraph": {
     "olmocr": {
       "chunks": 117,
-      "recovered": 64,
-      "coverage_chunks": 0.547,
-      "coverage_chars": 0.448,
-      "within_cer": 0.2619,
-      "precision": 0.5272,
-      "recall": 0.3307,
-      "f1": 0.4064,
+      "recovered": 76,
+      "coverage_chunks": 0.6496,
+      "coverage_chars": 0.5084,
+      "within_cer": 0.3,
+      "precision": 0.606,
+      "recall": 0.3559,
+      "f1": 0.4484,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -16,19 +16,19 @@
           "recovered": 2,
           "coverage_chunks": 0.6667,
           "coverage_chars": 0.873,
-          "within_cer": 0.0635,
-          "within_wer": 0.4444,
-          "extra_ratio": 0.0556
+          "within_cer": 0.0,
+          "within_wer": 0.0,
+          "extra_ratio": 0.0179
         },
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p04",
           "chunks": 69,
-          "recovered": 35,
-          "coverage_chunks": 0.5072,
-          "coverage_chars": 0.552,
-          "within_cer": 0.171,
-          "within_wer": 0.2326,
-          "extra_ratio": 0.1201
+          "recovered": 42,
+          "coverage_chunks": 0.6087,
+          "coverage_chars": 0.7401,
+          "within_cer": 0.2798,
+          "within_wer": 0.3848,
+          "extra_ratio": 0.2173
         },
         {
           "stem": "SHNO_Cut_Knife_Journal_1914-01-01_p01",
@@ -36,39 +36,39 @@
           "recovered": 14,
           "coverage_chunks": 0.9333,
           "coverage_chars": 0.9766,
-          "within_cer": 0.118,
-          "within_wer": 0.1785,
-          "extra_ratio": 0.0012
+          "within_cer": 0.1116,
+          "within_wer": 0.1607,
+          "extra_ratio": 0.0151
         },
         {
           "stem": "SHNO_Cut_Knife_Journal_1914-01-01_p07",
           "chunks": 6,
           "recovered": 1,
           "coverage_chunks": 0.1667,
-          "coverage_chars": 0.1421,
-          "within_cer": 0.1102,
-          "within_wer": 0.1377,
-          "extra_ratio": 0.0
+          "coverage_chars": 0.0016,
+          "within_cer": 0.0,
+          "within_wer": 0.0,
+          "extra_ratio": 0.9916
         },
         {
           "stem": "SHNO_Davidson_Leader_1914-01-01_p01",
           "chunks": 9,
-          "recovered": 3,
-          "coverage_chunks": 0.3333,
-          "coverage_chars": 0.1895,
-          "within_cer": 0.0892,
-          "within_wer": 0.1247,
-          "extra_ratio": 0.7726
+          "recovered": 7,
+          "coverage_chunks": 0.7778,
+          "coverage_chars": 0.6943,
+          "within_cer": 0.3729,
+          "within_wer": 0.494,
+          "extra_ratio": 0.0656
         },
         {
           "stem": "SHNO_Davidson_Leader_1914-01-01_p02",
           "chunks": 6,
-          "recovered": 0,
-          "coverage_chunks": 0.0,
-          "coverage_chars": 0.0,
+          "recovered": 1,
+          "coverage_chunks": 0.1667,
+          "coverage_chars": 0.0015,
           "within_cer": 0.0,
           "within_wer": 0.0,
-          "extra_ratio": 1.0
+          "extra_ratio": 0.991
         },
         {
           "stem": "SHNO_Saskatchewan_Herald_1878-08-25_p01",
@@ -76,9 +76,9 @@
           "recovered": 5,
           "coverage_chunks": 1.0,
           "coverage_chars": 1.0,
-          "within_cer": 0.1854,
-          "within_wer": 0.2729,
-          "extra_ratio": 0.0115
+          "within_cer": 0.2275,
+          "within_wer": 0.302,
+          "extra_ratio": 0.0
         },
         {
           "stem": "SHNO_Saskatchewan_Herald_1878-08-25_p03",
@@ -86,8 +86,8 @@
           "recovered": 4,
           "coverage_chunks": 1.0,
           "coverage_chars": 1.0,
-          "within_cer": 0.2148,
-          "within_wer": 0.3013,
+          "within_cer": 0.2335,
+          "within_wer": 0.3388,
           "extra_ratio": 0.0
         }
       ]
@@ -464,13 +464,13 @@
   "article": {
     "olmocr": {
       "chunks": 77,
-      "recovered": 40,
-      "coverage_chunks": 0.5195,
-      "coverage_chars": 0.47,
-      "within_cer": 0.3005,
-      "precision": 0.5244,
-      "recall": 0.3288,
-      "f1": 0.4042,
+      "recovered": 50,
+      "coverage_chunks": 0.6494,
+      "coverage_chars": 0.5127,
+      "within_cer": 0.3047,
+      "precision": 0.6072,
+      "recall": 0.3565,
+      "f1": 0.4492,
       "per_file": [
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p01",
@@ -478,19 +478,19 @@
           "recovered": 2,
           "coverage_chunks": 0.6667,
           "coverage_chars": 0.873,
-          "within_cer": 0.0635,
-          "within_wer": 0.4444,
-          "extra_ratio": 0.0556
+          "within_cer": 0.0,
+          "within_wer": 0.0,
+          "extra_ratio": 0.0179
         },
         {
           "stem": "SHNO_Assiniboia_Times_1918-12-25_p04",
           "chunks": 30,
-          "recovered": 12,
-          "coverage_chunks": 0.4,
-          "coverage_chars": 0.7235,
-          "within_cer": 0.3563,
-          "within_wer": 0.4678,
-          "extra_ratio": 0.0
+          "recovered": 17,
+          "coverage_chunks": 0.5667,
+          "coverage_chars": 0.7729,
+          "within_cer": 0.3074,
+          "within_wer": 0.4155,
+          "extra_ratio": 0.1509
         },
         {
           "stem": "SHNO_Cut_Knife_Journal_1914-01-01_p01",
@@ -498,39 +498,39 @@
           "recovered": 13,
           "coverage_chunks": 0.9286,
           "coverage_chars": 0.9766,
-          "within_cer": 0.1201,
-          "within_wer": 0.1805,
-          "extra_ratio": 0.0032
+          "within_cer": 0.1139,
+          "within_wer": 0.1637,
+          "extra_ratio": 0.0172
         },
         {
           "stem": "SHNO_Cut_Knife_Journal_1914-01-01_p07",
           "chunks": 6,
           "recovered": 1,
           "coverage_chunks": 0.1667,
-          "coverage_chars": 0.1421,
-          "within_cer": 0.1102,
-          "within_wer": 0.1377,
-          "extra_ratio": 0.0
+          "coverage_chars": 0.0016,
+          "within_cer": 0.0,
+          "within_wer": 0.0,
+          "extra_ratio": 0.9916
         },
         {
           "stem": "SHNO_Davidson_Leader_1914-01-01_p01",
           "chunks": 9,
-          "recovered": 3,
-          "coverage_chunks": 0.3333,
-          "coverage_chars": 0.1895,
-          "within_cer": 0.0892,
-          "within_wer": 0.1247,
-          "extra_ratio": 0.7726
+          "recovered": 7,
+          "coverage_chunks": 0.7778,
+          "coverage_chars": 0.6943,
+          "within_cer": 0.3729,
+          "within_wer": 0.494,
+          "extra_ratio": 0.0656
         },
         {
           "stem": "SHNO_Davidson_Leader_1914-01-01_p02",
           "chunks": 6,
-          "recovered": 0,
-          "coverage_chunks": 0.0,
-          "coverage_chars": 0.0,
+          "recovered": 1,
+          "coverage_chunks": 0.1667,
+          "coverage_chars": 0.0015,
           "within_cer": 0.0,
           "within_wer": 0.0,
-          "extra_ratio": 1.0
+          "extra_ratio": 0.991
         },
         {
           "stem": "SHNO_Saskatchewan_Herald_1878-08-25_p01",
@@ -538,9 +538,9 @@
           "recovered": 5,
           "coverage_chunks": 1.0,
           "coverage_chars": 1.0,
-          "within_cer": 0.1854,
-          "within_wer": 0.2729,
-          "extra_ratio": 0.0115
+          "within_cer": 0.2275,
+          "within_wer": 0.302,
+          "extra_ratio": 0.0
         },
         {
           "stem": "SHNO_Saskatchewan_Herald_1878-08-25_p03",
@@ -548,8 +548,8 @@
           "recovered": 4,
           "coverage_chunks": 1.0,
           "coverage_chars": 1.0,
-          "within_cer": 0.2148,
-          "within_wer": 0.3013,
+          "within_cer": 0.2335,
+          "within_wer": 0.3388,
           "extra_ratio": 0.0
         }
       ]
