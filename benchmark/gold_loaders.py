@@ -36,9 +36,14 @@ FULLPAGE_REVIEW = Path(
 _CONTROL_TOKEN = re.compile(r"\[(column break|illegible)\]", re.IGNORECASE)
 _BRACKET_SPAN = re.compile(r"\[[^\]]*\]")
 
-# Markdown markup. Chandra emits Markdown; olmOCR/Gemini emit plain text. Scored
-# verbatim, Chandra's headings, emphasis, and (worst) AI image-caption text are
-# counted as OCR words — see strip_markdown.
+# Markdown markup. Chandra emits Markdown; olmOCR/Gemini emit plain text. An
+# image tag and its same-line caption are dropped: a VLM's AI-written figure
+# description ("A large, high-contrast portrait of a woman...") is not a
+# transcription of page text, and counting it explodes CER on image-dominated
+# pages (e.g. a masthead that is mostly a photo). NOTE: this catches only the
+# markdown ![alt](url) form; a prose-form description on its own line is
+# undetectable and still scores as insertion — a known, minor asymmetry that
+# does not change any tool ranking (measured: Jacob Chandra 3.05% -> 3.62%).
 _MD_IMAGE = re.compile(r"!\[[^\]]*\]\([^)]*\)[^\n]*")  # image tag + rest of line
 _MD_ATX_HEADER = re.compile(r"^[ \t]*#{1,6}[ \t]+", re.MULTILINE)
 _MD_ESCAPE = re.compile(r"\\([\\`*_{}\[\]()#+\-.!$~>|])")
@@ -117,34 +122,88 @@ def load_jacob_baseline(stem: str) -> str:
         encoding="utf-8", errors="replace")
 
 
+_READING_IDX = re.compile(r"readingOrder\s*\{\s*index\s*:\s*(\d+)")
+
+
+def _region_reading_index(reg, fallback: int) -> int:
+    """Reading-order index from a region's custom attribute, else fallback."""
+    m = _READING_IDX.search(reg.get("custom") or "")
+    return int(m.group(1)) if m else fallback
+
+
+def _unicode_lines(elem) -> list[str]:
+    """Non-empty TextLine/TextEquiv/Unicode strings under an element, in
+    document order."""
+    out = []
+    for tl in elem.findall(f"{{{PAGE_NS}}}TextLine"):
+        u = tl.find(f"{{{PAGE_NS}}}TextEquiv/{{{PAGE_NS}}}Unicode")
+        if u is not None and u.text and u.text.strip():
+            out.append(u.text)
+    return out
+
+
+def _tableregion_lines(reg) -> list[str]:
+    """Flatten a TableRegion to one string per row, cells in (row, col) order.
+    Structure markup is not emitted: the OCR side is flattened the same way by
+    strip_table_markup, so only the cell *text* is compared."""
+    cells = []
+    for tc in reg.findall(f"{{{PAGE_NS}}}TableCell"):
+        txt = " ".join(_unicode_lines(tc))
+        if txt.strip():
+            cells.append((int(tc.get("row", 0)), int(tc.get("col", 0)), txt))
+    cells.sort(key=lambda c: (c[0], c[1]))
+    rows: list[str] = []
+    cur, buf = None, []
+    for row, _col, txt in cells:
+        if row != cur:
+            if buf:
+                rows.append(" ".join(buf))
+            cur, buf = row, []
+        buf.append(txt)
+    if buf:
+        rows.append(" ".join(buf))
+    return rows
+
+
 def load_jacob_gold(stem: str) -> str:
     """Reading-order ground-truth text for a Jacob early-modern page.
 
-    The corpus ships Transkribus PAGE-XML (same schema as Sugar Plums). Regions
-    are emitted in ReadingOrder; page-number regions (archival shelfmarks like
-    '(3)') are dropped, as no OCR tool should reproduce them. Lines are joined
+    The corpus ships Transkribus PAGE-XML (same schema as Sugar Plums). Text
+    regions are emitted in ReadingOrder; page-number regions (archival
+    shelfmarks like '(3)') are dropped, as no OCR tool should reproduce them.
+    TableRegions — which are NOT listed in ReadingOrder/RegionRefIndexed and so
+    were previously dropped entirely (leaving a table page's gold near-empty and
+    every tool's correct table text scored as pure insertion) — are interleaved
+    at their own readingOrder index and flattened to cell text. Lines are joined
     with newlines so strip_eol_hyphens can rejoin the corpus's pervasive
     end-of-line hyphenation on the same footing as the OCR output.
     """
     root = ET.parse(JACOB_GT / f"{stem}.xml").getroot()
     page = root.find(f"{{{PAGE_NS}}}Page")
-    regions = {r.get("id"): r for r in page.findall(f"{{{PAGE_NS}}}TextRegion")}
+    text_regions = {r.get("id"): r
+                    for r in page.findall(f"{{{PAGE_NS}}}TextRegion")}
     ro = page.find(f"{{{PAGE_NS}}}ReadingOrder")
     if ro is not None:
-        order = [ri.get("regionRef") for ri in sorted(
-            ro.iter(f"{{{PAGE_NS}}}RegionRefIndexed"),
-            key=lambda ri: int(ri.get("index")))]
+        text_order = [(int(ri.get("index")), ri.get("regionRef"))
+                      for ri in ro.iter(f"{{{PAGE_NS}}}RegionRefIndexed")]
     else:  # fall back to document order
-        order = list(regions)
-    lines: list[str] = []
-    for rid in order:
-        reg = regions.get(rid)
+        text_order = list(enumerate(text_regions))
+
+    # (reading_index, kind, element), tables keyed by their own custom index
+    ordered: list[tuple] = []
+    for idx, rid in text_order:
+        reg = text_regions.get(rid)
         if reg is None or "page-number" in (reg.get("custom") or ""):
             continue
-        for tl in reg.findall(f"{{{PAGE_NS}}}TextLine"):
-            u = tl.find(f"{{{PAGE_NS}}}TextEquiv/{{{PAGE_NS}}}Unicode")
-            if u is not None and u.text and u.text.strip():
-                lines.append(u.text)
+        ordered.append((idx, "text", reg))
+    for tbl in page.findall(f"{{{PAGE_NS}}}TableRegion"):
+        ordered.append((_region_reading_index(tbl, 10_000), "table", tbl))
+    ordered.sort(key=lambda t: t[0])
+
+    lines: list[str] = []
+    for _idx, kind, reg in ordered:
+        lines.extend(_unicode_lines(reg) if kind == "text"
+                     else _tableregion_lines(reg))
     text = "\n".join(lines)
     return re.sub(r"\s*<gap/>\s*", " ", text)
 

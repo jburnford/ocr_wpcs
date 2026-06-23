@@ -4,32 +4,32 @@
   "summary": {
     "total_files": 100,
     "strict": {
-      "total_gold_chars": 224094,
-      "total_gold_words": 39888,
-      "average_cer": 0.09376400937432577,
-      "overall_cer": 0.12097601899203013,
-      "average_wer": 0.1383810144911236,
-      "overall_wer": 0.18439129562775772
+      "total_gold_chars": 224976,
+      "total_gold_words": 40037,
+      "average_cer": 0.09587528227490762,
+      "overall_cer": 0.12169742550316479,
+      "average_wer": 0.14090846478120692,
+      "overall_wer": 0.18517870969353348
     },
     "semantic": {
-      "total_gold_chars": 216414,
-      "total_gold_words": 39632,
-      "average_cer": 0.07873004385312893,
-      "overall_cer": 0.09955455746855564,
-      "average_wer": 0.12533645562929244,
-      "overall_wer": 0.170569236980218
+      "total_gold_chars": 217231,
+      "total_gold_words": 39781,
+      "average_cer": 0.0808538677165955,
+      "overall_cer": 0.1003447942512809,
+      "average_wer": 0.12787445106156545,
+      "overall_wer": 0.17141348885146176
     },
     "chapter": {
-      "average_wer": 0.12533645562929244,
-      "average_sig_word_accuracy": 0.9024295360633857,
-      "overall_sig_wer": 0.11620377396671219,
-      "average_bleu": 0.8922843679642812,
-      "overall_hallucination_rate": 0.008180549540445598,
-      "average_hallucination_rate": 0.007678517400375254,
-      "overall_modernization_rate": 0.006881285789904239,
-      "overall_fabrication_rate": 0.00129926375054136,
-      "hallucination_modernization_count": 286,
-      "hallucination_fabrication_count": 54
+      "average_wer": 0.12787445106156545,
+      "average_sig_word_accuracy": 0.9002105881077708,
+      "overall_sig_wer": 0.11822338340953625,
+      "average_bleu": 0.8887362069076196,
+      "overall_hallucination_rate": 0.00731437370675136,
+      "average_hallucination_rate": 0.007107994420977473,
+      "overall_modernization_rate": 0.0066888022713055195,
+      "overall_fabrication_rate": 0.00062557143544584,
+      "hallucination_modernization_count": 278,
+      "hallucination_fabrication_count": 26
     },
     "failure": {
       "clean": 99,
@@ -96,7 +96,7 @@
       "hallucination_modernization": 4,
       "hallucination_fabrication": 0,
       "ocr_word_total": 380,
-      "gzip_ratio": 2.13,
+      "gzip_ratio": 2.12,
       "failure_label": "clean"
     },
     {
@@ -127,7 +127,7 @@
       "hallucination_modernization": 5,
       "hallucination_fabrication": 0,
       "ocr_word_total": 341,
-      "gzip_ratio": 2.04,
+      "gzip_ratio": 2.03,
       "failure_label": "clean"
     },
     {
@@ -287,31 +287,31 @@
     },
     {
       "filename": "Anonymous - 1682 - A letter from Jamaica to a friend in London concerning kid-napping_page_1",
-      "gold_chars": 2887,
+      "gold_chars": 3382,
       "ocr_chars": 3342,
-      "gold_words": 557,
+      "gold_words": 638,
       "ocr_words": 632,
-      "cer": 0.16245237270523033,
-      "cer_edits": 469,
-      "wer": 0.1561938958707361,
-      "wer_edits": 87,
-      "gold_chars_semantic": 2804,
+      "cer": 0.10378474275576582,
+      "cer_edits": 351,
+      "wer": 0.12225705329153605,
+      "wer_edits": 78,
+      "gold_chars_semantic": 3261,
       "ocr_chars_semantic": 3224,
-      "gold_words_semantic": 556,
+      "gold_words_semantic": 637,
       "ocr_words_semantic": 631,
-      "cer_semantic": 0.15299572039942938,
-      "cer_edits_semantic": 429,
-      "wer_semantic": 0.1474820143884892,
-      "wer_edits_semantic": 82,
-      "sig_wer": 0.28870292887029286,
-      "sig_wer_edits": 69,
-      "sig_gold_words": 239,
-      "sig_word_accuracy": 0.7112970711297071,
-      "bleu": 0.8625614606490852,
-      "hallucination_rate": 0.058637083993660855,
-      "hallucination_count": 37,
-      "hallucination_modernization": 9,
-      "hallucination_fabrication": 28,
+      "cer_semantic": 0.09874271695798835,
+      "cer_edits_semantic": 322,
+      "wer_semantic": 0.11459968602825746,
+      "wer_edits_semantic": 73,
+      "sig_wer": 0.18566775244299674,
+      "sig_wer_edits": 57,
+      "sig_gold_words": 307,
+      "sig_word_accuracy": 0.8143322475570033,
+      "bleu": 0.9186910708990911,
+      "hallucination_rate": 0.001584786053882726,
+      "hallucination_count": 1,
+      "hallucination_modernization": 1,
+      "hallucination_fabrication": 0,
       "ocr_word_total": 631,
       "gzip_ratio": 1.92,
       "failure_label": "clean"
@@ -344,7 +344,7 @@
       "hallucination_modernization": 3,
       "hallucination_fabrication": 0,
       "ocr_word_total": 383,
-      "gzip_ratio": 2.09,
+      "gzip_ratio": 2.08,
       "failure_label": "clean"
     },
     {
@@ -437,7 +437,7 @@
       "hallucination_modernization": 5,
       "hallucination_fabrication": 0,
       "ocr_word_total": 911,
-      "gzip_ratio": 2.34,
+      "gzip_ratio": 2.35,
       "failure_label": "clean"
     },
     {
@@ -530,7 +530,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 4100,
-      "gzip_ratio": 58.01,
+      "gzip_ratio": 58.22,
       "failure_label": "loop"
     },
     {
@@ -623,7 +623,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 1,
       "ocr_word_total": 346,
-      "gzip_ratio": 2.0,
+      "gzip_ratio": 1.99,
       "failure_label": "clean"
     },
     {
@@ -809,7 +809,7 @@
       "hallucination_modernization": 12,
       "hallucination_fabrication": 2,
       "ocr_word_total": 713,
-      "gzip_ratio": 2.38,
+      "gzip_ratio": 2.37,
       "failure_label": "clean"
     },
     {
@@ -902,7 +902,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 949,
-      "gzip_ratio": 2.74,
+      "gzip_ratio": 2.73,
       "failure_label": "clean"
     },
     {
@@ -933,7 +933,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 876,
-      "gzip_ratio": 2.27,
+      "gzip_ratio": 2.26,
       "failure_label": "clean"
     },
     {
@@ -964,7 +964,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 208,
-      "gzip_ratio": 1.74,
+      "gzip_ratio": 1.75,
       "failure_label": "clean"
     },
     {
@@ -1212,7 +1212,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 204,
-      "gzip_ratio": 2.83,
+      "gzip_ratio": 2.82,
       "failure_label": "clean"
     },
     {
@@ -1243,7 +1243,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 190,
-      "gzip_ratio": 1.81,
+      "gzip_ratio": 1.82,
       "failure_label": "clean"
     },
     {
@@ -1460,7 +1460,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 305,
-      "gzip_ratio": 2.05,
+      "gzip_ratio": 2.06,
       "failure_label": "clean"
     },
     {
@@ -1491,7 +1491,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 387,
-      "gzip_ratio": 1.83,
+      "gzip_ratio": 1.82,
       "failure_label": "clean"
     },
     {
@@ -1646,7 +1646,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 2,
       "ocr_word_total": 192,
-      "gzip_ratio": 1.98,
+      "gzip_ratio": 1.97,
       "failure_label": "clean"
     },
     {
@@ -1832,7 +1832,7 @@
       "hallucination_modernization": 4,
       "hallucination_fabrication": 0,
       "ocr_word_total": 162,
-      "gzip_ratio": 1.75,
+      "gzip_ratio": 1.74,
       "failure_label": "clean"
     },
     {
@@ -1894,7 +1894,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 235,
-      "gzip_ratio": 1.87,
+      "gzip_ratio": 1.88,
       "failure_label": "clean"
     },
     {
@@ -1925,7 +1925,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 1,
       "ocr_word_total": 550,
-      "gzip_ratio": 2.01,
+      "gzip_ratio": 2.02,
       "failure_label": "clean"
     },
     {
@@ -2018,7 +2018,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 210,
-      "gzip_ratio": 1.78,
+      "gzip_ratio": 1.79,
       "failure_label": "clean"
     },
     {
@@ -2142,7 +2142,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 325,
-      "gzip_ratio": 1.89,
+      "gzip_ratio": 1.88,
       "failure_label": "clean"
     },
     {
@@ -2235,7 +2235,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 282,
-      "gzip_ratio": 2.34,
+      "gzip_ratio": 2.32,
       "failure_label": "clean"
     },
     {
@@ -2266,7 +2266,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 230,
-      "gzip_ratio": 1.93,
+      "gzip_ratio": 1.92,
       "failure_label": "clean"
     },
     {
@@ -2297,7 +2297,7 @@
       "hallucination_modernization": 3,
       "hallucination_fabrication": 0,
       "ocr_word_total": 614,
-      "gzip_ratio": 2.14,
+      "gzip_ratio": 2.13,
       "failure_label": "clean"
     },
     {
@@ -2390,7 +2390,7 @@
       "hallucination_modernization": 6,
       "hallucination_fabrication": 0,
       "ocr_word_total": 423,
-      "gzip_ratio": 2.26,
+      "gzip_ratio": 2.25,
       "failure_label": "clean"
     },
     {
@@ -2576,7 +2576,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 175,
-      "gzip_ratio": 1.75,
+      "gzip_ratio": 1.76,
       "failure_label": "clean"
     },
     {
@@ -2762,7 +2762,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 139,
-      "gzip_ratio": 1.66,
+      "gzip_ratio": 1.65,
       "failure_label": "clean"
     },
     {
@@ -2793,7 +2793,7 @@
       "hallucination_modernization": 20,
       "hallucination_fabrication": 1,
       "ocr_word_total": 1319,
-      "gzip_ratio": 2.29,
+      "gzip_ratio": 2.28,
       "failure_label": "clean"
     },
     {
@@ -2855,7 +2855,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 209,
-      "gzip_ratio": 1.8,
+      "gzip_ratio": 1.79,
       "failure_label": "clean"
     },
     {
@@ -3041,7 +3041,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 146,
-      "gzip_ratio": 1.75,
+      "gzip_ratio": 1.76,
       "failure_label": "clean"
     },
     {
@@ -3103,32 +3103,32 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 81,
-      "gzip_ratio": 1.58,
+      "gzip_ratio": 1.57,
       "failure_label": "clean"
     },
     {
       "filename": "Young - 1807 - The West-India Common-place Book_page_149",
-      "gold_chars": 541,
+      "gold_chars": 928,
       "ocr_chars": 350,
-      "gold_words": 91,
+      "gold_words": 159,
       "ocr_words": 61,
-      "cer": 0.35304990757855825,
-      "cer_edits": 191,
-      "wer": 0.32967032967032966,
-      "wer_edits": 30,
-      "gold_chars_semantic": 522,
+      "cer": 0.6228448275862069,
+      "cer_edits": 578,
+      "wer": 0.6163522012578616,
+      "wer_edits": 98,
+      "gold_chars_semantic": 882,
       "ocr_chars_semantic": 341,
-      "gold_words_semantic": 91,
+      "gold_words_semantic": 159,
       "ocr_words_semantic": 61,
-      "cer_semantic": 0.34674329501915707,
-      "cer_edits_semantic": 181,
-      "wer_semantic": 0.32967032967032966,
-      "wer_edits_semantic": 30,
-      "sig_wer": 0.43137254901960786,
-      "sig_wer_edits": 22,
-      "sig_gold_words": 51,
-      "sig_word_accuracy": 0.5686274509803921,
-      "bleu": 0.611522653538844,
+      "cer_semantic": 0.6133786848072562,
+      "cer_edits_semantic": 541,
+      "wer_semantic": 0.6163522012578616,
+      "wer_edits_semantic": 98,
+      "sig_wer": 0.7563025210084033,
+      "sig_wer_edits": 90,
+      "sig_gold_words": 119,
+      "sig_word_accuracy": 0.24369747899159666,
+      "bleu": 0.200576937622675,
       "hallucination_rate": 0.0,
       "hallucination_count": 0,
       "hallucination_modernization": 0,

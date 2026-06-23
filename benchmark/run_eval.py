@@ -55,9 +55,23 @@ DATASET_TOOLS = {
 
 def _clean_ocr(text: str | None) -> str | None:
     """Markdown -> plain text on every tool's OCR, so a Markdown-emitting tool
-    (Chandra) is scored like-to-like with plain-text tools. No-op for olmOCR/
-    Gemini/baseline output."""
-    return gl.strip_markdown(text) if text else text
+    (Chandra) is scored like-to-like with plain-text tools, then flatten table
+    scaffolding (HTML <table>/<tr>/<td>, markdown pipes, ASCII rules) to bare
+    cell text so a tool that renders a table as HTML is not charged for the tags
+    against the flattened cell-text gold. No-op for olmOCR/Gemini/baseline
+    plain-text output that contains no such markup."""
+    if not text:
+        return text
+    return gl.strip_table_markup(gl.strip_markdown(text))
+
+
+def _olmocr_recs(corpus: str) -> dict:
+    """olmOCR records for a corpus, preferring the newer olmOCR-2 run
+    (ocr_output/olmocr2_<corpus>/results/*.jsonl) when present, else the
+    original olmOCR run (ocr_output/olmocr_<corpus>/*.jsonl)."""
+    new = OCR_OUT / f"olmocr2_{corpus}" / "results"
+    return ol.load_olmocr_jsonl(new if new.is_dir()
+                                else OCR_OUT / f"olmocr_{corpus}")
 
 
 def _ocr_text(tool: str, dataset: str, stem: str,
@@ -82,7 +96,7 @@ def _ocr_text(tool: str, dataset: str, stem: str,
 # ---------------------------------------------------------------- BLN600 ----
 def eval_bln600(tool: str) -> list[dict]:
     ids = sorted(p.stem for p in BLN600_GT.glob("*.txt"))
-    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_bln600") if tool == "olmocr" else {}
+    recs = _olmocr_recs("bln600") if tool == "olmocr" else {}
     results, missing = [], []
     for pid in ids:
         hyp = _ocr_text(tool, "bln600", pid, recs)
@@ -112,7 +126,7 @@ def eval_bln600_baseline() -> list[dict]:
 # ------------------------------------------------------------------ Sask ----
 def eval_sask(tool: str) -> tuple[list[dict], list[dict]]:
     rows = list(csv.DictReader(SASK_MANIFEST.open()))
-    olmocr_recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_sask") if tool == "olmocr" else {}
+    olmocr_recs = _olmocr_recs("sask") if tool == "olmocr" else {}
     results, locations = [], []
     for r in rows:
         gold = gl.load_sask_faithful(r["md_file"])
@@ -146,7 +160,7 @@ def eval_sask(tool: str) -> tuple[list[dict], list[dict]]:
 # -------------------------------------------------------------- Fullpage ----
 def eval_fullpage(tool: str) -> list[dict]:
     stems = sorted(p.stem for p in FULLPAGE_SRC.glob("*.pdf"))
-    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_fullpage") if tool == "olmocr" else {}
+    recs = _olmocr_recs("fullpage") if tool == "olmocr" else {}
     results, missing = [], []
     for stem in stems:
         gold = gl.load_fullpage_review(f"{stem}_review.md")
@@ -169,7 +183,7 @@ def eval_manuscripts(tool: str) -> list[dict]:
     actually covers — not penalized for extra documents/boilerplate it
     transcribed correctly."""
     rows = list(csv.DictReader(MS_MANIFEST.open()))
-    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_manuscripts") if tool == "olmocr" else {}
+    recs = _olmocr_recs("manuscripts") if tool == "olmocr" else {}
     results, missing = [], []
     for r in rows:
         segments = gl.manuscript_gold_segments(r["gold_docx"])
@@ -203,7 +217,7 @@ def eval_manuscripts(tool: str) -> list[dict]:
 # ---------------------------------------------------------------- Tables ----
 def eval_tables(tool: str) -> list[dict]:
     rows = list(csv.DictReader(TB_MANIFEST.open()))
-    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_tables") if tool == "olmocr" else {}
+    recs = _olmocr_recs("tables") if tool == "olmocr" else {}
     results, missing = [], []
     for r in rows:
         gold = gl.load_table_gold(r["gold_xlsx"])
@@ -233,7 +247,7 @@ def eval_jacob(tool: str) -> list[dict]:
     and OCR are de-hyphenated so the corpus's pervasive end-of-line hyphenation
     is scored on the same footing. `tool` may be 'baseline' (bundled Tesseract)."""
     stems = sorted(p.stem for p in gl.JACOB_GT.glob("*.xml"))
-    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_jacob") if tool == "olmocr" else {}
+    recs = _olmocr_recs("jacob") if tool == "olmocr" else {}
     results, missing = [], []
     for stem in stems:
         gold = gl.strip_eol_hyphens(gl.load_jacob_gold(stem))
@@ -261,7 +275,7 @@ def eval_hhtr(tool: str) -> list[dict]:
     for Jacob. olmOCR/Chandra/Infinity run on our cluster; Gemini is contributed
     by Mark (loaded from gemini_hhtr/ once staged)."""
     stems = sorted(p.stem for p in gl.HHTR_GOLD.glob("*.txt"))
-    recs = ol.load_olmocr_jsonl(OCR_OUT / "olmocr_hhtr") if tool == "olmocr" else {}
+    recs = _olmocr_recs("hhtr") if tool == "olmocr" else {}
     results, missing = [], []
     for stem in stems:
         gold = gl.strip_eol_hyphens(gl.load_hhtr_gold(stem))

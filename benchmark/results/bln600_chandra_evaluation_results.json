@@ -6,29 +6,29 @@
     "strict": {
       "total_gold_chars": 1696794,
       "total_gold_words": 294239,
-      "average_cer": 0.008214928351851749,
-      "overall_cer": 0.007254858279791183,
-      "average_wer": 0.030960176883903512,
-      "overall_wer": 0.028031634147750638
+      "average_cer": 0.007651551912325424,
+      "overall_cer": 0.006847619687481214,
+      "average_wer": 0.03053775892536674,
+      "overall_wer": 0.027793732306050523
     },
     "semantic": {
       "total_gold_chars": 1639352,
       "total_gold_words": 294082,
-      "average_cer": 0.0067143756369777196,
-      "overall_cer": 0.0059517419077781955,
-      "average_wer": 0.0239758450086621,
-      "overall_wer": 0.021684428152692108
+      "average_cer": 0.006478904484718555,
+      "overall_cer": 0.005772402754259,
+      "average_wer": 0.023769785605661616,
+      "overall_wer": 0.0215484116674941
     },
     "chapter": {
-      "average_wer": 0.0239758450086621,
-      "average_sig_word_accuracy": 0.9654256890742583,
-      "overall_sig_wer": 0.033362009984893956,
-      "average_bleu": 0.9565428112962282,
-      "overall_hallucination_rate": 0.002178224593078922,
-      "average_hallucination_rate": 0.0024165604398841373,
-      "overall_modernization_rate": 0.0016516208453016003,
-      "overall_fabrication_rate": 0.0005266037477773219,
-      "hallucination_modernization_count": 483,
+      "average_wer": 0.023769785605661616,
+      "average_sig_word_accuracy": 0.9656662015853982,
+      "overall_sig_wer": 0.03307750147334765,
+      "average_bleu": 0.9569892344590633,
+      "overall_hallucination_rate": 0.0021814650692050987,
+      "average_hallucination_rate": 0.002420699154468862,
+      "overall_modernization_rate": 0.0016549045352590404,
+      "overall_fabrication_rate": 0.0005265605339460583,
+      "hallucination_modernization_count": 484,
       "hallucination_fabrication_count": 154
     },
     "failure": {
@@ -133,11 +133,11 @@
     {
       "filename": "3200797037",
       "gold_chars": 2759,
-      "ocr_chars": 2705,
+      "ocr_chars": 2701,
       "gold_words": 445,
-      "ocr_words": 434,
-      "cer": 0.022109459949256977,
-      "cer_edits": 61,
+      "ocr_words": 433,
+      "cer": 0.02247191011235955,
+      "cer_edits": 62,
       "wer": 0.051685393258426963,
       "wer_edits": 23,
       "gold_chars_semantic": 2664,
@@ -195,13 +195,13 @@
     {
       "filename": "3200801613",
       "gold_chars": 2476,
-      "ocr_chars": 2480,
+      "ocr_chars": 2476,
       "gold_words": 425,
-      "ocr_words": 424,
-      "cer": 0.004038772213247173,
-      "cer_edits": 10,
-      "wer": 0.018823529411764704,
-      "wer_edits": 8,
+      "ocr_words": 423,
+      "cer": 0.0024232633279483036,
+      "cer_edits": 6,
+      "wer": 0.01647058823529412,
+      "wer_edits": 7,
       "gold_chars_semantic": 2368,
       "ocr_chars_semantic": 2369,
       "gold_words_semantic": 424,
@@ -220,7 +220,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 423,
-      "gzip_ratio": 2.05,
+      "gzip_ratio": 2.06,
       "failure_label": "clean"
     },
     {
@@ -288,11 +288,11 @@
     {
       "filename": "3200801622",
       "gold_chars": 1615,
-      "ocr_chars": 1583,
+      "ocr_chars": 1579,
       "gold_words": 273,
-      "ocr_words": 275,
-      "cer": 0.026625386996904025,
-      "cer_edits": 43,
+      "ocr_words": 274,
+      "cer": 0.027244582043343655,
+      "cer_edits": 44,
       "wer": 0.02564102564102564,
       "wer_edits": 7,
       "gold_chars_semantic": 1571,
@@ -313,7 +313,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 274,
-      "gzip_ratio": 1.94,
+      "gzip_ratio": 1.95,
       "failure_label": "clean"
     },
     {
@@ -623,17 +623,17 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 341,
-      "gzip_ratio": 1.9,
+      "gzip_ratio": 1.91,
       "failure_label": "clean"
     },
     {
       "filename": "3200807881",
       "gold_chars": 2706,
-      "ocr_chars": 2676,
+      "ocr_chars": 2672,
       "gold_words": 471,
-      "ocr_words": 470,
-      "cer": 0.012934220251293422,
-      "cer_edits": 35,
+      "ocr_words": 469,
+      "cer": 0.013303769401330377,
+      "cer_edits": 36,
       "wer": 0.008492569002123142,
       "wer_edits": 4,
       "gold_chars_semantic": 2634,
@@ -685,7 +685,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 1,
       "ocr_word_total": 409,
-      "gzip_ratio": 1.92,
+      "gzip_ratio": 1.93,
       "failure_label": "clean"
     },
     {
@@ -716,7 +716,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 446,
-      "gzip_ratio": 1.97,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -846,13 +846,13 @@
     {
       "filename": "3200807902",
       "gold_chars": 2508,
-      "ocr_chars": 2488,
+      "ocr_chars": 2480,
       "gold_words": 437,
-      "ocr_words": 437,
-      "cer": 0.013556618819776715,
-      "cer_edits": 34,
-      "wer": 0.018306636155606407,
-      "wer_edits": 8,
+      "ocr_words": 435,
+      "cer": 0.012360446570972886,
+      "cer_edits": 31,
+      "wer": 0.016018306636155607,
+      "wer_edits": 7,
       "gold_chars_semantic": 2431,
       "ocr_chars_semantic": 2403,
       "gold_words_semantic": 436,
@@ -1218,11 +1218,11 @@
     {
       "filename": "3200809847",
       "gold_chars": 3031,
-      "ocr_chars": 3011,
+      "ocr_chars": 3007,
       "gold_words": 516,
-      "ocr_words": 515,
-      "cer": 0.008578027053777632,
-      "cer_edits": 26,
+      "ocr_words": 514,
+      "cer": 0.008907951171230617,
+      "cer_edits": 27,
       "wer": 0.011627906976744186,
       "wer_edits": 6,
       "gold_chars_semantic": 2940,
@@ -1336,7 +1336,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 561,
-      "gzip_ratio": 2.05,
+      "gzip_ratio": 2.06,
       "failure_label": "clean"
     },
     {
@@ -1429,7 +1429,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 577,
-      "gzip_ratio": 1.92,
+      "gzip_ratio": 1.93,
       "failure_label": "clean"
     },
     {
@@ -1683,11 +1683,11 @@
     {
       "filename": "3200810216",
       "gold_chars": 1995,
-      "ocr_chars": 2004,
+      "ocr_chars": 2000,
       "gold_words": 345,
-      "ocr_words": 347,
-      "cer": 0.029072681704260653,
-      "cer_edits": 58,
+      "ocr_words": 346,
+      "cer": 0.02957393483709273,
+      "cer_edits": 59,
       "wer": 0.04057971014492753,
       "wer_edits": 14,
       "gold_chars_semantic": 1929,
@@ -1993,11 +1993,11 @@
     {
       "filename": "3200810285",
       "gold_chars": 2840,
-      "ocr_chars": 2825,
+      "ocr_chars": 2821,
       "gold_words": 482,
-      "ocr_words": 483,
-      "cer": 0.011267605633802818,
-      "cer_edits": 32,
+      "ocr_words": 482,
+      "cer": 0.011619718309859155,
+      "cer_edits": 33,
       "wer": 0.024896265560165973,
       "wer_edits": 12,
       "gold_chars_semantic": 2742,
@@ -2086,11 +2086,11 @@
     {
       "filename": "3200810296",
       "gold_chars": 1938,
-      "ocr_chars": 1924,
+      "ocr_chars": 1920,
       "gold_words": 326,
-      "ocr_words": 326,
-      "cer": 0.010319917440660475,
-      "cer_edits": 20,
+      "ocr_words": 325,
+      "cer": 0.010835913312693499,
+      "cer_edits": 21,
       "wer": 0.012269938650306749,
       "wer_edits": 4,
       "gold_chars_semantic": 1872,
@@ -2173,7 +2173,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 1,
       "ocr_word_total": 404,
-      "gzip_ratio": 1.92,
+      "gzip_ratio": 1.93,
       "failure_label": "clean"
     },
     {
@@ -2235,7 +2235,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 615,
-      "gzip_ratio": 2.06,
+      "gzip_ratio": 2.05,
       "failure_label": "clean"
     },
     {
@@ -2297,7 +2297,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 382,
-      "gzip_ratio": 1.95,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -2328,7 +2328,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 501,
-      "gzip_ratio": 2.12,
+      "gzip_ratio": 2.11,
       "failure_label": "clean"
     },
     {
@@ -2359,7 +2359,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 363,
-      "gzip_ratio": 1.94,
+      "gzip_ratio": 1.95,
       "failure_label": "clean"
     },
     {
@@ -2582,13 +2582,13 @@
     {
       "filename": "3200810644",
       "gold_chars": 1289,
-      "ocr_chars": 1293,
+      "ocr_chars": 1289,
       "gold_words": 229,
-      "ocr_words": 230,
-      "cer": 0.0031031807602792862,
-      "cer_edits": 4,
-      "wer": 0.004366812227074236,
-      "wer_edits": 1,
+      "ocr_words": 229,
+      "cer": 0.0,
+      "cer_edits": 0,
+      "wer": 0.0,
+      "wer_edits": 0,
       "gold_chars_semantic": 1238,
       "ocr_chars_semantic": 1238,
       "gold_words_semantic": 229,
@@ -2607,7 +2607,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 229,
-      "gzip_ratio": 1.93,
+      "gzip_ratio": 1.94,
       "failure_label": "clean"
     },
     {
@@ -2675,11 +2675,11 @@
     {
       "filename": "3200810649",
       "gold_chars": 1727,
-      "ocr_chars": 1709,
+      "ocr_chars": 1705,
       "gold_words": 284,
-      "ocr_words": 281,
-      "cer": 0.013317892298784018,
-      "cer_edits": 23,
+      "ocr_words": 280,
+      "cer": 0.013896931094383324,
+      "cer_edits": 24,
       "wer": 0.035211267605633804,
       "wer_edits": 10,
       "gold_chars_semantic": 1668,
@@ -2861,11 +2861,11 @@
     {
       "filename": "3200810703",
       "gold_chars": 1956,
-      "ocr_chars": 1926,
+      "ocr_chars": 1922,
       "gold_words": 331,
-      "ocr_words": 329,
-      "cer": 0.01789366053169734,
-      "cer_edits": 35,
+      "ocr_words": 328,
+      "cer": 0.018404907975460124,
+      "cer_edits": 36,
       "wer": 0.02416918429003021,
       "wer_edits": 8,
       "gold_chars_semantic": 1900,
@@ -3357,11 +3357,11 @@
     {
       "filename": "3200810882",
       "gold_chars": 2430,
-      "ocr_chars": 2406,
+      "ocr_chars": 2402,
       "gold_words": 434,
-      "ocr_words": 431,
-      "cer": 0.013991769547325103,
-      "cer_edits": 34,
+      "ocr_words": 430,
+      "cer": 0.01440329218106996,
+      "cer_edits": 35,
       "wer": 0.02534562211981567,
       "wer_edits": 11,
       "gold_chars_semantic": 2350,
@@ -3382,7 +3382,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 430,
-      "gzip_ratio": 1.92,
+      "gzip_ratio": 1.93,
       "failure_label": "clean"
     },
     {
@@ -3450,11 +3450,11 @@
     {
       "filename": "3200810898",
       "gold_chars": 1965,
-      "ocr_chars": 1943,
+      "ocr_chars": 1939,
       "gold_words": 343,
-      "ocr_words": 342,
-      "cer": 0.013740458015267175,
-      "cer_edits": 27,
+      "ocr_words": 341,
+      "cer": 0.014249363867684479,
+      "cer_edits": 28,
       "wer": 0.014577259475218658,
       "wer_edits": 5,
       "gold_chars_semantic": 1898,
@@ -3475,7 +3475,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 341,
-      "gzip_ratio": 1.95,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -3723,7 +3723,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 484,
-      "gzip_ratio": 2.02,
+      "gzip_ratio": 2.03,
       "failure_label": "clean"
     },
     {
@@ -3878,17 +3878,17 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 882,
-      "gzip_ratio": 2.06,
+      "gzip_ratio": 2.05,
       "failure_label": "clean"
     },
     {
       "filename": "3200811024",
       "gold_chars": 2451,
-      "ocr_chars": 2423,
+      "ocr_chars": 2419,
       "gold_words": 418,
-      "ocr_words": 418,
-      "cer": 0.013055895552835577,
-      "cer_edits": 32,
+      "ocr_words": 417,
+      "cer": 0.01346389228886169,
+      "cer_edits": 33,
       "wer": 0.007177033492822967,
       "wer_edits": 3,
       "gold_chars_semantic": 2380,
@@ -3909,7 +3909,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 417,
-      "gzip_ratio": 1.95,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -3940,19 +3940,19 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 541,
-      "gzip_ratio": 2.06,
+      "gzip_ratio": 2.05,
       "failure_label": "clean"
     },
     {
       "filename": "3200811036",
       "gold_chars": 650,
-      "ocr_chars": 653,
+      "ocr_chars": 649,
       "gold_words": 111,
-      "ocr_words": 111,
-      "cer": 0.009230769230769232,
-      "cer_edits": 6,
-      "wer": 0.036036036036036036,
-      "wer_edits": 4,
+      "ocr_words": 110,
+      "cer": 0.003076923076923077,
+      "cer_edits": 2,
+      "wer": 0.02702702702702703,
+      "wer_edits": 3,
       "gold_chars_semantic": 626,
       "ocr_chars_semantic": 625,
       "gold_words_semantic": 111,
@@ -3971,7 +3971,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 110,
-      "gzip_ratio": 1.53,
+      "gzip_ratio": 1.54,
       "failure_label": "clean"
     },
     {
@@ -4157,7 +4157,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 182,
-      "gzip_ratio": 1.72,
+      "gzip_ratio": 1.73,
       "failure_label": "clean"
     },
     {
@@ -4188,7 +4188,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 1005,
-      "gzip_ratio": 2.17,
+      "gzip_ratio": 2.16,
       "failure_label": "clean"
     },
     {
@@ -4343,7 +4343,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 550,
-      "gzip_ratio": 2.13,
+      "gzip_ratio": 2.14,
       "failure_label": "clean"
     },
     {
@@ -4374,7 +4374,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 520,
-      "gzip_ratio": 1.99,
+      "gzip_ratio": 1.98,
       "failure_label": "clean"
     },
     {
@@ -4442,11 +4442,11 @@
     {
       "filename": "3200811336",
       "gold_chars": 2412,
-      "ocr_chars": 2381,
+      "ocr_chars": 2377,
       "gold_words": 416,
-      "ocr_words": 413,
-      "cer": 0.016998341625207296,
-      "cer_edits": 41,
+      "ocr_words": 412,
+      "cer": 0.017412935323383085,
+      "cer_edits": 42,
       "wer": 0.03365384615384615,
       "wer_edits": 14,
       "gold_chars_semantic": 2307,
@@ -4529,7 +4529,7 @@
       "hallucination_modernization": 3,
       "hallucination_fabrication": 0,
       "ocr_word_total": 667,
-      "gzip_ratio": 2.0,
+      "gzip_ratio": 1.99,
       "failure_label": "clean"
     },
     {
@@ -4907,13 +4907,13 @@
     {
       "filename": "3200811629",
       "gold_chars": 1982,
-      "ocr_chars": 1984,
+      "ocr_chars": 1980,
       "gold_words": 351,
-      "ocr_words": 349,
-      "cer": 0.006054490413723511,
-      "cer_edits": 12,
-      "wer": 0.03133903133903134,
-      "wer_edits": 11,
+      "ocr_words": 348,
+      "cer": 0.004036326942482341,
+      "cer_edits": 8,
+      "wer": 0.02849002849002849,
+      "wer_edits": 10,
       "gold_chars_semantic": 1928,
       "ocr_chars_semantic": 1926,
       "gold_words_semantic": 351,
@@ -4994,7 +4994,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 749,
-      "gzip_ratio": 1.97,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -5025,7 +5025,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 354,
-      "gzip_ratio": 1.94,
+      "gzip_ratio": 1.93,
       "failure_label": "clean"
     },
     {
@@ -5248,11 +5248,11 @@
     {
       "filename": "3200811905",
       "gold_chars": 3145,
-      "ocr_chars": 3136,
+      "ocr_chars": 3132,
       "gold_words": 528,
-      "ocr_words": 526,
-      "cer": 0.015580286168521463,
-      "cer_edits": 49,
+      "ocr_words": 525,
+      "cer": 0.01589825119236884,
+      "cer_edits": 50,
       "wer": 0.02462121212121212,
       "wer_edits": 13,
       "gold_chars_semantic": 3052,
@@ -5428,7 +5428,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 457,
-      "gzip_ratio": 1.99,
+      "gzip_ratio": 2.0,
       "failure_label": "clean"
     },
     {
@@ -5521,7 +5521,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 618,
-      "gzip_ratio": 2.18,
+      "gzip_ratio": 2.17,
       "failure_label": "clean"
     },
     {
@@ -5552,19 +5552,19 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 409,
-      "gzip_ratio": 1.98,
+      "gzip_ratio": 1.99,
       "failure_label": "clean"
     },
     {
       "filename": "3200812234",
       "gold_chars": 2398,
-      "ocr_chars": 2402,
+      "ocr_chars": 2398,
       "gold_words": 409,
-      "ocr_words": 410,
-      "cer": 0.0025020850708924102,
-      "cer_edits": 6,
-      "wer": 0.007334963325183374,
-      "wer_edits": 3,
+      "ocr_words": 409,
+      "cer": 0.0008340283569641367,
+      "cer_edits": 2,
+      "wer": 0.004889975550122249,
+      "wer_edits": 2,
       "gold_chars_semantic": 2323,
       "ocr_chars_semantic": 2323,
       "gold_words_semantic": 409,
@@ -5583,7 +5583,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 409,
-      "gzip_ratio": 1.98,
+      "gzip_ratio": 1.99,
       "failure_label": "clean"
     },
     {
@@ -5614,7 +5614,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 162,
-      "gzip_ratio": 1.63,
+      "gzip_ratio": 1.64,
       "failure_label": "clean"
     },
     {
@@ -5986,7 +5986,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 793,
-      "gzip_ratio": 2.07,
+      "gzip_ratio": 2.06,
       "failure_label": "clean"
     },
     {
@@ -6085,13 +6085,13 @@
     {
       "filename": "3200812712",
       "gold_chars": 1360,
-      "ocr_chars": 1365,
+      "ocr_chars": 1361,
       "gold_words": 231,
-      "ocr_words": 232,
-      "cer": 0.004411764705882353,
-      "cer_edits": 6,
-      "wer": 0.012987012987012988,
-      "wer_edits": 3,
+      "ocr_words": 231,
+      "cer": 0.0014705882352941176,
+      "cer_edits": 2,
+      "wer": 0.008658008658008658,
+      "wer_edits": 2,
       "gold_chars_semantic": 1311,
       "ocr_chars_semantic": 1312,
       "gold_words_semantic": 231,
@@ -6110,7 +6110,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 231,
-      "gzip_ratio": 1.8,
+      "gzip_ratio": 1.81,
       "failure_label": "clean"
     },
     {
@@ -6265,7 +6265,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 400,
-      "gzip_ratio": 1.85,
+      "gzip_ratio": 1.86,
       "failure_label": "clean"
     },
     {
@@ -6327,7 +6327,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 812,
-      "gzip_ratio": 2.32,
+      "gzip_ratio": 2.31,
       "failure_label": "clean"
     },
     {
@@ -6451,7 +6451,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 572,
-      "gzip_ratio": 2.11,
+      "gzip_ratio": 2.1,
       "failure_label": "clean"
     },
     {
@@ -6482,7 +6482,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 313,
-      "gzip_ratio": 2.04,
+      "gzip_ratio": 2.03,
       "failure_label": "clean"
     },
     {
@@ -6513,7 +6513,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 2,
       "ocr_word_total": 425,
-      "gzip_ratio": 1.89,
+      "gzip_ratio": 1.88,
       "failure_label": "clean"
     },
     {
@@ -6544,7 +6544,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 752,
-      "gzip_ratio": 2.12,
+      "gzip_ratio": 2.11,
       "failure_label": "clean"
     },
     {
@@ -6668,7 +6668,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 683,
-      "gzip_ratio": 2.13,
+      "gzip_ratio": 2.12,
       "failure_label": "clean"
     },
     {
@@ -6730,7 +6730,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 439,
-      "gzip_ratio": 1.94,
+      "gzip_ratio": 1.93,
       "failure_label": "clean"
     },
     {
@@ -6761,7 +6761,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 439,
-      "gzip_ratio": 2.11,
+      "gzip_ratio": 2.1,
       "failure_label": "clean"
     },
     {
@@ -7046,13 +7046,13 @@
     {
       "filename": "3205297646",
       "gold_chars": 1316,
-      "ocr_chars": 1320,
+      "ocr_chars": 1316,
       "gold_words": 226,
-      "ocr_words": 226,
-      "cer": 0.003799392097264438,
-      "cer_edits": 5,
-      "wer": 0.01327433628318584,
-      "wer_edits": 3,
+      "ocr_words": 225,
+      "cer": 0.0007598784194528875,
+      "cer_edits": 1,
+      "wer": 0.008849557522123894,
+      "wer_edits": 2,
       "gold_chars_semantic": 1288,
       "ocr_chars_semantic": 1287,
       "gold_words_semantic": 226,
@@ -7288,7 +7288,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 387,
-      "gzip_ratio": 1.97,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -7325,13 +7325,13 @@
     {
       "filename": "3206191121",
       "gold_chars": 2497,
-      "ocr_chars": 2504,
+      "ocr_chars": 2496,
       "gold_words": 446,
-      "ocr_words": 446,
-      "cer": 0.006808169803764518,
-      "cer_edits": 17,
-      "wer": 0.026905829596412557,
-      "wer_edits": 12,
+      "ocr_words": 444,
+      "cer": 0.003604325190228274,
+      "cer_edits": 9,
+      "wer": 0.02242152466367713,
+      "wer_edits": 10,
       "gold_chars_semantic": 2436,
       "ocr_chars_semantic": 2435,
       "gold_words_semantic": 446,
@@ -7350,19 +7350,19 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 444,
-      "gzip_ratio": 2.03,
+      "gzip_ratio": 2.04,
       "failure_label": "clean"
     },
     {
       "filename": "3206191222",
       "gold_chars": 2027,
-      "ocr_chars": 2059,
+      "ocr_chars": 2055,
       "gold_words": 347,
-      "ocr_words": 348,
-      "cer": 0.01973359644795264,
-      "cer_edits": 40,
-      "wer": 0.040345821325648415,
-      "wer_edits": 14,
+      "ocr_words": 347,
+      "cer": 0.017760236803157376,
+      "cer_edits": 36,
+      "wer": 0.037463976945244955,
+      "wer_edits": 13,
       "gold_chars_semantic": 1960,
       "ocr_chars_semantic": 1986,
       "gold_words_semantic": 346,
@@ -7536,7 +7536,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 879,
-      "gzip_ratio": 2.12,
+      "gzip_ratio": 2.11,
       "failure_label": "clean"
     },
     {
@@ -7567,19 +7567,19 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 595,
-      "gzip_ratio": 2.11,
+      "gzip_ratio": 2.1,
       "failure_label": "clean"
     },
     {
       "filename": "3206192213",
       "gold_chars": 2650,
-      "ocr_chars": 2631,
+      "ocr_chars": 2623,
       "gold_words": 439,
-      "ocr_words": 437,
-      "cer": 0.011320754716981131,
-      "cer_edits": 30,
-      "wer": 0.018223234624145785,
-      "wer_edits": 8,
+      "ocr_words": 435,
+      "cer": 0.010188679245283019,
+      "cer_edits": 27,
+      "wer": 0.015945330296127564,
+      "wer_edits": 7,
       "gold_chars_semantic": 2565,
       "ocr_chars_semantic": 2538,
       "gold_words_semantic": 439,
@@ -7759,13 +7759,13 @@
     {
       "filename": "3206194299",
       "gold_chars": 2917,
-      "ocr_chars": 2906,
+      "ocr_chars": 2898,
       "gold_words": 498,
-      "ocr_words": 499,
-      "cer": 0.010970174837161468,
-      "cer_edits": 32,
-      "wer": 0.02208835341365462,
-      "wer_edits": 11,
+      "ocr_words": 497,
+      "cer": 0.00994172094617758,
+      "cer_edits": 29,
+      "wer": 0.020080321285140562,
+      "wer_edits": 10,
       "gold_chars_semantic": 2818,
       "ocr_chars_semantic": 2798,
       "gold_words_semantic": 498,
@@ -7846,7 +7846,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 920,
-      "gzip_ratio": 2.21,
+      "gzip_ratio": 2.22,
       "failure_label": "clean"
     },
     {
@@ -7908,7 +7908,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 2,
       "ocr_word_total": 318,
-      "gzip_ratio": 2.01,
+      "gzip_ratio": 1.99,
       "failure_label": "clean"
     },
     {
@@ -8001,7 +8001,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 423,
-      "gzip_ratio": 2.01,
+      "gzip_ratio": 2.0,
       "failure_label": "clean"
     },
     {
@@ -8100,11 +8100,11 @@
     {
       "filename": "3206199899",
       "gold_chars": 2355,
-      "ocr_chars": 2330,
+      "ocr_chars": 2326,
       "gold_words": 405,
-      "ocr_words": 397,
-      "cer": 0.012738853503184714,
-      "cer_edits": 30,
+      "ocr_words": 396,
+      "cer": 0.013163481953290871,
+      "cer_edits": 31,
       "wer": 0.04197530864197531,
       "wer_edits": 17,
       "gold_chars_semantic": 2275,
@@ -8311,7 +8311,7 @@
       "hallucination_modernization": 3,
       "hallucination_fabrication": 1,
       "ocr_word_total": 191,
-      "gzip_ratio": 1.62,
+      "gzip_ratio": 1.61,
       "failure_label": "clean"
     },
     {
@@ -8342,7 +8342,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 600,
-      "gzip_ratio": 2.08,
+      "gzip_ratio": 2.07,
       "failure_label": "clean"
     },
     {
@@ -8410,13 +8410,13 @@
     {
       "filename": "3206201441",
       "gold_chars": 3388,
-      "ocr_chars": 3371,
+      "ocr_chars": 3363,
       "gold_words": 575,
-      "ocr_words": 576,
-      "cer": 0.013872491145218418,
-      "cer_edits": 47,
-      "wer": 0.04869565217391304,
-      "wer_edits": 28,
+      "ocr_words": 574,
+      "cer": 0.012987012987012988,
+      "cer_edits": 44,
+      "wer": 0.04695652173913043,
+      "wer_edits": 27,
       "gold_chars_semantic": 3262,
       "ocr_chars_semantic": 3227,
       "gold_words_semantic": 575,
@@ -8466,7 +8466,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 484,
-      "gzip_ratio": 2.22,
+      "gzip_ratio": 2.23,
       "failure_label": "clean"
     },
     {
@@ -8621,7 +8621,7 @@
       "hallucination_modernization": 3,
       "hallucination_fabrication": 0,
       "ocr_word_total": 466,
-      "gzip_ratio": 2.09,
+      "gzip_ratio": 2.08,
       "failure_label": "clean"
     },
     {
@@ -8838,7 +8838,7 @@
       "hallucination_modernization": 4,
       "hallucination_fabrication": 0,
       "ocr_word_total": 395,
-      "gzip_ratio": 1.9,
+      "gzip_ratio": 1.88,
       "failure_label": "clean"
     },
     {
@@ -8900,7 +8900,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 479,
-      "gzip_ratio": 2.08,
+      "gzip_ratio": 2.07,
       "failure_label": "clean"
     },
     {
@@ -8993,7 +8993,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 425,
-      "gzip_ratio": 1.86,
+      "gzip_ratio": 1.84,
       "failure_label": "clean"
     },
     {
@@ -9123,13 +9123,13 @@
     {
       "filename": "3206210019",
       "gold_chars": 3108,
-      "ocr_chars": 3107,
+      "ocr_chars": 3103,
       "gold_words": 540,
-      "ocr_words": 531,
-      "cer": 0.008687258687258687,
-      "cer_edits": 27,
-      "wer": 0.06111111111111111,
-      "wer_edits": 33,
+      "ocr_words": 530,
+      "cer": 0.0074002574002574005,
+      "cer_edits": 23,
+      "wer": 0.05925925925925926,
+      "wer_edits": 32,
       "gold_chars_semantic": 3006,
       "ocr_chars_semantic": 2994,
       "gold_words_semantic": 540,
@@ -9210,7 +9210,7 @@
       "hallucination_modernization": 5,
       "hallucination_fabrication": 0,
       "ocr_word_total": 482,
-      "gzip_ratio": 2.04,
+      "gzip_ratio": 2.03,
       "failure_label": "clean"
     },
     {
@@ -9396,7 +9396,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 229,
-      "gzip_ratio": 1.81,
+      "gzip_ratio": 1.82,
       "failure_label": "clean"
     },
     {
@@ -9520,7 +9520,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 802,
-      "gzip_ratio": 2.25,
+      "gzip_ratio": 2.24,
       "failure_label": "clean"
     },
     {
@@ -9644,7 +9644,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 477,
-      "gzip_ratio": 2.13,
+      "gzip_ratio": 2.12,
       "failure_label": "clean"
     },
     {
@@ -9706,7 +9706,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 392,
-      "gzip_ratio": 2.01,
+      "gzip_ratio": 2.0,
       "failure_label": "clean"
     },
     {
@@ -9737,7 +9737,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 492,
-      "gzip_ratio": 2.06,
+      "gzip_ratio": 2.07,
       "failure_label": "clean"
     },
     {
@@ -9985,7 +9985,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 465,
-      "gzip_ratio": 2.13,
+      "gzip_ratio": 2.14,
       "failure_label": "clean"
     },
     {
@@ -10047,7 +10047,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 461,
-      "gzip_ratio": 2.15,
+      "gzip_ratio": 2.14,
       "failure_label": "clean"
     },
     {
@@ -10481,7 +10481,7 @@
       "hallucination_modernization": 28,
       "hallucination_fabrication": 3,
       "ocr_word_total": 309,
-      "gzip_ratio": 2.04,
+      "gzip_ratio": 2.03,
       "failure_label": "clean"
     },
     {
@@ -10574,7 +10574,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 459,
-      "gzip_ratio": 1.97,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -10735,32 +10735,32 @@
     {
       "filename": "3206225928",
       "gold_chars": 3540,
-      "ocr_chars": 3563,
+      "ocr_chars": 3553,
       "gold_words": 625,
-      "ocr_words": 622,
-      "cer": 0.01327683615819209,
-      "cer_edits": 47,
-      "wer": 0.0384,
-      "wer_edits": 24,
+      "ocr_words": 623,
+      "cer": 0.010451977401129943,
+      "cer_edits": 37,
+      "wer": 0.04,
+      "wer_edits": 25,
       "gold_chars_semantic": 3437,
-      "ocr_chars_semantic": 3456,
+      "ocr_chars_semantic": 3451,
       "gold_words_semantic": 624,
-      "ocr_words_semantic": 622,
-      "cer_semantic": 0.0119290078556881,
-      "cer_edits_semantic": 41,
-      "wer_semantic": 0.03365384615384615,
-      "wer_edits_semantic": 21,
-      "sig_wer": 0.04666666666666667,
-      "sig_wer_edits": 14,
+      "ocr_words_semantic": 623,
+      "cer_semantic": 0.01047425080011638,
+      "cer_edits_semantic": 36,
+      "wer_semantic": 0.035256410256410256,
+      "wer_edits_semantic": 22,
+      "sig_wer": 0.05,
+      "sig_wer_edits": 15,
       "sig_gold_words": 300,
-      "sig_word_accuracy": 0.9533333333333334,
-      "bleu": 0.9414495858236158,
-      "hallucination_rate": 0.001607717041800643,
+      "sig_word_accuracy": 0.95,
+      "bleu": 0.9414495727575098,
+      "hallucination_rate": 0.0016051364365971107,
       "hallucination_count": 1,
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
-      "ocr_word_total": 622,
-      "gzip_ratio": 2.22,
+      "ocr_word_total": 623,
+      "gzip_ratio": 2.23,
       "failure_label": "clean"
     },
     {
@@ -10853,7 +10853,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 412,
-      "gzip_ratio": 1.95,
+      "gzip_ratio": 1.94,
       "failure_label": "clean"
     },
     {
@@ -11014,11 +11014,11 @@
     {
       "filename": "3206228201",
       "gold_chars": 3008,
-      "ocr_chars": 2982,
+      "ocr_chars": 2978,
       "gold_words": 542,
-      "ocr_words": 538,
-      "cer": 0.01163563829787234,
-      "cer_edits": 35,
+      "ocr_words": 537,
+      "cer": 0.011968085106382979,
+      "cer_edits": 36,
       "wer": 0.03136531365313653,
       "wer_edits": 17,
       "gold_chars_semantic": 2913,
@@ -11200,13 +11200,13 @@
     {
       "filename": "3206228942",
       "gold_chars": 989,
-      "ocr_chars": 995,
+      "ocr_chars": 991,
       "gold_words": 157,
-      "ocr_words": 158,
-      "cer": 0.007077856420626896,
-      "cer_edits": 7,
-      "wer": 0.025477707006369428,
-      "wer_edits": 4,
+      "ocr_words": 157,
+      "cer": 0.003033367037411527,
+      "cer_edits": 3,
+      "wer": 0.01910828025477707,
+      "wer_edits": 3,
       "gold_chars_semantic": 954,
       "ocr_chars_semantic": 954,
       "gold_words_semantic": 157,
@@ -11256,7 +11256,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 425,
-      "gzip_ratio": 2.19,
+      "gzip_ratio": 2.18,
       "failure_label": "clean"
     },
     {
@@ -11287,7 +11287,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 401,
-      "gzip_ratio": 2.03,
+      "gzip_ratio": 2.04,
       "failure_label": "clean"
     },
     {
@@ -11349,19 +11349,19 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 470,
-      "gzip_ratio": 2.09,
+      "gzip_ratio": 2.1,
       "failure_label": "clean"
     },
     {
       "filename": "3206232834",
       "gold_chars": 331,
-      "ocr_chars": 332,
+      "ocr_chars": 328,
       "gold_words": 53,
-      "ocr_words": 50,
-      "cer": 0.07250755287009064,
-      "cer_edits": 24,
-      "wer": 0.39622641509433965,
-      "wer_edits": 21,
+      "ocr_words": 49,
+      "cer": 0.06042296072507553,
+      "cer_edits": 20,
+      "wer": 0.37735849056603776,
+      "wer_edits": 20,
       "gold_chars_semantic": 288,
       "ocr_chars_semantic": 284,
       "gold_words_semantic": 53,
@@ -11442,7 +11442,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 444,
-      "gzip_ratio": 2.02,
+      "gzip_ratio": 2.03,
       "failure_label": "clean"
     },
     {
@@ -11541,11 +11541,11 @@
     {
       "filename": "3206233243",
       "gold_chars": 4370,
-      "ocr_chars": 4346,
+      "ocr_chars": 4342,
       "gold_words": 733,
-      "ocr_words": 728,
-      "cer": 0.007551487414187643,
-      "cer_edits": 33,
+      "ocr_words": 727,
+      "cer": 0.007780320366132723,
+      "cer_edits": 34,
       "wer": 0.02592087312414734,
       "wer_edits": 19,
       "gold_chars_semantic": 4240,
@@ -11721,7 +11721,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 467,
-      "gzip_ratio": 2.11,
+      "gzip_ratio": 2.12,
       "failure_label": "clean"
     },
     {
@@ -11783,7 +11783,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 609,
-      "gzip_ratio": 2.31,
+      "gzip_ratio": 2.3,
       "failure_label": "clean"
     },
     {
@@ -11845,7 +11845,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 273,
-      "gzip_ratio": 1.77,
+      "gzip_ratio": 1.78,
       "failure_label": "clean"
     },
     {
@@ -11876,7 +11876,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 446,
-      "gzip_ratio": 1.95,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -11913,11 +11913,11 @@
     {
       "filename": "3206236342",
       "gold_chars": 2320,
-      "ocr_chars": 2295,
+      "ocr_chars": 2291,
       "gold_words": 392,
-      "ocr_words": 388,
-      "cer": 0.01810344827586207,
-      "cer_edits": 42,
+      "ocr_words": 387,
+      "cer": 0.01853448275862069,
+      "cer_edits": 43,
       "wer": 0.05357142857142857,
       "wer_edits": 21,
       "gold_chars_semantic": 2242,
@@ -12062,7 +12062,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 373,
-      "gzip_ratio": 1.96,
+      "gzip_ratio": 1.95,
       "failure_label": "clean"
     },
     {
@@ -12099,11 +12099,11 @@
     {
       "filename": "3206237533",
       "gold_chars": 3485,
-      "ocr_chars": 3465,
+      "ocr_chars": 3461,
       "gold_words": 574,
-      "ocr_words": 574,
-      "cer": 0.009469153515064563,
-      "cer_edits": 33,
+      "ocr_words": 573,
+      "cer": 0.00975609756097561,
+      "cer_edits": 34,
       "wer": 0.017421602787456445,
       "wer_edits": 10,
       "gold_chars_semantic": 3384,
@@ -12130,11 +12130,11 @@
     {
       "filename": "3206237557",
       "gold_chars": 2367,
-      "ocr_chars": 2340,
+      "ocr_chars": 2336,
       "gold_words": 378,
-      "ocr_words": 375,
-      "cer": 0.014786649767638362,
-      "cer_edits": 35,
+      "ocr_words": 374,
+      "cer": 0.015209125475285171,
+      "cer_edits": 36,
       "wer": 0.03968253968253968,
       "wer_edits": 15,
       "gold_chars_semantic": 2292,
@@ -12155,7 +12155,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 373,
-      "gzip_ratio": 1.94,
+      "gzip_ratio": 1.95,
       "failure_label": "clean"
     },
     {
@@ -12217,7 +12217,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 519,
-      "gzip_ratio": 2.0,
+      "gzip_ratio": 1.99,
       "failure_label": "clean"
     },
     {
@@ -12248,7 +12248,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 248,
-      "gzip_ratio": 1.87,
+      "gzip_ratio": 1.86,
       "failure_label": "clean"
     },
     {
@@ -12347,13 +12347,13 @@
     {
       "filename": "3206238890",
       "gold_chars": 1232,
-      "ocr_chars": 1229,
+      "ocr_chars": 1217,
       "gold_words": 135,
-      "ocr_words": 140,
-      "cer": 0.03165584415584415,
-      "cer_edits": 39,
-      "wer": 0.16296296296296298,
-      "wer_edits": 22,
+      "ocr_words": 137,
+      "cer": 0.025974025974025976,
+      "cer_edits": 32,
+      "wer": 0.14814814814814814,
+      "wer_edits": 20,
       "gold_chars_semantic": 1078,
       "ocr_chars_semantic": 1060,
       "gold_words_semantic": 135,
@@ -12372,7 +12372,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 134,
-      "gzip_ratio": 1.71,
+      "gzip_ratio": 1.69,
       "failure_label": "clean"
     },
     {
@@ -12626,11 +12626,11 @@
     {
       "filename": "3206240630",
       "gold_chars": 2275,
-      "ocr_chars": 2247,
+      "ocr_chars": 2243,
       "gold_words": 375,
-      "ocr_words": 367,
-      "cer": 0.016263736263736263,
-      "cer_edits": 37,
+      "ocr_words": 366,
+      "cer": 0.016703296703296705,
+      "cer_edits": 38,
       "wer": 0.050666666666666665,
       "wer_edits": 19,
       "gold_chars_semantic": 2179,
@@ -12657,13 +12657,13 @@
     {
       "filename": "3206241106",
       "gold_chars": 3409,
-      "ocr_chars": 3415,
+      "ocr_chars": 3411,
       "gold_words": 604,
-      "ocr_words": 602,
-      "cer": 0.004986799647990613,
-      "cer_edits": 17,
-      "wer": 0.023178807947019868,
-      "wer_edits": 14,
+      "ocr_words": 601,
+      "cer": 0.0038134350249339984,
+      "cer_edits": 13,
+      "wer": 0.02152317880794702,
+      "wer_edits": 13,
       "gold_chars_semantic": 3287,
       "ocr_chars_semantic": 3289,
       "gold_words_semantic": 604,
@@ -12682,7 +12682,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 601,
-      "gzip_ratio": 2.1,
+      "gzip_ratio": 2.11,
       "failure_label": "clean"
     },
     {
@@ -12775,7 +12775,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 387,
-      "gzip_ratio": 1.96,
+      "gzip_ratio": 1.95,
       "failure_label": "clean"
     },
     {
@@ -12868,19 +12868,19 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 550,
-      "gzip_ratio": 2.23,
+      "gzip_ratio": 2.24,
       "failure_label": "clean"
     },
     {
       "filename": "3206244096",
       "gold_chars": 2074,
-      "ocr_chars": 2074,
+      "ocr_chars": 2070,
       "gold_words": 356,
-      "ocr_words": 353,
-      "cer": 0.0057859209257473485,
-      "cer_edits": 12,
-      "wer": 0.033707865168539325,
-      "wer_edits": 12,
+      "ocr_words": 352,
+      "cer": 0.003857280617164899,
+      "cer_edits": 8,
+      "wer": 0.03089887640449438,
+      "wer_edits": 11,
       "gold_chars_semantic": 2010,
       "ocr_chars_semantic": 2006,
       "gold_words_semantic": 356,
@@ -12899,7 +12899,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 352,
-      "gzip_ratio": 2.04,
+      "gzip_ratio": 2.05,
       "failure_label": "clean"
     },
     {
@@ -13029,13 +13029,13 @@
     {
       "filename": "3206244471",
       "gold_chars": 2149,
-      "ocr_chars": 2152,
+      "ocr_chars": 2148,
       "gold_words": 364,
-      "ocr_words": 365,
-      "cer": 0.004187994416007445,
-      "cer_edits": 9,
-      "wer": 0.016483516483516484,
-      "wer_edits": 6,
+      "ocr_words": 364,
+      "cer": 0.002326663564448581,
+      "cer_edits": 5,
+      "wer": 0.013736263736263736,
+      "wer_edits": 5,
       "gold_chars_semantic": 2094,
       "ocr_chars_semantic": 2094,
       "gold_words_semantic": 364,
@@ -13364,7 +13364,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 370,
-      "gzip_ratio": 1.99,
+      "gzip_ratio": 1.98,
       "failure_label": "clean"
     },
     {
@@ -13488,7 +13488,7 @@
       "hallucination_modernization": 3,
       "hallucination_fabrication": 1,
       "ocr_word_total": 345,
-      "gzip_ratio": 1.66,
+      "gzip_ratio": 1.65,
       "failure_label": "clean"
     },
     {
@@ -13618,13 +13618,13 @@
     {
       "filename": "3206248855",
       "gold_chars": 2464,
-      "ocr_chars": 2460,
+      "ocr_chars": 2456,
       "gold_words": 418,
-      "ocr_words": 411,
-      "cer": 0.005681818181818182,
-      "cer_edits": 14,
-      "wer": 0.045454545454545456,
-      "wer_edits": 19,
+      "ocr_words": 410,
+      "cer": 0.004058441558441558,
+      "cer_edits": 10,
+      "wer": 0.0430622009569378,
+      "wer_edits": 18,
       "gold_chars_semantic": 2388,
       "ocr_chars_semantic": 2380,
       "gold_words_semantic": 418,
@@ -13773,11 +13773,11 @@
     {
       "filename": "3206251983",
       "gold_chars": 2558,
-      "ocr_chars": 2531,
+      "ocr_chars": 2527,
       "gold_words": 432,
-      "ocr_words": 424,
-      "cer": 0.01602814698983581,
-      "cer_edits": 41,
+      "ocr_words": 423,
+      "cer": 0.01641907740422205,
+      "cer_edits": 42,
       "wer": 0.05555555555555555,
       "wer_edits": 24,
       "gold_chars_semantic": 2480,
@@ -13798,7 +13798,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 423,
-      "gzip_ratio": 2.0,
+      "gzip_ratio": 2.01,
       "failure_label": "clean"
     },
     {
@@ -14145,11 +14145,11 @@
     {
       "filename": "3206256436",
       "gold_chars": 1983,
-      "ocr_chars": 1963,
+      "ocr_chars": 1959,
       "gold_words": 311,
-      "ocr_words": 311,
-      "cer": 0.014624306606152295,
-      "cer_edits": 29,
+      "ocr_words": 310,
+      "cer": 0.015128593040847202,
+      "cer_edits": 30,
       "wer": 0.02572347266881029,
       "wer_edits": 8,
       "gold_chars_semantic": 1934,
@@ -14170,7 +14170,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 310,
-      "gzip_ratio": 2.08,
+      "gzip_ratio": 2.09,
       "failure_label": "clean"
     },
     {
@@ -14201,7 +14201,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 562,
-      "gzip_ratio": 2.16,
+      "gzip_ratio": 2.17,
       "failure_label": "clean"
     },
     {
@@ -14418,7 +14418,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 1,
       "ocr_word_total": 526,
-      "gzip_ratio": 1.95,
+      "gzip_ratio": 1.94,
       "failure_label": "clean"
     },
     {
@@ -14920,11 +14920,11 @@
     {
       "filename": "3206266075",
       "gold_chars": 2693,
-      "ocr_chars": 2665,
+      "ocr_chars": 2661,
       "gold_words": 441,
-      "ocr_words": 437,
-      "cer": 0.01188265874489417,
-      "cer_edits": 32,
+      "ocr_words": 436,
+      "cer": 0.012253991830672113,
+      "cer_edits": 33,
       "wer": 0.022675736961451247,
       "wer_edits": 10,
       "gold_chars_semantic": 2593,
@@ -15069,17 +15069,17 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 352,
-      "gzip_ratio": 1.82,
+      "gzip_ratio": 1.81,
       "failure_label": "clean"
     },
     {
       "filename": "3206269232",
       "gold_chars": 2528,
-      "ocr_chars": 2505,
+      "ocr_chars": 2501,
       "gold_words": 442,
-      "ocr_words": 441,
-      "cer": 0.010680379746835443,
-      "cer_edits": 27,
+      "ocr_words": 440,
+      "cer": 0.011075949367088608,
+      "cer_edits": 28,
       "wer": 0.00904977375565611,
       "wer_edits": 4,
       "gold_chars_semantic": 2445,
@@ -15230,11 +15230,11 @@
     {
       "filename": "3206269952",
       "gold_chars": 1951,
-      "ocr_chars": 1928,
+      "ocr_chars": 1924,
       "gold_words": 347,
-      "ocr_words": 346,
-      "cer": 0.014351614556637622,
-      "cer_edits": 28,
+      "ocr_words": 345,
+      "cer": 0.01486417221937468,
+      "cer_edits": 29,
       "wer": 0.011527377521613832,
       "wer_edits": 4,
       "gold_chars_semantic": 1905,
@@ -15255,7 +15255,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 345,
-      "gzip_ratio": 1.82,
+      "gzip_ratio": 1.83,
       "failure_label": "clean"
     },
     {
@@ -15286,7 +15286,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 391,
-      "gzip_ratio": 1.95,
+      "gzip_ratio": 1.96,
       "failure_label": "clean"
     },
     {
@@ -15416,11 +15416,11 @@
     {
       "filename": "3206270362",
       "gold_chars": 1762,
-      "ocr_chars": 1736,
+      "ocr_chars": 1732,
       "gold_words": 292,
-      "ocr_words": 289,
-      "cer": 0.018161180476730987,
-      "cer_edits": 32,
+      "ocr_words": 288,
+      "cer": 0.01872871736662883,
+      "cer_edits": 33,
       "wer": 0.030821917808219176,
       "wer_edits": 9,
       "gold_chars_semantic": 1714,
@@ -15478,11 +15478,11 @@
     {
       "filename": "3206270911",
       "gold_chars": 1319,
-      "ocr_chars": 1295,
+      "ocr_chars": 1291,
       "gold_words": 232,
-      "ocr_words": 232,
-      "cer": 0.026535253980288095,
-      "cer_edits": 35,
+      "ocr_words": 231,
+      "cer": 0.027293404094010616,
+      "cer_edits": 36,
       "wer": 0.021551724137931036,
       "wer_edits": 5,
       "gold_chars_semantic": 1263,
@@ -15503,7 +15503,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 231,
-      "gzip_ratio": 1.78,
+      "gzip_ratio": 1.79,
       "failure_label": "clean"
     },
     {
@@ -15596,7 +15596,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 368,
-      "gzip_ratio": 2.04,
+      "gzip_ratio": 2.03,
       "failure_label": "clean"
     },
     {
@@ -15689,7 +15689,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 1,
       "ocr_word_total": 313,
-      "gzip_ratio": 1.91,
+      "gzip_ratio": 1.9,
       "failure_label": "clean"
     },
     {
@@ -15726,13 +15726,13 @@
     {
       "filename": "3206275812",
       "gold_chars": 1035,
-      "ocr_chars": 1012,
+      "ocr_chars": 984,
       "gold_words": 161,
-      "ocr_words": 164,
-      "cer": 0.08019323671497584,
-      "cer_edits": 83,
-      "wer": 0.10559006211180125,
-      "wer_edits": 17,
+      "ocr_words": 157,
+      "cer": 0.06280193236714976,
+      "cer_edits": 65,
+      "wer": 0.07453416149068323,
+      "wer_edits": 12,
       "gold_chars_semantic": 1001,
       "ocr_chars_semantic": 949,
       "gold_words_semantic": 160,
@@ -15751,19 +15751,19 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 156,
-      "gzip_ratio": 1.53,
+      "gzip_ratio": 1.49,
       "failure_label": "clean"
     },
     {
       "filename": "3206275818",
       "gold_chars": 1828,
-      "ocr_chars": 1831,
+      "ocr_chars": 1827,
       "gold_words": 314,
-      "ocr_words": 314,
-      "cer": 0.009846827133479213,
-      "cer_edits": 18,
-      "wer": 0.022292993630573247,
-      "wer_edits": 7,
+      "ocr_words": 313,
+      "cer": 0.007658643326039387,
+      "cer_edits": 14,
+      "wer": 0.01910828025477707,
+      "wer_edits": 6,
       "gold_chars_semantic": 1778,
       "ocr_chars_semantic": 1777,
       "gold_words_semantic": 314,
@@ -15782,19 +15782,19 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 313,
-      "gzip_ratio": 1.9,
+      "gzip_ratio": 1.91,
       "failure_label": "clean"
     },
     {
       "filename": "3206275823",
       "gold_chars": 2209,
-      "ocr_chars": 2241,
+      "ocr_chars": 2233,
       "gold_words": 352,
-      "ocr_words": 357,
-      "cer": 0.05296514259846084,
-      "cer_edits": 117,
-      "wer": 0.1534090909090909,
-      "wer_edits": 54,
+      "ocr_words": 355,
+      "cer": 0.05160706201901313,
+      "cer_edits": 114,
+      "wer": 0.15056818181818182,
+      "wer_edits": 53,
       "gold_chars_semantic": 2080,
       "ocr_chars_semantic": 2100,
       "gold_words_semantic": 352,
@@ -15813,7 +15813,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 355,
-      "gzip_ratio": 1.84,
+      "gzip_ratio": 1.83,
       "failure_label": "clean"
     },
     {
@@ -15912,13 +15912,13 @@
     {
       "filename": "3206276279",
       "gold_chars": 1721,
-      "ocr_chars": 1720,
+      "ocr_chars": 1716,
       "gold_words": 288,
-      "ocr_words": 287,
-      "cer": 0.005810575246949448,
-      "cer_edits": 10,
-      "wer": 0.027777777777777776,
-      "wer_edits": 8,
+      "ocr_words": 286,
+      "cer": 0.003486345148169669,
+      "cer_edits": 6,
+      "wer": 0.024305555555555556,
+      "wer_edits": 7,
       "gold_chars_semantic": 1649,
       "ocr_chars_semantic": 1645,
       "gold_words_semantic": 288,
@@ -15999,7 +15999,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 151,
-      "gzip_ratio": 1.8,
+      "gzip_ratio": 1.81,
       "failure_label": "clean"
     },
     {
@@ -16154,7 +16154,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 350,
-      "gzip_ratio": 1.93,
+      "gzip_ratio": 1.92,
       "failure_label": "clean"
     },
     {
@@ -16247,7 +16247,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 460,
-      "gzip_ratio": 2.02,
+      "gzip_ratio": 2.01,
       "failure_label": "clean"
     },
     {
@@ -16433,7 +16433,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 556,
-      "gzip_ratio": 2.95,
+      "gzip_ratio": 2.93,
       "failure_label": "clean"
     },
     {
@@ -16464,7 +16464,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 949,
-      "gzip_ratio": 2.31,
+      "gzip_ratio": 2.3,
       "failure_label": "clean"
     },
     {
@@ -16619,7 +16619,7 @@
       "hallucination_modernization": 5,
       "hallucination_fabrication": 2,
       "ocr_word_total": 413,
-      "gzip_ratio": 1.81,
+      "gzip_ratio": 1.8,
       "failure_label": "clean"
     },
     {
@@ -16712,7 +16712,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 180,
-      "gzip_ratio": 1.71,
+      "gzip_ratio": 1.72,
       "failure_label": "clean"
     },
     {
@@ -16960,7 +16960,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 636,
-      "gzip_ratio": 2.09,
+      "gzip_ratio": 2.08,
       "failure_label": "clean"
     },
     {
@@ -17245,31 +17245,31 @@
     {
       "filename": "3206320497",
       "gold_chars": 2414,
-      "ocr_chars": 2438,
+      "ocr_chars": 2420,
       "gold_words": 390,
-      "ocr_words": 390,
-      "cer": 0.019055509527754765,
-      "cer_edits": 46,
-      "wer": 0.05128205128205128,
-      "wer_edits": 20,
+      "ocr_words": 394,
+      "cer": 0.0115990057995029,
+      "cer_edits": 28,
+      "wer": 0.06153846153846154,
+      "wer_edits": 24,
       "gold_chars_semantic": 2344,
-      "ocr_chars_semantic": 2357,
+      "ocr_chars_semantic": 2348,
       "gold_words_semantic": 390,
-      "ocr_words_semantic": 390,
-      "cer_semantic": 0.013225255972696246,
-      "cer_edits_semantic": 31,
-      "wer_semantic": 0.038461538461538464,
-      "wer_edits_semantic": 15,
-      "sig_wer": 0.06451612903225806,
-      "sig_wer_edits": 14,
+      "ocr_words_semantic": 393,
+      "cer_semantic": 0.00938566552901024,
+      "cer_edits_semantic": 22,
+      "wer_semantic": 0.046153846153846156,
+      "wer_edits_semantic": 18,
+      "sig_wer": 0.06912442396313365,
+      "sig_wer_edits": 15,
       "sig_gold_words": 217,
-      "sig_word_accuracy": 0.935483870967742,
-      "bleu": 0.9136874903779898,
-      "hallucination_rate": 0.007692307692307693,
-      "hallucination_count": 3,
-      "hallucination_modernization": 3,
+      "sig_word_accuracy": 0.9308755760368663,
+      "bleu": 0.9066859963492032,
+      "hallucination_rate": 0.010178117048346057,
+      "hallucination_count": 4,
+      "hallucination_modernization": 4,
       "hallucination_fabrication": 0,
-      "ocr_word_total": 390,
+      "ocr_word_total": 393,
       "gzip_ratio": 1.93,
       "failure_label": "clean"
     },
@@ -17394,7 +17394,7 @@
       "hallucination_modernization": 3,
       "hallucination_fabrication": 0,
       "ocr_word_total": 500,
-      "gzip_ratio": 2.01,
+      "gzip_ratio": 2.02,
       "failure_label": "clean"
     },
     {
@@ -17549,7 +17549,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 577,
-      "gzip_ratio": 2.18,
+      "gzip_ratio": 2.17,
       "failure_label": "clean"
     },
     {
@@ -17611,7 +17611,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 546,
-      "gzip_ratio": 2.1,
+      "gzip_ratio": 2.09,
       "failure_label": "clean"
     },
     {
@@ -17679,13 +17679,13 @@
     {
       "filename": "3206327774",
       "gold_chars": 2915,
-      "ocr_chars": 2928,
+      "ocr_chars": 2924,
       "gold_words": 501,
-      "ocr_words": 497,
-      "cer": 0.010634648370497428,
-      "cer_edits": 31,
-      "wer": 0.043912175648702596,
-      "wer_edits": 22,
+      "ocr_words": 496,
+      "cer": 0.009262435677530018,
+      "cer_edits": 27,
+      "wer": 0.041916167664670656,
+      "wer_edits": 21,
       "gold_chars_semantic": 2789,
       "ocr_chars_semantic": 2797,
       "gold_words_semantic": 501,
@@ -17704,7 +17704,7 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 0,
       "ocr_word_total": 496,
-      "gzip_ratio": 2.06,
+      "gzip_ratio": 2.07,
       "failure_label": "clean"
     },
     {
@@ -17735,7 +17735,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 454,
-      "gzip_ratio": 2.05,
+      "gzip_ratio": 2.06,
       "failure_label": "clean"
     },
     {
@@ -18020,13 +18020,13 @@
     {
       "filename": "3206328955",
       "gold_chars": 3731,
-      "ocr_chars": 3732,
+      "ocr_chars": 3728,
       "gold_words": 660,
-      "ocr_words": 659,
-      "cer": 0.002680246582685607,
-      "cer_edits": 10,
-      "wer": 0.013636363636363636,
-      "wer_edits": 9,
+      "ocr_words": 658,
+      "cer": 0.0016081479496113642,
+      "cer_edits": 6,
+      "wer": 0.012121212121212121,
+      "wer_edits": 8,
       "gold_chars_semantic": 3640,
       "ocr_chars_semantic": 3638,
       "gold_words_semantic": 660,
@@ -18262,7 +18262,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 529,
-      "gzip_ratio": 2.28,
+      "gzip_ratio": 2.27,
       "failure_label": "clean"
     },
     {
@@ -18324,7 +18324,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
       "ocr_word_total": 462,
-      "gzip_ratio": 1.92,
+      "gzip_ratio": 1.91,
       "failure_label": "clean"
     },
     {
@@ -18361,11 +18361,11 @@
     {
       "filename": "3207166593",
       "gold_chars": 1153,
-      "ocr_chars": 1210,
+      "ocr_chars": 1206,
       "gold_words": 189,
-      "ocr_words": 192,
-      "cer": 0.060711188204683436,
-      "cer_edits": 70,
+      "ocr_words": 191,
+      "cer": 0.05724197745013009,
+      "cer_edits": 66,
       "wer": 0.06878306878306878,
       "wer_edits": 13,
       "gold_chars_semantic": 1128,
@@ -18386,7 +18386,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 2,
       "ocr_word_total": 189,
-      "gzip_ratio": 1.78,
+      "gzip_ratio": 1.79,
       "failure_label": "clean"
     },
     {
@@ -18417,7 +18417,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 1,
       "ocr_word_total": 450,
-      "gzip_ratio": 2.06,
+      "gzip_ratio": 2.05,
       "failure_label": "clean"
     },
     {
@@ -18448,19 +18448,19 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 1,
       "ocr_word_total": 1123,
-      "gzip_ratio": 2.18,
+      "gzip_ratio": 2.17,
       "failure_label": "clean"
     },
     {
       "filename": "3207643410",
       "gold_chars": 2011,
-      "ocr_chars": 2016,
+      "ocr_chars": 2012,
       "gold_words": 336,
-      "ocr_words": 337,
-      "cer": 0.007956240676280457,
-      "cer_edits": 16,
-      "wer": 0.02976190476190476,
-      "wer_edits": 10,
+      "ocr_words": 336,
+      "cer": 0.005967180507210343,
+      "cer_edits": 12,
+      "wer": 0.026785714285714284,
+      "wer_edits": 9,
       "gold_chars_semantic": 1951,
       "ocr_chars_semantic": 1951,
       "gold_words_semantic": 335,
@@ -18510,7 +18510,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 1,
       "ocr_word_total": 326,
-      "gzip_ratio": 2.07,
+      "gzip_ratio": 2.06,
       "failure_label": "clean"
     },
     {
@@ -18578,11 +18578,11 @@
     {
       "filename": "3207646187",
       "gold_chars": 667,
-      "ocr_chars": 674,
+      "ocr_chars": 670,
       "gold_words": 121,
-      "ocr_words": 120,
-      "cer": 0.02848575712143928,
-      "cer_edits": 19,
+      "ocr_words": 119,
+      "cer": 0.022488755622188907,
+      "cer_edits": 15,
       "wer": 0.06611570247933884,
       "wer_edits": 8,
       "gold_chars_semantic": 646,
@@ -18603,38 +18603,38 @@
       "hallucination_modernization": 2,
       "hallucination_fabrication": 1,
       "ocr_word_total": 119,
-      "gzip_ratio": 1.6,
+      "gzip_ratio": 1.61,
       "failure_label": "clean"
     },
     {
       "filename": "3207647413",
       "gold_chars": 2282,
-      "ocr_chars": 2818,
+      "ocr_chars": 2283,
       "gold_words": 338,
-      "ocr_words": 296,
-      "cer": 0.2738825591586328,
-      "cer_edits": 625,
-      "wer": 0.33727810650887574,
-      "wer_edits": 114,
+      "ocr_words": 316,
+      "cer": 0.03067484662576687,
+      "cer_edits": 70,
+      "wer": 0.21597633136094674,
+      "wer_edits": 73,
       "gold_chars_semantic": 2059,
-      "ocr_chars_semantic": 2308,
+      "ocr_chars_semantic": 2048,
       "gold_words_semantic": 331,
-      "ocr_words_semantic": 296,
-      "cer_semantic": 0.1559009227780476,
-      "cer_edits_semantic": 321,
-      "wer_semantic": 0.2688821752265861,
-      "wer_edits_semantic": 89,
-      "sig_wer": 0.3079584775086505,
-      "sig_wer_edits": 89,
+      "ocr_words_semantic": 316,
+      "cer_semantic": 0.0199125789218067,
+      "cer_edits_semantic": 41,
+      "wer_semantic": 0.13595166163141995,
+      "wer_edits_semantic": 45,
+      "sig_wer": 0.15570934256055363,
+      "sig_wer_edits": 45,
       "sig_gold_words": 289,
-      "sig_word_accuracy": 0.6920415224913494,
-      "bleu": 0.4879107539758873,
+      "sig_word_accuracy": 0.8442906574394464,
+      "bleu": 0.7627661587717753,
       "hallucination_rate": 0.0,
       "hallucination_count": 0,
       "hallucination_modernization": 0,
       "hallucination_fabrication": 0,
-      "ocr_word_total": 296,
-      "gzip_ratio": 2.57,
+      "ocr_word_total": 316,
+      "gzip_ratio": 2.25,
       "failure_label": "clean"
     }
   ]

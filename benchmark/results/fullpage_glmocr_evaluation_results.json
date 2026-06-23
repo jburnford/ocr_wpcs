@@ -97,7 +97,7 @@
       "hallucination_modernization": 6,
       "hallucination_fabrication": 2,
       "ocr_word_total": 1358,
-      "gzip_ratio": 2.18,
+      "gzip_ratio": 2.17,
       "failure_label": "clean"
     },
     {
@@ -128,7 +128,7 @@
       "hallucination_modernization": 7,
       "hallucination_fabrication": 3,
       "ocr_word_total": 842,
-      "gzip_ratio": 2.01,
+      "gzip_ratio": 2.0,
       "failure_label": "clean"
     },
     {
@@ -159,7 +159,7 @@
       "hallucination_modernization": 137,
       "hallucination_fabrication": 1,
       "ocr_word_total": 5831,
-      "gzip_ratio": 25.53,
+      "gzip_ratio": 25.43,
       "failure_label": "runaway/garbage"
     },
     {
@@ -190,7 +190,7 @@
       "hallucination_modernization": 17,
       "hallucination_fabrication": 3,
       "ocr_word_total": 1739,
-      "gzip_ratio": 2.15,
+      "gzip_ratio": 2.14,
       "failure_label": "clean"
     },
     {
@@ -221,7 +221,7 @@
       "hallucination_modernization": 1,
       "hallucination_fabrication": 0,
       "ocr_word_total": 6137,
-      "gzip_ratio": 80.89,
+      "gzip_ratio": 81.35,
       "failure_label": "loop"
     },
     {
@@ -252,7 +252,7 @@
       "hallucination_modernization": 5,
       "hallucination_fabrication": 0,
       "ocr_word_total": 2191,
-      "gzip_ratio": 2.12,
+      "gzip_ratio": 2.11,
       "failure_label": "clean"
     },
     {

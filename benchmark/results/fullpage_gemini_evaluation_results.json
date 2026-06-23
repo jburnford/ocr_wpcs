@@ -65,7 +65,7 @@
       "hallucination_modernization": 0,
       "hallucination_fabrication": 1,
       "ocr_word_total": 8,
-      "gzip_ratio": 0.82,
+      "gzip_ratio": 0.81,
       "failure_label": "loop"
     },
     {

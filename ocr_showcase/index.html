@@ -181,17 +181,22 @@ the paper.</p>
 <p>Two flavours of CER/WER appear. <strong>Strict</strong> counts only real differences after
 tidying typography (curly vs straight quotes, spacing). <strong>Semantic</strong> also
 lowercases and ignores punctuation, because a capital letter or a comma is
-rarely the error a historian cares about. Unless noted, headline figures are
-<strong>semantic</strong> — the fairer cross-tool comparison.</p>
+rarely the error a historian cares about. Every headline CER/WER in this paper
+is <strong>semantic</strong> — the fairer cross-tool comparison. Each is also a <strong>corpus
+total</strong>: we pool every character (or word) across the whole corpus into one
+rate, rather than averaging the per-document rates. A corpus total weights long
+documents more, and can rank tools differently from a per-document average, so
+we state it explicitly. Tables label these figures <code>(sem., corpus)</code>; any strict
+or per-document number is called out where it appears.</p>
 </blockquote>
 <hr />
 <h2>1. Introduction: a step change, and why it isn't enough</h2>
 <p>Set a worn early-modern page, with its long-s, archaic orthography, and foxed
 paper, in front of the OCR engine that underlies most library digitization, and
-you get this (Tesseract, 1612–1807 corpus): 21.3% character error, 44.1% word
+you get this (Tesseract, 1612–1807 corpus): 20.9% character error, 43.7% word
 error, a BLEU of 0.39. The text is unusable. Set the same page in front of a 2025
-vision-language model (Chandra 2) and you get 3.0% character error, a seven-fold
-reduction, with the "hallucination" rate falling from 7.9% to under 1%. On clean
+vision-language model (Chandra 2) and you get 2.6% character error, an eight-fold
+reduction, with the "hallucination" rate falling from 7.8% to under 1%. On clean
 nineteenth-century newspaper print the modern tools reach 0.6% character error,
 within a rounding error of a careful human. This is the demonstration that
 motivates the paper. Machine reading of historical documents has materially changed,
@@ -474,13 +479,13 @@ the public artifact.</p>
 <h2>4. Results by content type</h2>
 <h3>4.1 Clean print is solved; the choice is economic</h3>
 <p>On BLN600 (cropped 19th-c. newspaper print) the modern tools are effectively
-tied and excellent (semantic CER / WER):</p>
+tied and excellent:</p>
 <table>
 <thead>
 <tr>
 <th>tool</th>
-<th style="text-align: right;">CER</th>
-<th style="text-align: right;">WER</th>
+<th style="text-align: right;">CER (sem., corpus)</th>
+<th style="text-align: right;">WER (sem., corpus)</th>
 <th style="text-align: right;">BLEU</th>
 </tr>
 </thead>
@@ -499,8 +504,8 @@ tied and excellent (semantic CER / WER):</p>
 </tr>
 <tr>
 <td>Chandra 2</td>
-<td style="text-align: right;">0.60%</td>
-<td style="text-align: right;">2.17%</td>
+<td style="text-align: right;">0.58%</td>
+<td style="text-align: right;">2.15%</td>
 <td style="text-align: right;">0.957</td>
 </tr>
 <tr>
@@ -510,16 +515,16 @@ tied and excellent (semantic CER / WER):</p>
 <td style="text-align: right;">0.960</td>
 </tr>
 <tr>
-<td>olmOCR</td>
-<td style="text-align: right;">1.95%</td>
-<td style="text-align: right;">4.10%</td>
-<td style="text-align: right;">0.943</td>
+<td>olmOCR 2</td>
+<td style="text-align: right;">1.93%</td>
+<td style="text-align: right;">4.08%</td>
+<td style="text-align: right;">0.944</td>
 </tr>
 <tr>
 <td><em>Tesseract baseline</em></td>
-<td style="text-align: right;">5.61%</td>
-<td style="text-align: right;">18.11%</td>
-<td style="text-align: right;">0.687</td>
+<td style="text-align: right;">5.71%</td>
+<td style="text-align: right;">18.18%</td>
+<td style="text-align: right;">0.686</td>
 </tr>
 </tbody>
 </table>
@@ -535,14 +540,17 @@ the block-by-block agreement.</p>
 
 <h3>4.2 Early-modern print: script matters more than age</h3>
 <p>Hold layout roughly constant, mostly single-column, and move back to 1612–1807,
-and error jumps about five-fold over BLN600 for the same tools:</p>
+and error jumps about four-fold over BLN600 for the same tools. We report CER
+both ways — pooled over the corpus and averaged per document — because they can
+order close tools differently:</p>
 <table>
 <thead>
 <tr>
 <th>tool</th>
 <th style="text-align: right;">n</th>
-<th style="text-align: right;">CER</th>
-<th style="text-align: right;">WER</th>
+<th style="text-align: right;">CER (sem., corpus)</th>
+<th style="text-align: right;">CER (sem., per-doc)</th>
+<th style="text-align: right;">WER (sem., corpus)</th>
 <th style="text-align: right;">BLEU</th>
 <th style="text-align: right;">halluc</th>
 <th style="text-align: right;">modern.</th>
@@ -553,86 +561,98 @@ and error jumps about five-fold over BLN600 for the same tools:</p>
 <tr>
 <td>Gemini 3.5 Flash</td>
 <td style="text-align: right;">96</td>
-<td style="text-align: right;"><strong>2.42%</strong></td>
-<td style="text-align: right;">4.78%</td>
-<td style="text-align: right;">0.929</td>
-<td style="text-align: right;"><strong>0.51%</strong></td>
-<td style="text-align: right;"><strong>0.38%</strong></td>
-<td style="text-align: right;"><strong>0.13%</strong></td>
+<td style="text-align: right;"><strong>2.15%</strong></td>
+<td style="text-align: right;"><strong>1.75%</strong></td>
+<td style="text-align: right;">4.53%</td>
+<td style="text-align: right;">0.934</td>
+<td style="text-align: right;"><strong>0.40%</strong></td>
+<td style="text-align: right;"><strong>0.36%</strong></td>
+<td style="text-align: right;"><strong>0.04%</strong></td>
 </tr>
 <tr>
 <td>Chandra 2</td>
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">3.05%</td>
-<td style="text-align: right;"><strong>4.74%</strong></td>
-<td style="text-align: right;"><strong>0.936</strong></td>
-<td style="text-align: right;">0.84%</td>
-<td style="text-align: right;">0.64%</td>
-<td style="text-align: right;">0.20%</td>
+<td style="text-align: right;">2.58%</td>
+<td style="text-align: right;">2.10%</td>
+<td style="text-align: right;"><strong>4.42%</strong></td>
+<td style="text-align: right;"><strong>0.942</strong></td>
+<td style="text-align: right;">0.76%</td>
+<td style="text-align: right;">0.63%</td>
+<td style="text-align: right;">0.12%</td>
 </tr>
 <tr>
 <td>Chandra 2 <em>(no-modernize prompt)</em></td>
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">2.80%</td>
-<td style="text-align: right;">4.50%</td>
+<td style="text-align: right;">2.33%</td>
+<td style="text-align: right;">1.87%</td>
+<td style="text-align: right;">4.18%</td>
 <td style="text-align: right;">—</td>
-<td style="text-align: right;">0.72%</td>
-<td style="text-align: right;">0.59%</td>
-<td style="text-align: right;">0.13%</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
 </tr>
 <tr>
 <td>Infinity Parser 2</td>
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">3.02%</td>
-<td style="text-align: right;">5.23%</td>
-<td style="text-align: right;">0.928</td>
-<td style="text-align: right;">1.18%</td>
-<td style="text-align: right;">1.01%</td>
-<td style="text-align: right;">0.16%</td>
+<td style="text-align: right;">2.59%</td>
+<td style="text-align: right;">1.97%</td>
+<td style="text-align: right;">4.91%</td>
+<td style="text-align: right;">0.934</td>
+<td style="text-align: right;">1.08%</td>
+<td style="text-align: right;">0.99%</td>
+<td style="text-align: right;">0.09%</td>
 </tr>
 <tr>
-<td>olmOCR</td>
-<td style="text-align: right;">99</td>
-<td style="text-align: right;">4.20%</td>
-<td style="text-align: right;">7.26%</td>
-<td style="text-align: right;">0.903</td>
-<td style="text-align: right;">1.84%</td>
-<td style="text-align: right;">1.52%</td>
-<td style="text-align: right;">0.32%</td>
+<td>olmOCR 2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">4.27%</td>
+<td style="text-align: right;">2.88%</td>
+<td style="text-align: right;">7.27%</td>
+<td style="text-align: right;">0.912</td>
+<td style="text-align: right;">1.50%</td>
+<td style="text-align: right;">1.24%</td>
+<td style="text-align: right;">0.25%</td>
 </tr>
 <tr>
 <td>GLM-OCR</td>
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">9.96%</td>
-<td style="text-align: right;">17.06%</td>
-<td style="text-align: right;">0.892</td>
-<td style="text-align: right;">0.82%</td>
-<td style="text-align: right;">0.69%</td>
-<td style="text-align: right;">0.13%</td>
+<td style="text-align: right;">10.03%</td>
+<td style="text-align: right;">8.09%</td>
+<td style="text-align: right;">17.14%</td>
+<td style="text-align: right;">0.889</td>
+<td style="text-align: right;">0.73%</td>
+<td style="text-align: right;">0.67%</td>
+<td style="text-align: right;">0.06%</td>
 </tr>
 <tr>
 <td><em>Tesseract baseline</em></td>
 <td style="text-align: right;">99</td>
-<td style="text-align: right;">21.27%</td>
-<td style="text-align: right;">44.14%</td>
-<td style="text-align: right;">0.389</td>
-<td style="text-align: right;">7.88%</td>
-<td style="text-align: right;">7.45%</td>
-<td style="text-align: right;">0.43%</td>
+<td style="text-align: right;">20.90%</td>
+<td style="text-align: right;">19.42%</td>
+<td style="text-align: right;">43.73%</td>
+<td style="text-align: right;">0.393</td>
+<td style="text-align: right;">7.82%</td>
+<td style="text-align: right;">7.43%</td>
+<td style="text-align: right;">0.39%</td>
 </tr>
 </tbody>
 </table>
+<p>Tool page counts differ — Gemini refused or truncated 4 pages (n = 96), Tesseract
+failed 1 — so the per-document average is over each tool's own pages. The tiers are
+stable across both columns and across the common 96-page subset (below) — Gemini
+leads, olmOCR 2 and GLM-OCR trail — but the two metrics swap the near-tied middle:
+Chandra edges Infinity on the corpus pool, Infinity edges Chandra per document,
+which is exactly why we show both.</p>
 <p>Three findings follow. First, archaic script and orthography, not date as such,
 drive the difficulty. A simple-layout early-modern page is far harder than a
-simple-layout Victorian page, at roughly five times the CER of BLN600 for the same
+simple-layout Victorian page, at roughly four times the CER of BLN600 for the same
 tools. This qualifies the common claim that layout matters more than age: when
 layout is held simple, script reasserts itself.</p>
 <p>Second, the hallucination gap between the tools is almost entirely modernization.
-olmOCR silently modernizes most, then Infinity, then Chandra, which largely
+olmOCR 2 silently modernizes most, then Infinity, then Chandra, which largely
 preserves <code>bloud</code>, <code>armes</code>, <code>goodnesse</code>, <code>widdow</code>, and <code>publick</code> as written. A
 prompt instructing diplomatic transcription gives Chandra a small gain with no
-downside (CER 3.05 to 2.80%, modernization 0.64 to 0.59%), but Chandra had little
-to fix. The 1700 "Sugar Plums" broadside, drawn from this same Jacob corpus, shows
+downside (CER 2.58 to 2.33%), but Chandra had little to fix. The 1700 "Sugar Plums" broadside, drawn from this same Jacob corpus, shows
 the behaviour in miniature, and lets you watch each tool decide whether to keep or
 "correct" the old spelling. Expand it below.</p>
 <details class='evi'><summary>Show the transcriptions — 1700 “Sugar Plums” vs. the gold</summary><div class='evi-body'><p class='lede' style='font-size:.9em'>A c.1700 quack-medicine broadside in worn type, scored against the <b>Transkribus PAGE-XML ground truth</b> (669 words). One reviewer correction (“Manor Woman”→“Man or Woman”).</p><table><tr><th>Rank</th><th>Tool</th><th>CER</th><th>WER</th><th>Notes</th></tr><tr><td class='num'>1</td><td><b>Chandra 2</b></td><td class='num'>1.1%</td><td class='num'>4.0%</td><td>Silently modernizes archaic spelling (“Sugar” for “Suggar”).</td></tr><tr><td class='num'>2</td><td><b>Gemini 3.5 Flash</b></td><td class='num'>1.5%</td><td class='num'>3.9%</td><td>Strong reader; uniquely read “Man or Woman” correctly — the Transkribus gold had “Manor Woman”.</td></tr><tr><td class='num'>3</td><td><b>olmOCR</b></td><td class='num'>1.5%</td><td class='num'>5.8%</td><td>Most outright misreads; omits the decorative box and images.</td></tr><tr><td class='num'>4</td><td><b>Infinity Parser 2</b></td><td class='num'>2.7%</td><td class='num'>11.1%</td><td>Preserves letter-spacing (“D I R E C T I O N S”) — faithful, but the gold collapses it, so it scores as error.</td></tr></table><div class='gold'><span class='lbl'>TRANSKRIBUS PAGE-XML GT (reviewer-corrected)</span><br>DIRECTIONS for the SUGAR PLUMS. WORMS often keep in such SUGAR ILL HEALTH, that No Body Can Tell What They Ail (Little Dreaming, it to be from WORMS) Till They See These WORMS to Come Away ALIVE, In the, Close Stool, By the Fa- mous Purging SUGAR PLUMS, Which are INNOCENT, and SAFE, As A Little MANNA, Or RHUBARB, Or, 2. Or 3. STEWED PRUNES, with Sena. AN there are no Worms at all., There is Aucther SUCH a Thing this day in the world again, For a most Delicate Fine Purge, where a Fine safe Purge may be Wanted -- To Free the Body of Foul Humours, And thereby Cure its Distempers. As is Daily experienced in Famillies..... So that, A. FEW PENNY WORTHS. Only of these Plums will save a Deal of CHARGES in Physick And. PRESERVE More Lives, Then Half the Physick in Town, can Recover. COMMON, Suggar Plums At the Confectioners, Are indeed BIGGER than these, But for Colour. TASTE &amp;c. these may be eaten by CHILDREN, Like a common Sugar Plum. Or. Like any Sweet meat You can give the Child to Please it. --Or, You may Bruise and DISSOLVE them Like a Bit of LOAF SUGAR, in a Little Tea, Milk, Beer, Gruel, &amp;c. And SO Take them, Which is a very Good Way SIGNS of WORMS, Are—A BIG BELLY, Which, These Rare Little SUGAR PLUMS. Presently, Take Down, and the Children are Soon Quite WELL Pale Looks, Hollow Eyes, Stinking Breath, Itching of the Nose, Which makes Children often Rubbing it, Unequal Sleep, with Startings, and Crying out. in Looseness, Coughing, Gripes &amp; Pining Away. Pain and Sickness at Stomach. lnclining to Vomit. A great Appetite, and Craveing for Victuals Frequently Crying Restless and Uneasy, &amp; No Body Can Tell With or what they All Or would have, Or what to give them for Ease. WHenever than a Child is out of Order, Let it Immediately, and Out of Hand, EAT ONE only of these PLUMS. And if but Eaten 3 Time will Save a Deal of Charges in Physick, &amp; Recover More Children from Illnese than loads of other Physick. Country SHOP KEEPRS through out the whole Kingdom, sell a Deal of these GUM OPENNING Remedies and Plums which Proves so very Quick a Return that they Still send to TEMPLEBAR for More &amp; More of them. And what is not Sold, are Returned at any Time. AND any Order shall be Immediately Delivered To any Carrier, Stage Coach, Waterman, Or Correspondents, You shall Please to Order, To Any part of the Kingdom These Sugar Plums presently Cure an AGUES, and intermitting Fever, the HEAD ACH, CHOLICK, Gripes Rhumatism Thickness of Hearing, Sickness and Pain at Stomach Dropsy, Green Sickness, Want of appetite, COUGHS, And Short Breath, Giving Immediate Ease and Easy Breath. One only of these Little Plums (of a Penny) Is Enough To Bring these Worms with Foul &amp; Gross Humours Away from a Child of 2 or 3 Years Old -- And Half a Plum for Younger Children. TWO Plums Given to a Child of 4. 5. or 6. Years old, to Bring Worms away, Thre Plums, to one of 8. 9, or 10. Years old, for a fine safe Purge. And Man or Woman, may take 4. 5. or 6. of them when they want to be finely Purged, and to have Foul Humours out of their Body. And after every working, by which You&#x27;l see a Load of FOUL HUMOURS, As Green as Grass, Drink a Deal of warm Broth, Water Gruel, ALE or Tea, the More you Drink the better they will Work If not Given Stools enough add a Plum next Time the only harm of a Plum more for a Dose would only be a Stool or two the More. MISSING a Day or two Between Each, these PLUMS Should be taken 3 Times because once only Takeing does not Purge out of the Body all the WORMS, and Foul Humours, And may be taken any Weather Heat of Frost.</div><p class='lede' style='font-size:.85em'><span class='del'>struck red</span> = in the gold but missed or changed; <span class='ins'>highlighted</span> = the tool's reading. Case-only differences are not marked.</p><h3>Chandra 2 — CER 1.1% · WER 4.0%</h3><div class='diff'>DIRECTIONS for the SUGAR PLUMS. WORMS often Keep in such <span class="del">SUGAR</span> ILL HEALTH, that No Body Can Tell What They Ail (Little Dreaming it to be from WORMS) Till They See These WORMS to Come Away ALIVE, In the Close Stool, By the <span class="del">Fa- mous</span> <span class="ins">Famous</span> Purging SUGAR PLUMS, Which are INNOCENT, and SAFE, As A Little MANNA, Or RHUBARB, Or <span class="del">2. Or 3. STEWED</span> <span class="ins">ROSTED</span> PRUNES, with sena. AN there are no Worms at all, There is <span class="del">Aucther</span> <span class="ins">Another</span> SUCH a Thing this day in the World again, For a most Delicate Fine Purge, where a Fine Safe Purge may be <span class="del">Wanted -- To</span> <span class="ins">Wanted--To</span> Free the Body <span class="del">of</span> Foul Humours, And thereby Cure its Distempers. As is Daily experienced in <span class="del">Famillies..... So</span> <span class="ins">Families,---So</span> that, A FEW PENNY WORTHS. Only of these Plums will save a Deal of CHARGES in Physick And PRESERVE More Lives, Then Half the Physick in Town, <span class="del">can</span> <span class="ins">and</span> Recover. COMMON, <span class="del">Suggar</span> <span class="ins">Sugar</span> Plums At the Confectioners, Are indeed BIGGER than these, But for Colour, TASTE &amp;c. these may be eaten by CHILDREN, Like a common Sugar Plum. Or. Like any Sweet meat You can give the Child to Please <span class="del">it. --Or,</span> <span class="ins">it.---Or,</span> You may Bruise and DISSOLVE them. Like a Bit of LOAF SUGAR, in a Little Tea, Milk, Beer, Gruel, &amp;c. And SO Take them, Which is a very Good Way. SIGNS of WORMS, Are--A BIG BELLY, Which These Rare Little SUGAR PLUMS, Presently, Take Down, and the Children are Soon Quite WELL Pale Looks, Hollow Eyes, Stinking Breath, Itching of the Nose, Which makes Children Often Rubbing it, Unequal Sleep, with Startings, and Crying out. in Looseness, Coughing, Gripes &amp; Pining Away. Pain and sickness at Stomach, <span class="del">lnclining</span> <span class="ins">Inclining</span> to Vomit. A great Appetite, and Craveing for Victuals Frequently Crying <span class="del">Restless</span> <span class="ins">Rattles</span> and Uneasy, &amp; No Body Can Tell With or what they All Or would have, Or what to give them for Ease. <span class="del">WHenever</span> <span class="ins">WHenevert</span> than a Child is out of Order, Let it Immediately, and Out of Hand, EAT ONE only of these PLUMS. And if but Eaten 3 Time will Save a Deal of Charges in Physick, &amp; Recover More Children from <span class="del">Illnese</span> <span class="ins">Illness</span> than Loads of other Physick. Country SHOP KEEPRS through out the whole Kingdom, sell a Deal of these GUM OPENNING Remedies and Plums which Proves so very Quick a Return that they Still send to TEMPLEBAR for More &amp; More of them. And what is not Sold, are Returned at any Time. AND any Order shall be Immediately Delivered To any Carrier, Stage Coach, Waterman, Or Correspondents, You shall Please to Order, To Any part of the Kingdom These Sugar Plums presently Cure an AGUES, and intermitting Fever, the HEAD ACH, CHOLICK, Gripes Rhumatism Thickness of Hearing, Sickness and Pain at Stomach <span class="del">Dropsy,</span> <span class="ins">Dropfy</span> Green Sickness, Want of appetite, COUGHS, And Short Breath, Giving Immediate Ease and Easy Breath. ONe only of these Little Plums (of a Penny) Is Enough To Bring these Worms with Foul &amp; Gross Humours Away from a Child of 2 or 3 Years Old --- And Half a Plum for Younger Children: TWO Plums Given to a Child of 4. 5. or 6. Years old, to Bring Worms away, <span class="del">Thre</span> <span class="ins">Three</span> Plums, to one of 8. 9, or 10. Years old, for a fine safe Purge. And <span class="del">Man or</span> <span class="ins">Manor</span> Woman, may take 4. 5. or 6. of them when they want to be finely Purged, and to have Foul Humours out of their Body. And after every working, by which <span class="del">You&#x27;l</span> <span class="ins">You&#x27;ll</span> see a Load of FOUL HUMOURS, As Green as Grass, Drink a Deal of warm Broth, Water Gruel, ALE or Tea, the More you Drink the better they will Work If not Given Stools enough add a Plum next Time the only harm of a Plum more for a Dose would only be a Stool or two the More. MISSING a Day or two Between Each, these PLUMS Should be taken 3 Times because once only Takeing does not Purge out of the Body all the WORMS, and Foul Humours, And may be taken any Weather Heat <span class="del">of</span> <span class="ins">or</span> Frost.</div><h3>Gemini 3.5 Flash — CER 1.5% · WER 3.9%</h3><div class='diff'>DIRECTIONS for the SUGAR PLUMS. <span class="ins">SUGAR PLUMS Purging</span> WORMS often Keep in such <span class="del">SUGAR</span> ILL HEALTH, that No Body Can Tell What They Ail (Little Dreaming it to be from WORMS) Till They See These WORMS to Come Away ALIVE, In the, Close Stool, By the <span class="del">Fa- mous</span> <span class="ins">Famous</span> Purging SUGAR PLUMS, Which are INNOCENT, and SAFE, As A Little MANNA, Or RHUBARB, Or, 2. Or 3. <span class="ins">or 5.</span> STEWED PRUNES, with sena. AN there are no Worms at all, There is <span class="del">Aucther</span> <span class="ins">Another</span> SUCH a Thing this day in the World again, For a most Delicate Fine Purge, where a Fine Safe Purge may be <span class="del">Wanted -- To</span> <span class="ins">Wanted--To</span> Free the Body <span class="del">of</span> Foul Humours, And thereby Cure its Distempers. As is Daily Experienced in <span class="del">Famillies..... So</span> <span class="ins">Families.---So</span> that, A FEW PENNY WORTHS. Only of these Plums will save a Deal of CHARGES in Physick And PRESERVE More Lives, Then Half the Physick in Town, can Recover. COMMON, Suggar Plums At the Confectioners, Are indeed BIGGER than these, But for Colour, TASTE &amp;c. these may be eaten by CHILDREN, Like a common Sugar Plum. Or Like any Sweet meat You can give the Child to Please <span class="del">it. --Or,</span> <span class="ins">it.--Or,</span> You may Bruise and DISSOLVE them, Like a Bit of LOAF SUGAR, in a Little Tea, Milk, Beer, Gruel, &amp;c. And SO Take them, Which is a very Good Way. SIGNS of WORMS, Are--A BIG BELLY, Which, These Rare Little SUGAR PLUMS, Presently, Take Down, and the Children are Soon Quite WELL Pale Looks, Hollow Eyes, Stinking Breath, Itching of the Nose, Which makes Children Often Rubbing it, Unequal Sleep, with Startings, and Crying out, in Looseness, Coughing, Gripes &amp; Pining Away. Pain and sickness at Stomach, <span class="del">lnclining</span> <span class="ins">Inclining</span> to Vomit. A great Appetite, and <span class="del">Craveing</span> <span class="ins">Craving</span> for Victuals Frequently Crying Restless and Uneasy, &amp; No Body Can Tell With or what they <span class="del">All</span> <span class="ins">Ail</span> Or would have, Or what to give them for Ease. WHenever than a Child is out of Order, Let it Immediately, and Out of Hand, EAT ONE only of these PLUMS. And if but Eaten 3 Time will Save a Deal of Charges in Physick, &amp; Recover More Children from <span class="del">Illnese</span> <span class="ins">Illness</span> than Loads of other Physick. COUNTRY SHOP KEEPRS through out the whole Kingdom, sell <span class="del">a Deal</span> <span class="ins">aDeal</span> of these GUM OPENNING Remedies and Plums which Proves so very Quick a Return that they Still send to TEMPLEBAR for More &amp; More of them. And what is not Sold, are Returned at any Time. AND any Order shall be Immediately Delivered To any Carrier, Stage Coach, Waterman, Or Correspondents, You shall Please to Order, To Any part of the Kingdom These Sugar Plums presently Cure an AGUES, and intermitting Fever, the HEAD ACH, CHOLICK, Gripes Rhumatism Thickness of Hearing, Sickness and Pain at Stomach Dropsy Green Sickness, Want of appetite, COUGHS, And Short Breath, Giving Immediate Ease and Easy Breath. ONE only of these Little Plums (of a Penny) Is Enough To Bring these Worms with Foul &amp; Gross Humours Away from a Child of 2 or 3 Years Old -- And Half a Plum for Younger Children <span class="ins">;</span> TWO Plums Given to a Child of 4. 5. or 6. Years old, to Bring Worms away, <span class="del">Thre</span> <span class="ins">Three</span> Plums, to one of 8. 9, or 10. Years old, for a fine safe Purge. And Man or Woman, may take 4. 5. or 6. of them when they want to be finely Purged, and to have Foul Humours out of their Body. And after every <span class="del">working,</span> <span class="ins">workings</span> by which <span class="del">You&#x27;l</span> <span class="ins">You&#x27;ll</span> see a Load of FOUL HUMOURS, As Green as Grass, Drink a Deal of warm Broth, Water Gruel, ALE or Tea, the More you Drink the better they will Work If not Given Stools enough add a Plum next Time the only harm of a Plum more for a Dose would only be a Stool or two the More. MISSING a Day or two Between Each, these PLUMS Should be taken 3 Times because once only Takeing does not Purge out of the Body all the WORMS, and Foul Humours, And may be taken any Weather Heat <span class="del">of</span> <span class="ins">or</span> Frost.</div><h3>olmOCR — CER 1.5% · WER 5.8%</h3><div class='diff'>DIRECTIONS for the SUGAR PLUMS. WORMS often Keep in such <span class="del">SUGAR ILL HEALTH,</span> <span class="ins">ILLHEALTH,</span> that No Body Can Tell What They Ail (Little Dreaming it to be from WORMS) Till They See These WORMS to Come Away ALIVE, In the, Close Stool, By the <span class="del">Fa- mous</span> <span class="ins">Famous</span> Purging SUGAR PLUMS, Which are INNOCENT, and SAFE, As A Little MANNA; Or RHUBARB, Or, 2. Or 3. <span class="del">STEWED</span> <span class="ins">WEST WED</span> PRUNES, with sena. AN <span class="del">there</span> <span class="ins">other</span> are no Worms at all. There is <span class="del">Aucther</span> <span class="ins">Another</span> SUCH a Thing this day in the World again, For a most Delicate Fine Purge, where a Fine safe Purge may be <span class="del">Wanted -- To</span> <span class="ins">Wanted--To</span> Free the Body <span class="del">of Foul Humours,</span> <span class="ins">Foul-Humours,</span> And thereby Cure its <span class="del">Distempers.</span> <span class="ins">Distemps.</span> As is Daily experienced in <span class="del">Famillies..... So</span> <span class="ins">Families.--So</span> that, A FEW PENNY WORTHS. Only of these Plums will save a Deal of CHARGES in Physick And PRESERVE More Lives, Then Half the Physick in Town, <span class="del">can</span> <span class="ins">&amp;c</span> Recover. COMMON, Suggar Plums At the Confectioners, Are indeed BIGGER than these, But for Colour, TASTE &amp;c. these may be eaten by CHILDREN. Like a common Sugar Plum. Or. Like any Sweet meat You can give the Child to Please <span class="del">it. --Or,</span> <span class="ins">it.--Or,</span> You may Bruise and DISSOLVE them. Like a Bit of LOAF SUGAR, in a Little Tea, Milk, Beer, Gruel, &amp;c. And SO Take them, Which is a very Good Way. SIGNS of WORMS, Are--A BIG BELLY Which, These Rare Little SUGAR PLUMS, Presently, Take Down, and the Children are Soon Quite WELL. Pale Looks, Hollow Eyes, Stinking Breath, Itching of the Nose, Which makes Children Often Rubbing it, Unequal Sleep, with Startings, and Crying out. in <span class="del">Looseness,</span> <span class="ins">Loosenels,</span> Coughing, Gripes &amp; Pining Away. Pain and Sickness at Stomach, <span class="del">lnclining</span> <span class="ins">Trichling</span> to Vomit. A great Appetite, and <span class="del">Craveing</span> <span class="ins">Craving</span> for Victuals Frequently Crying <span class="del">Restless</span> <span class="ins">Reflects</span> and Uneasy, &amp; No Body Can Tell With or what they All Or would have, Or what to give them for Ease. WHenever than a Child is out of Order, Let it Immediately, and Out of Hand, EAT ONE only of these PLUMS. And if but Eaten 3 Time will Save a Deal of Charges in Physick, &amp; Recover More Children from <span class="del">Illnese</span> <span class="ins">Illness</span> than Loads of other Physick. COUNTRY SHOP <span class="del">KEEPRS</span> <span class="ins">KEEPERS</span> through out the whole Kingdom, sell <span class="del">a Deal</span> <span class="ins">aDeal</span> of these GUM OPENNING Remedies and Plums which Proves so very Quick a Return that they Still send to TEMPLEBAR for More &amp; More of them. And what is not Sold, are Returned at any Time. AND any Order shall be Immediately Delivered To any Carrier, Stage Coach, Waterman, Or Correspondents, You shall Please to Order, To Any part of the Kingdom These Sugar Plums presently Cure an <span class="del">AGUES,</span> <span class="ins">AGUE,</span> and intermitting Fever, the HEAD ACH, CHOLICK, Gripes Rhumatism, Thickness of Hearing, <span class="del">Sickness</span> <span class="ins">Sicknese</span> and Pain at Stomach Dropsy, Green <span class="del">Sickness,</span> <span class="ins">Sicknels,</span> Want of appetite, <span class="del">COUGHS,</span> <span class="ins">COUGHIS,</span> And Short Breath, Giving Immediate Ease and Easy Breath. ONE only of these Little Plums (of a Penny) Is Enough To Bring these Worms with Foul &amp; <span class="del">Gross</span> <span class="ins">Gros</span> Humours Away from a Child of 2 or 3 Years Old <span class="del">--</span> --And Half a Plum for Younger Children; TWO Plums Given to a Child of 4, 5, or 6. Years old, to Bring Worms away. <span class="del">Thre</span> <span class="ins">Three</span> Plums, to one of 8, 9, or 10. Years old, for a fine safe Purge. And <span class="del">Man or</span> <span class="ins">Manor</span> Woman, may take 4, 5, or 6 of them when they want to be finely Purged, and to have Foul Humours out of their Body. And after every working, by which <span class="del">You&#x27;l</span> <span class="ins">You</span> see a Load of FOUL HUMOURS, As Green as <span class="del">Grass,</span> <span class="ins">Grats,</span> Drink a Deal of warm Broth, Water Gruel, ALE or Tea, the More you Drink the better they will Work If not Given Stools enough add a Plum next Time the only harm of a Plum more for a Dose would only be a Stool or two the More. MISSING a Day or two Between Each, these PLUMS Should be taken 3 Times because once only Takeing does not Purge out of the Body all the WORMS, and Foul Humours, And may be taken any Weather Heat <span class="del">of</span> <span class="ins">or</span> Frost.</div><h3>Infinity Parser 2 — CER 2.7% · WER 11.1%</h3><div class='diff'><span class="del">DIRECTIONS</span> <span class="ins">D I R E C T I O N S</span> for the <span class="ins">S U G A R P L U M S.</span> SUGAR PLUMS <span class="ins">Purging</span> WORMS often Keep in such <span class="del">SUGAR</span> ILL HEALTH, that No Body Can Tell What They Ail (Little Dreaming it to be from WORMS) Till They See These WORMS to Come Away ALIVE. In the, Close Stool, By the <span class="del">Fa- mous</span> <span class="ins">Famous</span> Purging SUGAR PLUMS, Which are INNOCENT, and SAFE, As A Little MANNA, Or RHUBARB, Or 2. Or 3. <span class="del">STEWED</span> <span class="ins">WESTWED</span> PRUNES, with sena. AN there are no Worms at all, There is <span class="del">Aucther</span> <span class="ins">Another</span> SUCH a Thing this day in the World again, For a most Delicate Fine Purge, where a Fine safe Purge may be <span class="del">Wanted -- To</span> <span class="ins">Wanted--To</span> Free the Body <span class="del">of</span> Foul Humours, And thereby Cure its Distempers. As is Daily experienced in <span class="del">Famillies..... So</span> <span class="ins">Families....So</span> that, A FEW PENNY WORTHS. Only of these Plums will save a Deal of CHARGES in Physick And PRESERVE More Lives, Then Half the Physick in Town, can Recover. <span class="del">COMMON,</span> <span class="ins">C O M M O N,</span> Suggar Plums At the Confectioners, Are indeed BIGGER than these, But for Colour, TASTE &amp;c. these may be eaten by CHILDREN, Like a common Sugar Plum. Or Like any Sweet meat You can give the Child to Please <span class="del">it. --Or,</span> <span class="ins">it.--Or,</span> You may Bruise and DISSOLVE them Like a Bit of LOAF SUGAR, in a Little Tea, Milk, Beer, Gruel, &amp;c. And SO Take them, Which is a very Good Way. SIGNS of WORMS, Are--A BIG BELLY, Which, These Rare Little SUGAR PLUMS, <span class="del">Presently,</span> <span class="ins">Preferably,</span> Take Down, and the Children are Soon Quite WELL Pale Looks, Hollow Eyes, Stinking Breath, Itching of the Nose, Which makes Children Often Rubbing it, Unequal Sleep, with Startings, and Crying out. in Looseness, Coughing, Gripes &amp; <span class="del">Pining</span> <span class="ins">Pinning</span> Away. Pain and sickness at Stomach, <span class="del">lnclining</span> <span class="ins">Inclining</span> to Vomit. A great Appetite, and <span class="del">Craveing</span> <span class="ins">Craving</span> for Victuals Frequently Crying Restless and Uneasy, &amp; No Body Can Tell With or what they <span class="del">All</span> <span class="ins">Ail</span> Or would have, Or what to give them for Ease. <span class="del">WHenever</span> <span class="ins">W Henever</span> than a Child is out of Order, Let it Immediately, and Out of Hand, EAT ONE only of these PLUMS. And if but Eaten 3 Time will Save a Deal of Charges in Physick, &amp; Recover More Children from <span class="del">Illnese</span> <span class="ins">Illness</span> than Loads of other Physick. <span class="del">Country</span> <span class="ins">C Ountry</span> SHOP <span class="del">KEEPRS</span> <span class="ins">KEEPERS</span> through out the whole Kingdom, sell a Deal of these GUM OPENNING Remedies and Plums which Proves so very Quick a Return that they Still send to TEMPLEBAR for More &amp; More of them. And what is not Sold, are Returned at any Time. <span class="del">AND</span> <span class="ins">A N D</span> any Order shall be Immediately Delivered To any Carrier, Stage Coach, Waterman, Or Correspondents, You shall Please to Order, To Any part of the Kingdom These Sugar Plums presently Cure an AGUES, and intermitting Fever, the HEAD ACH, CHOLICK, Gripes Rhumatism Thickness of Hearing, Sickness and Pain at Stomach Dropsy, Green Sickness, Want of appetite, COUGHS, And Short Breath, Giving Immediate Ease and Easy Breath. <span class="del">One</span> <span class="ins">O Ne</span> only of these Little Plums (of a Penny) Is Enough To Bring these Worms with Foul &amp; Gross Humours Away from a Child of 2 or 3 Years Old -- And Half a Plum for Younger Children. <span class="del">TWO</span> <span class="ins">T W O</span> Plums Given to a Child of 4. 5. or 6. Years old, to Bring Worms away, Thre Plums, to one of 8. 9, or 10. Years old, for a fine safe Purge. And <span class="del">Man or</span> <span class="ins">Manor</span> Woman, may take 4. 5. or 6. of them when they want to be finely Purged, and to have Foul Humours out of their Body. And after every working, by which <span class="del">You&#x27;l</span> <span class="ins">You&#x27;ll</span> see a Load of FOUL HUMOURS, As Green as Grass, Drink a Deal of warm Broth, Water Gruel, ALE or Tea, the More you Drink the better they will Work If not Given Stools enough add a Plum next Time the only harm of a Plum more for a Dose would only be a Stool or two the More. <span class="del">MISSING</span> <span class="ins">M I S S I N G</span> a Day or two Between Each, these PLUMS Should be taken 3 Times because once only Takeing does not Purge out of the Body all the <span class="del">WORMS,</span> <span class="ins">W O R M S,</span> and Foul Humours. And may be taken any Weather Heat <span class="del">of</span> <span class="ins">or</span> Frost.</div></div></details>
@@ -642,21 +662,21 @@ still leads, and the gap is narrow. The instructable general VLM, explicitly tol
 not to modernize, is both the most accurate and the most faithful: Gemini 3.5 Flash
 leads on CER and on every fidelity metric, with hallucination, modernization, and
 fabrication all lowest. But the open tools have all but closed it. Chandra holds the
-best WER and BLEU, Chandra and Infinity sit at about 3.0% CER against Gemini's
-2.42%, and a diplomatic-transcription prompt narrows even that. The lever here is
+best WER and BLEU, Chandra and Infinity sit at about 2.6% CER against Gemini's
+2.15%, and a diplomatic-transcription prompt narrows even that. The lever here is
 prompted fidelity, not a head start for specialized OCR. An instructable VLM can be
 told to preserve archaic orthography, and on this material that instruction buys
 more than a few tenths of a point of CER. Gemini does carry a coverage cost the
 others do not (n = 96). It refused 3 documents outright, returning <code>RECITATION</code>
 because it recognizes and declines to reproduce texts in its training data, a quiet
 contamination signal, and it truncated a 4th oversized table page (<code>MAX_TOKENS</code>).
-Restricting all tools to the common 95 pages that every side transcribed confirms
-the lead (Gemini CER 2.45%, Chandra 2.99%, Infinity 3.01%, olmOCR 4.22%, GLM-OCR
-10.62%), so it is real and not an artifact of dropping Gemini's hardest pages. The
+Restricting all tools to the common 96 pages that every side transcribed confirms
+the lead (Gemini CER 2.15%, Chandra 2.48%, Infinity 2.50%, olmOCR 2 4.38%, GLM-OCR
+10.52%), so it is real and not an artifact of dropping Gemini's hardest pages. The
 model simply does not attempt about 4% of the corpus, which is exactly where a
 historian most needs a reading.</p>
 <p>Fourth, and this is the early-modern face of the pattern that runs through the
-paper, GLM-OCR reads this material worst of all the modern tools, at 9.96% CER —
+paper, GLM-OCR reads this material worst of all the modern tools, at 10.03% CER —
 more than double olmOCR and roughly four times the leaders. The failure is not the
 benign one. Its modernization and fabrication rates are as low as the most faithful
 tools (0.69% and 0.13%, beside Chandra's 0.64% and 0.20%), so it is not quietly
@@ -873,8 +893,8 @@ view:</p>
 <tr>
 <th>tool</th>
 <th>size</th>
-<th style="text-align: right;">CER</th>
-<th style="text-align: right;">WER</th>
+<th style="text-align: right;">CER (sem., corpus)</th>
+<th style="text-align: right;">WER (sem., corpus)</th>
 <th style="text-align: right;">BLEU</th>
 <th style="text-align: right;">halluc.</th>
 </tr>
@@ -899,10 +919,18 @@ view:</p>
 <tr>
 <td>Chandra 2</td>
 <td>~5B</td>
-<td style="text-align: right;">4.97%</td>
-<td style="text-align: right;">9.61%</td>
-<td style="text-align: right;">0.813</td>
-<td style="text-align: right;">3.36%</td>
+<td style="text-align: right;">3.89%</td>
+<td style="text-align: right;">10.51%</td>
+<td style="text-align: right;">0.810</td>
+<td style="text-align: right;">4.60%</td>
+</tr>
+<tr>
+<td>olmOCR 2</td>
+<td>7B</td>
+<td style="text-align: right;">5.34%</td>
+<td style="text-align: right;">11.76%</td>
+<td style="text-align: right;">0.781</td>
+<td style="text-align: right;">4.63%</td>
 </tr>
 <tr>
 <td>GLM-OCR</td>
@@ -912,14 +940,6 @@ view:</p>
 <td style="text-align: right;">0.707</td>
 <td style="text-align: right;">6.32%</td>
 </tr>
-<tr>
-<td>olmOCR</td>
-<td>7B</td>
-<td style="text-align: right;">8.45%</td>
-<td style="text-align: right;">15.30%</td>
-<td style="text-align: right;">0.742</td>
-<td style="text-align: right;">5.44%</td>
-</tr>
 </tbody>
 </table>
 <p>All five rows are produced by the same harness on the same 50 pages, and Gemini
@@ -927,9 +947,9 @@ here is the same Gemini 3.5 Flash scored everywhere else in this paper, so the
 comparison is like-for-like.</p>
 <p>Two things stand out. First, among the open tools accuracy tracks capacity. The
 35-billion-parameter mixture-of-experts, Infinity, leads; the roughly
-5-billion-parameter Chandra follows; and the 7-billion-parameter olmOCR, cheap and
-fast, trails but stays usable. The frontier Gemini sits on top, at about 1.5%
-error. A stronger frontier tier extends that lead but does not change the
+5-billion-parameter Chandra follows; the 7-billion-parameter olmOCR 2, much
+improved on the hand over the earlier olmOCR, comes next; and the sub-billion
+GLM-OCR trails. The frontier Gemini sits on top, at about 1.5% error. A stronger frontier tier extends that lead but does not change the
 ordering: a Gemini 3 Pro run on this same corpus, contributed by Mark Humphries,
 reads it at 0.91% CER, below 1% and into clean-print territory. Legible cursive,
 in other words, is now read at the frontier about as well as print, with the open
@@ -937,13 +957,14 @@ tools a few points behind.
 Infinity's mixture-of-experts fires only about 8 of its 256 experts per token, so
 it carries far more capacity than it spends at inference, which is how it still runs
 quickly on a single GPU. The sub-billion-parameter GLM-OCR marks the limit of that
-size story: it lands mid-pack here (7.98% CER, near olmOCR) despite being by far the
-smallest, but it does so with the highest hallucination rate of any tool on this
-corpus (6.32%), and its hallucinations on the hand are the dangerous kind: where it
-cannot read a word it supplies a confident, implausible one — <code>penguin</code>, <code>balloon</code>,
-<code>setbolt</code> turn up in 1820s administrative prose — the fluent invention a downstream
-reader would never flag. GLM-OCR is not alone in this: olmOCR fabricates on the hand
-at nearly the same rate (1.3% of words, against GLM-OCR's 1.5%), so both are risky
+size story: it lands last here (7.98% CER) and, despite being by far the smallest,
+stays usable on legible cursive — but it does so with the highest hallucination rate
+of any tool on this corpus (6.32%), and its hallucinations on the hand are the
+dangerous kind: where it cannot read a word it supplies a confident, implausible one
+— <code>penguin</code>, <code>balloon</code>, <code>setbolt</code> turn up in 1820s administrative prose — the fluent
+invention a downstream reader would never flag. GLM-OCR is not alone in this: olmOCR 2
+fabricates on the hand at nearly the same rate (1.2% of words, against GLM-OCR's
+1.5%), so both are risky
 where the writing is hard, while Gemini barely fabricates at all (0.1%) — one more
 reason to prefer a frontier VLM on difficult handwriting. Legible cursive is the kind
 of "ordinary" material GLM-OCR handles passably, unlike the early-modern and
@@ -953,8 +974,8 @@ Second, and this is the headline for historians, legible
 cursive is no longer a hard problem. A typical page of this clerical hand is read at
 about 2% CER by Infinity, and even the worst page never exceeds about 10%.</p>
 <p>That the axis is legibility, not handwriting as such, is clear from the smaller and
-harder manuscripts corpus of 5 documents. Here Gemini leads (CER 6.8%, BLEU 0.87),
-olmOCR, Chandra, and Infinity cluster at 11 to 13% CER, and GLM-OCR trails at 18.7%.
+harder manuscripts corpus of 5 documents. Here Gemini leads (CER 6.6%, BLEU 0.87),
+Chandra, Infinity, and olmOCR 2 cluster at 13 to 14% CER, and GLM-OCR trails at 18.5%.
 The set mixes a clean
 1907 deposition that every tool reads near-perfectly (0.4 to 2.8% CER) with a
 difficult 1868 political letter that splits the tools sharply: Gemini at 2.7%,
@@ -1210,7 +1231,8 @@ datasets in <em>Working Papers in Critical Search</em>.</p>
 <p>All tools were run on a single H100 GPU via vLLM on a SLURM cluster, with Chandra 2
 and Infinity Parser 2 detailed in the appendix Skill <code>cluster-vlm-ocr</code>; Gemini ran
 via API. The four open tools span well over an order of magnitude in size, which the
-results above repeatedly track. olmOCR is about 7B (Qwen2.5-VL, dense, run FP8),
+results above repeatedly track. olmOCR 2 (the olmOCR-2-1025 release, an RL-tuned
+successor to the earlier olmOCR-7B-0825) is about 7B (Qwen2.5-VL, dense, run FP8),
 Chandra 2 about 5B (Qwen3.5-VL, dense), and Infinity Parser 2 Pro about 35B total
 (Qwen3.5 mixture-of-experts, about 8 of 256 experts active per token, run FP8).
 Infinity thus carries the most capacity but, being sparse, spends little of it per
