@@ -122,11 +122,10 @@ collective map of what machines can and cannot yet read in the archive.
 > lowercases and ignores punctuation, because a capital letter or a comma is
 > rarely the error a historian cares about. Every headline CER/WER in this paper
 > is **semantic**, the fairer cross-tool comparison. Each is also a **corpus
-> total**: we pool every character (or word) across the whole corpus into one
-> rate, rather than averaging the per-document rates. A corpus total weights long
-> documents more, and can rank tools differently from a per-document average, so
-> we state it explicitly. Tables label these figures `(sem., corpus)`; any strict
-> or per-document number is called out where it appears.
+> total**: we pool every character (or word) across the whole corpus into one rate
+> rather than averaging per-document rates, which weights long documents more.
+> Tables label these figures `(sem., corpus)`; any strict number is called out where
+> it appears.
 
 ---
 
@@ -273,7 +272,7 @@ content type rather than as a single ranking.
 | BLN600 | 19th c. | newspaper, cropped | plain-text reference | 600 |
 | Sask (articles) | 1878–1921 | articles inside full issues | faithful-markup transcription | 40 |
 | Full pages | 1878–1921 | multi-column newspaper pages | review transcription | 8 |
-| Manuscripts | 1860s–1907 | handwriting | scholarly .docx transcription | 5 |
+| Manuscripts | 1860s–1907 | handwriting | scholarly .docx transcription | 4 |
 | HHTR (handwriting) | early 19th c. | Lower Canada administrative hands | plain-text transcription | 50 |
 
 Provenance matters: a gold produced by a tool under test biases the score, so we
@@ -330,7 +329,7 @@ result.
   and whitespace only; semantic also lowercases and strips punctuation. Semantic
   is the fairer cross-tool figure because a curly vs straight quote is not an OCR
   error a historian cares about; we report both.
-- **Chapter metrics** (on semantic text): BLEU-4, significant-word accuracy (WER
+- **Content metrics** (on semantic text): BLEU-4, significant-word accuracy (WER
   over content words), and a **hallucination rate**, meaning real dictionary words in
   the OCR that are absent from the gold (the kind a downstream NER would silently
   extract).
@@ -402,35 +401,34 @@ the block-by-block agreement.
 
 <div class="evidence" data-key="cleanprint"></div>
 
-### 3.2 Early-modern print: script matters more than age
+### 3.2 Early-modern print: the type, not the layout
 
 Hold layout roughly constant, mostly single-column, and move back to 1612–1807,
-and error jumps about four-fold over BLN600 for the same tools. We report CER
-both ways, pooled over the corpus and averaged per document, because they can
-order close tools differently:
+and error jumps about four-fold over BLN600 for the same tools:
 
-| tool | n | CER (sem., corpus) | CER (sem., per-doc) | WER (sem., corpus) | BLEU | halluc | modern. | fabric. |
-|---|--:|--:|--:|--:|--:|--:|--:|--:|
-| Gemini 3.5 Flash | 96 | **2.15%** | **1.75%** | 4.53% | 0.934 | **0.40%** | **0.36%** | **0.04%** |
-| Chandra 2 | 100 | 2.58% | 2.10% | **4.42%** | **0.942** | 0.76% | 0.63% | 0.12% |
-| Chandra 2 *(no-modernize prompt)* | 100 | 2.33% | 1.87% | 4.18% | n/a | n/a | n/a | n/a |
-| Infinity Parser 2 | 100 | 2.59% | 1.97% | 4.91% | 0.934 | 1.08% | 0.99% | 0.09% |
-| olmOCR 2 | 100 | 4.27% | 2.88% | 7.27% | 0.912 | 1.50% | 1.24% | 0.25% |
-| GLM-OCR | 100 | 10.03% | 8.09% | 17.14% | 0.889 | 0.73% | 0.67% | 0.06% |
-| *Tesseract baseline* | 99 | 20.90% | 19.42% | 43.73% | 0.393 | 7.82% | 7.43% | 0.39% |
+| tool | n | CER (sem., corpus) | WER (sem., corpus) | BLEU | halluc | modern. | fabric. |
+|---|--:|--:|--:|--:|--:|--:|--:|
+| Gemini 3.5 Flash | 96 | **2.15%** | 4.53% | 0.934 | **0.40%** | **0.36%** | **0.04%** |
+| Chandra 2 *(no-modernize prompt)* | 100 | 2.33% | 4.18% | n/a | n/a | n/a | n/a |
+| Chandra 2 | 100 | 2.58% | **4.42%** | **0.942** | 0.76% | 0.63% | 0.12% |
+| Infinity Parser 2 | 100 | 2.59% | 4.91% | 0.934 | 1.08% | 0.99% | 0.09% |
+| olmOCR 2 | 100 | 4.27% | 7.27% | 0.912 | 1.50% | 1.24% | 0.25% |
+| GLM-OCR | 100 | 10.03% | 17.14% | 0.889 | 0.73% | 0.67% | 0.06% |
+| *Tesseract baseline* | 99 | 20.90% | 43.73% | 0.393 | 7.82% | 7.43% | 0.39% |
 
 Tool page counts differ, since Gemini refused or truncated 4 pages (n = 96) and
-Tesseract failed 1, so the per-document average is over each tool's own pages. The
-tiers are stable across both columns and across the common 96-page subset below:
-Gemini leads, olmOCR 2 and GLM-OCR trail. The two metrics only swap the near-tied
-middle, where Chandra edges Infinity on the corpus pool and Infinity edges Chandra
-per document, which is exactly why we show both.
+Tesseract failed 1. The tiers are clear and stable: Gemini leads, the two Chandra
+rows and Infinity follow nearly tied, olmOCR 2 and GLM-OCR trail, and the same order
+holds on the common 96-page subset that every tool transcribed. The second row is
+not a separate tool but Chandra under a diplomatic-transcription prompt, discussed
+below.
 
-Three findings follow. First, archaic script and orthography, not date as such,
-drive the difficulty. A simple-layout early-modern page is far harder than a
-simple-layout Victorian page, at roughly four times the CER of BLN600 for the same
-tools. This qualifies the common claim that layout matters more than age: when
-layout is held simple, script reasserts itself.
+Four findings follow. First, the difficulty lives in the type and orthography, not
+the layout. A simple-layout early-modern page is far harder than a simple-layout
+Victorian page, at roughly four times the CER of BLN600 for the same tools. So the
+common claim that layout is what matters only goes so far: hold the layout simple,
+and the long-s, ligatures, and archaic spelling that a modern training set never
+prepared the models for still trip them.
 
 Second, the hallucination gap between the tools is almost entirely modernization.
 olmOCR 2 silently modernizes most, then Infinity, then Chandra, which largely
@@ -582,13 +580,14 @@ cursive is no longer a hard problem. A typical page of this clerical hand is rea
 about 2% CER by Infinity, and even the worst page never exceeds about 10%.
 
 That the axis is legibility, not handwriting as such, is clear from the smaller and
-harder manuscripts corpus of 5 documents. Here Gemini leads (CER 6.6%, BLEU 0.87),
-Chandra, Infinity, and olmOCR 2 cluster at 13 to 14% CER, and GLM-OCR trails at 18.5%.
-The set mixes a clean
-1907 deposition that every tool reads near-perfectly (0.4 to 2.8% CER) with a
-difficult 1868 political letter that splits the tools sharply: Gemini at 2.7%,
-against olmOCR and Chandra at about 40%. Expand the two manuscripts to see the easy
-and hard ends side by side.
+harder manuscripts corpus of 4 documents. Here Infinity and Gemini lead and are
+effectively tied (CER 7.0 and 7.1%), Chandra and olmOCR 2 follow (9.3 and 10.3%), and
+GLM-OCR trails at 18.1%. The set mixes a clean 1907 deposition that every tool reads
+near-perfectly (0.4 to 2.8% CER) with a genuinely hard administrative hand, the
+Colonel Bernard letter, that pushes every tool to 14 to 19% CER, Gemini included.
+The lesson is the one the larger HHTR set already taught: when the hand is legible
+every tool does well, and when it is not, every tool struggles together. Expand the
+two manuscripts to see the easy and hard ends side by side.
 
 <div class="evidence" data-key="handwriting"></div>
 
@@ -626,10 +625,10 @@ fabricates. Expand the gallery to see each tool's actual behaviour.
 | content type | best tool | the story |
 |---|---|---|
 | clean print (19th c.) | tie (cheap wins) | all modern tools ~0.6% CER, incl. benchmark leader GLM-OCR |
-| early-modern print | Gemini (refuses ~4%) | script ≫ age; instructed VLM most faithful; olmOCR modernizes most; GLM-OCR genuinely misreads (worst modern tool) |
+| early-modern print | Gemini (refuses ~4%) | hard type, simple layout; instructed VLM most faithful; olmOCR modernizes most; GLM-OCR genuinely misreads (worst modern tool) |
 | multi-column pages | Infinity | olmOCR 2 collapses; GLM-OCR covers ~half the page; order-invariant scoring needed |
 | handwriting (legible, n=50) | Gemini; Infinity leads open | legible cursive ≈ print; accuracy loosely tracks model capacity |
-| handwriting (hard, mixed) | Gemini | a hard hand splits the tools; legibility, not "handwriting", is the axis |
+| handwriting (hard, mixed) | Infinity/Gemini (tied) | legibility, not "handwriting", is the axis; a genuinely hard hand is hard for every tool |
 | article location | Chandra/Infinity | olmOCR cannot locate (0/40) |
 | impossible inputs | (graceful failers) | Infinity loops; all four over-read the Monck pile |
 | **benchmark leader (GLM-OCR)** | n/a | tops OmniDocBench, but archive-fit only on clean print; weakest on early-modern, hard hands, full pages |
