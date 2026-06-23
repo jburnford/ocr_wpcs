@@ -99,70 +99,83 @@ follow-up is still open: a prompt-sensitivity test on the worst modernizer
 (olmOCR), whose prompt is baked into a fixed fine-tuning template and a
 read-only container, so it is not cleanly overridable.</p>
 </blockquote>
-<h2>Abstract</h2>
-<p>Optical character recognition has crossed a threshold, and it should reshape how
-historians build and read digital archives. Vision-language models now transcribe
-degraded early-modern print, dense multi-column newspapers, and even handwriting
-at error rates close to a careful human reader's. This is the very material that
-the Tesseract-era engines behind most digitization pipelines render unusable. On
-legible early-nineteenth-century manuscript hands, current tools read at low
-single-digit character error, near the accuracy of clean print; on 1600s English
-print, error falls from about 21% with legacy OCR to about 3%. Sources that were
-effectively closed to search, computation, and large-scale analysis are becoming
-legible at scale. That is a genuine opening for digital history, and an invitation
-to work together: to redo the OCR behind our archives, transcribe handwritten
-sources at scale for the first time, and open these corpora to search and text
-mining.</p>
-<p>Realizing that potential takes more than a leaderboard. Using gold-standard
-transcriptions spanning 1612–1921 — early-modern print, a nineteenth-century
-newspaper corpus, full multi-column pages, and handwritten manuscripts — we
-benchmark six OCR systems: Tesseract as a baseline,
-olmOCR, Chandra 2, GLM-OCR, Gemini 3.5 Flash, and Infinity Parser 2. Our central finding is
-how fast the open-weight models are closing the gap. On printed sources they are
-now as good as or better than Gemini: tied on clean print, and clearly ahead on
-multi-column layout. Gemini still leads on handwriting. The tools differ
-in ways that matter to historians. Infinity Parser 2 is the most accurate, and like
-Chandra 2 it preserves the page structure scholars usually need: columns, tables,
-reading order. Infinity is much slower; Chandra is nearly as good for most uses and
-fast, which makes it the practical workhorse. olmOCR is very fast but flattens that
-structure and collapses on complex layouts, so its speed pays off mainly on simple,
-single-column pages. All three run on a self-hosted GPU at a fraction of the
-per-page cost of a metered API, and that economics makes a tiered workflow natural.
-Transcribe a whole corpus with a fast open-weight model, usually Chandra, and
-reserve the paid frontier model for the targeted re-reading that most rewards it.
-Difficult handwriting is the clearest case, and even there the open tools do the
-bulk well enough to leave only the hardest pages for Gemini. Tool choice is
-becoming an economic decision, not a quality compromise.</p>
-<p>One result sharpens why a benchmark like this is needed. GLM-OCR, a
-sub-billion-parameter model that currently tops the public document-parsing
-leaderboards — ahead of the frontier proprietary systems — matches the field here
-only on clean print; on early-modern type, handwriting, and full pages it is among
-the weakest tools we tested. Rank on a general benchmark does not predict fitness
-for the archive.</p>
-<p>One caveat cuts across every tool. The error that most threatens a historical
-argument is no longer the garbled line a reader can see, but the fluent, plausible
-misreading a reader cannot: a place-name that was never on the page, an archaic
-spelling silently modernized. Character-error rates hide exactly this kind of
-mistake. We therefore organize results by content type, separate the benign error
-(modernization) from the corrosive one (fabrication), and measure how a model fails
-on out-of-spec images for which there is no gold standard at all. The point is to
-let historians tell where machine reading is trustworthy and where it still needs a
-human.</p>
-<p>Above all, we offer this as shared infrastructure, not a verdict. A benchmark can
-measure a model only on the pages, scripts, and difficulties it actually contains,
-and ours are still narrow. We release the demonstration set and scoring harness
-openly, and we hold the core gold private so that it cannot leak into training data
-and quietly destroy the test. What the benchmark most needs now is breadth and
-difficulty: more languages, with Latin, Classical Chinese, and Urdu as priorities;
-more time periods; more document types; and, above all, the pages that are hard even
-for an expert human to transcribe, since those are where the models still fail. We
-therefore invite historians and archives to contribute gold transcriptions, so that
-this can grow into a living, collective map of what machines can and cannot yet read
-in the archive.</p>
+<h2>Summary</h2>
+<p>For most of the digital era, the text behind our archives has been quietly
+unreliable. The optical character recognition that underlies library digitization
+was built for clean modern documents, and on the material historians actually work
+with — early-modern print with its long-s and archaic spelling, dense multi-column
+newspapers, handwritten letters — it produced text too broken to search well, let
+alone analyze. That has changed. A new generation of vision-language models, the
+same kind of AI behind image-aware chatbots, now reads these difficult sources at
+error rates close to a careful human transcriber's. On a worn page of 1600s English
+print, the old engines get roughly a fifth of the characters wrong; the best new
+tools get about one in forty. On legible early-nineteenth-century handwriting,
+several tools now read almost as accurately as they read clean print. Sources that
+were effectively closed to search and large-scale analysis are becoming legible at
+scale.</p>
+<p>This paper tests how far that change has gone, and where it has not. We assembled
+human-checked transcriptions of real archival material spanning 1612 to 1921 —
+early-modern books, a Victorian newspaper collection, full multi-column pages, and
+handwritten manuscripts — and ran six systems against them. One is the familiar
+Tesseract engine, a baseline for how far we have come. The others are current tools:
+four open models a historian can run on their own hardware, from a capable desktop
+to a research cluster (olmOCR, Chandra, Infinity Parser, and GLM-OCR), and one paid
+commercial service, Google's Gemini.</p>
+<p>Our central finding is how quickly the free, open tools have caught up. On printed
+sources they now match or beat the paid commercial model: level on clean newspaper
+print, and clearly ahead on complicated multi-column pages. The commercial model
+keeps a real lead in only one place, difficult handwriting, and even there the open
+tools handle the bulk of the work and leave only the hardest pages for it.</p>
+<p>Because the tools are now so close on accuracy, the choice between them has become
+practical rather than a question of quality. They differ in two things historians
+care about: how faithfully they preserve the shape of a page, its columns and tables
+and reading order, and how fast and cheaply they run. Infinity Parser is the most
+accurate and, like Chandra, keeps a page's structure intact, but it is slow. Chandra
+is nearly as good and much faster, which makes it the everyday workhorse for most
+projects. olmOCR is the fastest of all but flattens structure and breaks down on
+complex layouts, so its speed pays off mainly on simple, single-column pages. The
+commercial model is the one to reserve for the hardest handwriting. Because the open
+tools run on hardware a project may already have, rather than charging by the page,
+the sensible design is a tiered one: transcribe an entire collection with a fast
+open tool, and spend the paid model only on the pages that genuinely reward it.
+Choosing a tool has become a matter of cost and page type, not a compromise on
+quality.</p>
+<p>One result shows why a benchmark built for historians is needed at all. GLM-OCR, a
+very small open model, currently tops the public OCR leaderboards, ahead of the
+large commercial systems. On our archival material it lives up to that reputation
+only on clean printed text; on early-modern type, handwriting, and full pages it is
+among the weakest tools we tested. A high rank on a general benchmark does not tell
+a historian whether a tool can read their page.</p>
+<p>A single caution runs through all of this, and it matters more than any ranking. The
+dangerous error is no longer the garbled line a reader can see and dismiss. It is
+the fluent, plausible misreading a reader will not catch: a place-name that was
+never on the page, an archaic spelling silently corrected to a modern one, a
+confident sentence invented for a passage the machine could not read. An overall
+accuracy score hides exactly these mistakes, because a wrong word that reads
+naturally counts the same as one that looks broken. We therefore report results by
+type of document rather than as a single number, and we separate the harmless slip,
+such as modernizing a spelling, from the corrosive one, inventing text that was
+never there. We also show how to tell, on an unreadable image with no correct answer
+to compare against, whether a tool failed honestly by giving up or dangerously by
+fabricating. The practical guidance is light: trust the machine on clean and
+ordinary material, keep a person in the loop on genuinely hard sources, and whenever
+a transcription turns up something surprising enough to build an argument on, check
+it against the page image first.</p>
+<p>Finally, we offer this as shared infrastructure rather than a verdict. A benchmark
+can measure a tool only on the pages it actually contains, and ours are still
+narrow: mostly English, mostly print, and thin on the hardest material. We release
+the demonstration set and the scoring tools openly, and we deliberately keep the
+core answer key private, so that it cannot leak into the data used to train future
+models and quietly destroy the test. What the benchmark most needs now is breadth:
+more languages, beginning with Latin, Classical Chinese, and Urdu; more periods;
+more kinds of document; and above all the pages that are hard even for an expert to
+read, since those are where the machines still fail. We invite historians and
+archives to contribute transcriptions, so that this can grow into a living,
+collective map of what machines can and cannot yet read in the archive.</p>
 <blockquote>
 <h3>How to read the numbers</h3>
-<p>Three figures recur below. You do not need anything beyond this box to read
-the paper.</p>
+<p>The summary above needs no metrics. The tables below lean on a few, and this box
+is all you need to read them.</p>
 <ul>
 <li><strong>CER — character error rate.</strong> The share of characters the machine got
   wrong (substituted, dropped, or invented), after lining its text up against
@@ -176,7 +189,13 @@ the paper.</p>
   Treat it as a rough readability index, not an accuracy rate.</li>
 <li><strong>Hallucination rate.</strong> The share of output words that are real words but
   are <em>not on the page</em> — text a careless reader would never flag. We later
-  split this into two very different errors (see §3.2).</li>
+  split this into two very different errors (see §3.3).</li>
+<li><strong>Precision, recall, F1</strong> (multi-column pages only). When the gold is a whole
+  four-column page, character error is the wrong tool, because it penalizes a
+  tool for ordering the columns differently. We instead ask how much of the page
+  the tool recovered (recall), how much of its output is real page text rather
+  than invention (precision), and fold the two into one 0–1 score (F1, higher
+  better). Defined in full in §3.3.</li>
 </ul>
 <p>Two flavours of CER/WER appear. <strong>Strict</strong> counts only real differences after
 tidying typography (curly vs straight quotes, spacing). <strong>Semantic</strong> also
