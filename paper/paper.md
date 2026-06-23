@@ -109,13 +109,13 @@ collective map of what machines can and cannot yet read in the archive.
 >   Treat it as a rough readability index, not an accuracy rate.
 > - **Hallucination rate.** The share of output words that are real words but
 >   are *not on the page*, text a careless reader would never flag. We later
->   split this into two very different errors (see §3.3).
+>   split this into two very different errors (see §2.3).
 > - **Precision, recall, F1** (multi-column pages only). When the gold is a whole
 >   four-column page, character error is the wrong tool, because it penalizes a
 >   tool for ordering the columns differently. We instead ask how much of the page
 >   the tool recovered (recall), how much of its output is real page text rather
 >   than invention (precision), and fold the two into one 0–1 score (F1, higher
->   better). Defined in full in §3.3.
+>   better). Defined in full in §2.3.
 >
 > Two flavours of CER/WER appear. **Strict** counts only real differences after
 > tidying typography (curly vs straight quotes, spacing). **Semantic** also
@@ -173,7 +173,7 @@ narrow, and they come in two parts. The first is where the machine
 struggles. These models are trained mostly on modern data, so earlier and less
 familiar material is harder for them, and the early-modern Jacob corpus, with its
 long-s and archaic spelling, is the lowest-scoring print we test. Even there the
-tools still read it remarkably well, at a few percent character error (§4.2). The
+tools still read it remarkably well, at a few percent character error (§3.2). The
 second is how it fails when it does. The errors that survive in the best
 tools are not the garbled lines a reader can see, but fluent, plausible misreadings a
 reader will not catch, such as a place-name that was never on the page, or an archaic
@@ -212,7 +212,7 @@ parameters that now leads OmniDocBench, ahead of the frontier proprietary models
 We ran it on our corpora directly, and it is the clearest case in this paper of a
 benchmark leader that does not transfer: level with the best tools on clean cropped
 print, yet among the weakest on early-modern type, handwriting, and full pages
-(§4). A high score on a general benchmark and fitness for the archive turn out to
+(§3). A high score on a general benchmark and fitness for the archive turn out to
 be different things, which is much of the reason a benchmark like this one is
 needed.
 
@@ -224,33 +224,21 @@ early-modern print, a handwritten letter, or a photograph of one document lying 
 top of another. What that work needs is not the single highest score on cropped
 text, but tools versatile enough to hold up on the harder inputs.
 
-A single leaderboard would still mislead, then, not because the tools are weak but
-because the interesting result is no longer who wins. On printed sources the
-open-weight tools have caught the frontier model: tied on clean print, ahead on
-multi-column layout, with Gemini keeping a clear lead only on
-handwriting. What now separates the tools is what they cost and what they preserve,
-namely page structure, reading order, and speed, which turns tool choice into an
-economic decision rather than a quality compromise. That is why the analysis below
-is organized by content type rather than as a single ranking.
-
 The field's own answer to these saturating benchmarks is harder, more specialised
-documents. For the archive, that means a benchmark built for historians, and this
-paper is a first step toward one rather than the whole of it. We do not try to solve
-the problem here. The work has a single through-line: comparing tools like with
-like, so that none is penalised for preserving a table or ordering columns
-differently from the gold; identifying what really matters in a historical
-transcription, which is seldom the character-error rate alone; and testing on
-genuinely hard material rather than clean crops, drawn here from early-modern print
-(the Jacob corpus), administrative handwriting (the HHTR set), and a Saskatchewan run
-of newspaper articles and full pages.
+documents. For the archive that means a benchmark built for historians, and this
+paper is a first step toward one, not the whole of it, drawn here from early-modern
+print (the Jacob corpus), administrative handwriting (the HHTR set), and a
+Saskatchewan run of newspaper articles and full pages. Because the interesting result
+is no longer who wins but which tool fits which page, we organize the analysis by
+content type rather than as a single ranking.
 
 **What this paper offers.**
 
 1. **A benchmark built from real archives.** We test the tools on documents
    spanning 1612 to 1921: printed pages and handwriting;
    simple single columns and dense multi-column newspapers. We score them against
-   careful human transcriptions whose origins we document, so that the answer key
-   itself can be trusted.
+   careful human transcriptions whose origins we document, not the machine-made gold
+   many OCR benchmarks rely on, so that the answer key itself can be trusted.
 2. **A central finding: open-weight OCR has caught the frontier model on print, but
    leaderboard rank does not predict it.** Across six tools, the strongest
    open-weight systems now match or beat Gemini on printed sources. They tie on clean
@@ -275,21 +263,9 @@ of newspaper articles and full pages.
    the benchmark, and we explain how we keep that material out of the data used to
    train future models, which would quietly ruin the test.
 
-## 2. Why existing benchmarks under-serve historians
+## 2. Benchmark design and methods
 
-Most OCR benchmarks are modern, clean, single-column, and English. They reward
-character accuracy on documents that look nothing like an archive: no long-s, no
-four-column broadsheets, no secretary hand, no foxing, no statistical tables
-whose meaning lives in their 2-D structure. They also score against gold that is
-often itself machine-produced, and they report a single aggregate that hides the
-content-dependence historians care about. The result is tools tuned for the
-average web PDF and benchmarks that cannot tell a scholar which tool to trust on
-*their* page. This paper is built the other way around: from archive material and
-historian-relevant failure modes outward.
-
-## 3. Benchmark design and methods
-
-### 3.1 Corpora and gold provenance
+### 2.1 Corpora and gold provenance
 
 | Corpus | Era | Content | Gold | n |
 |---|---|---|---|--:|
@@ -304,14 +280,20 @@ Provenance matters: a gold produced by a tool under test biases the score, so we
 record how each gold was made and prefer independent human transcription
 (Transkribus PAGE-XML, review transcriptions, scholarly .docx, plain text).
 None of the six golds was generated by any tool in the comparison. One
-consequence of using *real* archival gold is that the gold itself is sometimes
-provisional. The Transkribus layer on the 1700 broadside, for instance, carried
-its own HTR slips (`lnclining`, `Aucther`, a mis-segmented "Manor Woman" for
-"Man or Woman"), which we corrected against the page image and flag in the
-expandable evidence. "Gold" on hard material is an interpretation, not an oracle;
-we treat it as one.
+consequence of using *real* archival gold is that the gold itself is an
+interpretation. On hard material a transcription is a reading, not a fixed answer:
+someone has decided whether a worn mark is an *e* or a *c*, whether to expand an
+abbreviation, where a damaged line breaks. Even careful gold carries slips. The
+Transkribus layer on the 1700 broadside mis-read `lnclining` and `Aucther` and ran
+"Man or Woman" together as "Manor Woman," all of which we corrected against the page
+image and flag in the expandable evidence. The point cuts deeper than a few typos.
+Where a tool and the gold disagree on a difficult page, the tool is not always the
+one in error, and the last point or two of CER can reflect the transcriber's
+judgment as much as the model's. We treat the gold that way throughout: correct what
+the image settles, flag what it does not, and read scores on the hardest pages as
+close rather than exact.
 
-### 3.2 What the harness actually does
+### 2.2 What the harness actually does
 
 The benchmark is a single reproducible pipeline, not a set of hand-tabulated
 results. For each corpus it (i) loads every tool's raw output through a
@@ -339,10 +321,10 @@ A separate and newer strand of the harness is a **canonical-JSON pilot**: a sche
 that re-expresses both gold and OCR as structured records (regions, lines, table
 cells) so that future scoring can compare *structure*, not just a flattened
 character stream. It is scaffolding for the multi-column work and for the tables
-corpus deferred to a future version (§7); we report it here as a direction, not a
+corpus deferred to a future version (§6); we report it here as a direction, not a
 result.
 
-### 3.3 Metrics
+### 2.3 Metrics
 
 - **Strict vs semantic CER/WER.** Strict canonicalizes typographic punctuation
   and whitespace only; semantic also lowercases and strips punctuation. Semantic
@@ -373,9 +355,9 @@ result.
   source (articles inside an issue; manuscript segments): the gold is located in
   the OCR before scoring, so a tool is not penalized for correctly transcribing
   material the gold omits.
-- **Gold-free failure signals (new), §3.4.**
+- **Gold-free failure signals (new), §2.4.**
 
-### 3.4 Measuring failure on impossible inputs
+### 2.4 Measuring failure on impossible inputs
 
 Some archive photographs are simply out-of-spec: a letter shot on top of a pile of
 other letters, a blank verso, a fold-occluded scan. There is no reasonable
@@ -393,9 +375,9 @@ empty output or refusal that says "I cannot read this," rather than confident
 garbage. Because these signals need no gold, they leak nothing and ship in full in
 the public artifact.
 
-## 4. Results by content type
+## 3. Results by content type
 
-### 4.1 Clean print is solved; the choice is economic
+### 3.1 Clean print is solved; the choice is economic
 
 On BLN600 (cropped 19th-c. newspaper print) the modern tools are effectively
 tied and excellent:
@@ -420,7 +402,7 @@ the block-by-block agreement.
 
 <div class="evidence" data-key="cleanprint"></div>
 
-### 4.2 Early-modern print: script matters more than age
+### 3.2 Early-modern print: script matters more than age
 
 Hold layout roughly constant, mostly single-column, and move back to 1612–1807,
 and error jumps about four-fold over BLN600 for the same tools. We report CER
@@ -490,7 +472,7 @@ modern documents never had to learn: the long-s, the ligatures, the worn early
 impressions. A leaderboard built on clean contemporary pages does not reward, and so
 does not build, the one skill early-modern print demands.
 
-### 4.3 Multi-column pages: where olmOCR collapses
+### 3.3 Multi-column pages: where olmOCR collapses
 
 Multi-column newspapers are a significant challenge for OCR models, and a separate
 challenge for scoring what the models produce. Standard CER fails here because the
@@ -549,7 +531,7 @@ The lesson for practitioners is twofold. On complex layouts, use a layout-aware 
 F1, not linear CER, or you will both misrank the tools and blame recognition for what
 is really a reading-order or coverage choice.
 
-### 4.4 Handwriting
+### 3.4 Handwriting
 
 Handwriting is where document difficulty, not the mere fact of cursive, decides the
 outcome, so we report two corpora. The larger is the HHTR set: 50 legible
@@ -613,11 +595,11 @@ and hard ends side by side.
 Statistical tables are deferred to a future version of the benchmark. They are not
 a CER problem at all. A flattened database cannot align character-for-character to
 a printed grid, so they need cell-value recall and the structure-aware scoring of
-the canonical-JSON pilot (§3.2) rather than the metrics used here. We have a small
+the canonical-JSON pilot (§2.2) rather than the metrics used here. We have a small
 tables corpus and preliminary numbers, but the scoring is not yet sound enough to
-report, so we hold it for the next version (§7).
+report, so we hold it for the next version (§6).
 
-### 4.5 Failure on impossible inputs
+### 3.5 Failure on impossible inputs
 
 On the adversarial "Monck letter," a one-page letter photographed atop a pile of
 other letters, the gold-free signals do what no accuracy metric can: they triage the
@@ -639,7 +621,7 @@ fabricates. Expand the gallery to see each tool's actual behaviour.
 
 <div class="evidence" data-key="failure"></div>
 
-### 4.6 Per-content-type summary
+### 3.6 Per-content-type summary
 
 | content type | best tool | the story |
 |---|---|---|
@@ -652,15 +634,15 @@ fabricates. Expand the gallery to see each tool's actual behaviour.
 | impossible inputs | (graceful failers) | Infinity loops; all four over-read the Monck pile |
 | **benchmark leader (GLM-OCR)** | n/a | tops OmniDocBench, but archive-fit only on clean print; weakest on early-modern, hard hands, full pages |
 
-## 5. Discussion: choosing a tool, and the fidelity question
+## 4. Discussion: choosing a tool, and the fidelity question
 
-A practitioner guide falls out of §4: for clean pages, optimize cost; for
+A practitioner guide falls out of §3: for clean pages, optimize cost; for
 multi-column, use a layout-aware tool and order-invariant scoring; for handwriting,
 prefer a general VLM and expect to review; and for archive photographs that may be
 out-of-spec, run the gold-free failure check and route flagged items to humans. The larger pattern behind that
 guide is that the best open-weight tools now match or beat the frontier model on every
 printed register, and trade mainly on page structure and speed. The rational design
-is therefore the tiered workflow of §6: transcribe the bulk with a fast,
+is therefore the tiered workflow of §5: transcribe the bulk with a fast,
 structure-preserving open-weight tool, usually Chandra, and spend the metered
 frontier model only where it is decisively better and the pages are few, above all
 on hard handwriting. One concern cuts across all of it, the tension between fidelity
@@ -670,7 +652,7 @@ split makes this visible, and the prompt experiment suggests that part of it is
 steerable. Historians should choose their tools, and their prompts, with their
 evidentiary needs explicit.
 
-## 6. Speed, cost, and scale
+## 5. Speed, cost, and scale
 
 For a single document any of these tools is fast enough, and the choice is purely
 one of accuracy. The calculus changes when a project scales to tens of thousands or
@@ -689,7 +671,7 @@ Two facts matter. olmOCR is an order of magnitude faster at inference than the o
 two. That is a genuine speed tier, and it is the reason olmOCR stays attractive
 despite its lower accuracy and flattened structure. Chandra and Infinity, by
 contrast, run at almost the same per-page rate. Infinity is "slower" chiefly because
-its 35-billion-parameter mixture-of-experts (§9) takes about 17 minutes to load, a
+its 35-billion-parameter mixture-of-experts (§8) takes about 17 minutes to load, a
 fixed cost that is painful for a small job but amortizes to nothing across a large
 corpus. At scale, then, the effective ordering is olmOCR first, with Chandra and
 Infinity close behind each other, and the real question is whether a corpus is large
@@ -729,7 +711,7 @@ enough to afford it, above all on difficult handwriting. The point is not that o
 class of tool has won. It is that print, structure, scale, and handwriting are
 different jobs, and the field now offers a different best tool for each.
 
-## 7. A call for community gold
+## 6. A call for community gold
 
 What this benchmark can measure is bounded by the documents in it, and ours are
 still narrow in language, period, and difficulty. We therefore invite contributions
@@ -750,12 +732,12 @@ expandable panel in a page like this one.
 Statistical tables are first on that roadmap. We hold a small tables corpus with
 hand-keyed .xlsx gold, but tables are not a character-error problem (a flattened
 database cannot align to a printed grid), and scoring them fairly needs cell-value
-recall and the structure-aware canonical-JSON pilot of §3.2, not the metrics used
+recall and the structure-aware canonical-JSON pilot of §2.2, not the metrics used
 above. A future version of the paper and benchmark will report tables once that
 scoring is sound; we leave them out here rather than publish a number we do not yet
 trust.
 
-## 8. Data availability (and a note on contamination)
+## 7. Data availability (and a note on contamination)
 
 Public benchmarks get scraped into training corpora, after which they no longer
 measure generalization. We therefore split the release. The demonstration set, the
@@ -766,7 +748,7 @@ the gold-free failure results, which contain no gold, are public in full. We pro
 this *gated-gold* pattern as a reusable data-availability model for evaluation
 datasets in *Working Papers in Critical Search*.
 
-## 9. Compute and reproducibility
+## 8. Compute and reproducibility
 
 All tools were run on a single H100 GPU via vLLM on a SLURM cluster, with Chandra 2
 and Infinity Parser 2 detailed in the appendix Skill `cluster-vlm-ocr`; Gemini ran
@@ -779,13 +761,13 @@ Infinity thus carries the most capacity but, being sparse, spends little of it p
 token and still fits one GPU. GLM-OCR is the smallest at about 0.9B and the newest;
 it currently leads the public document-parsing benchmark OmniDocBench, ahead of the
 frontier proprietary VLMs, which is exactly why its uneven showing on archival
-material is the load-bearing example of §1 and §4. Public leaderboard numbers and
+material is the load-bearing example of §1 and §3. Public leaderboard numbers and
 the OmniDocBench standings move monthly; ours are a snapshot from mid-2026. The harness, metrics, per-corpus scripts, and the page-builder that
 generates this document from the result files are all in this repository, so the
 paper, the tables, and the expandable transcriptions can be regenerated end to end
 from the raw outputs.
 
-## 10. Limitations
+## 9. Limitations
 
 Several corpora are small, at 5 to 8 documents. The olmOCR prompt-sensitivity test
 remains open, because its prompt is not cleanly overridable. Gemini is scored on 96
@@ -793,10 +775,10 @@ of 100 early-modern pages, after 3 refusals and 1 truncation, though the
 common-subset re-score confirms its lead. GLM-OCR was run with a default prompt on
 the six fixed-gold corpora, not the located-article (sask) or gold-free failure
 sets, and its public-leaderboard standing is a mid-2026 snapshot. The benchmark is
-English-dominant. And the gold is itself an interpretation, not an oracle. Each
-limitation is, in effect, the contribution call of §7.
+English-dominant. And on the hardest pages the gold is itself a reading, not a fixed
+answer (§2.1). Each limitation is, in effect, the contribution call of §6.
 
-## 11. Conclusion
+## 10. Conclusion
 
 Machine reading of historical documents has improved enough to change how we build
 digital archives, though uniformly only on the easy pages. The open-weight tools
